@@ -20,7 +20,7 @@
         {"YEAR":2014,"USERS":1393},
         {"YEAR":2015,"USERS":1591}]},
 
-{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":,
+{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":1,
 "Users": [{"YEAR":2009,"USERS":55},
         {"YEAR":2010,"USERS":90},
         {"YEAR":2011,"USERS":145},
@@ -29,7 +29,7 @@
         {"YEAR":2014,"USERS":347},
         {"YEAR":2015,"USERS":414}]},
 
-{"Platform":"MySpace", "Date":"", "Current_size":,
+{"Platform":"MySpace", "Date":"", "Current_size":1,
 "Users": []},
 
 {"Platform":"WhatsApp", "Date":"01.01.2010", "Current_size":900,
