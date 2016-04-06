@@ -1,4 +1,4 @@
-[{"Platform":"Twitter", "Date":"07.15.2006", "Current_size":320,
+[{"Platform":"Twitter", "Date":"07.15.2006", "Current_size":305,
 "Users": [{"YEAR":2010,"USERS":54},
         {"YEAR":2011,"USERS":117},
         {"YEAR":2012,"USERS":185},
@@ -6,7 +6,7 @@
         {"YEAR":2014,"USERS":288},
         {"YEAR":2015,"USERS":305}]},
 
-{"Platform":"Facebook", "Date":"03.01.2004", "Current_size":1550,
+{"Platform":"Facebook", "Date":"03.01.2004", "Current_size":1591,
 "Users": [{"YEAR":2004,"USERS":1},
         {"YEAR":2005,"USERS":6},
         {"YEAR":2006,"USERS":12},
@@ -20,7 +20,7 @@
         {"YEAR":2014,"USERS":1393},
         {"YEAR":2015,"USERS":1591}]},
 
-{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":1,
+{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":414,
 "Users": [{"YEAR":2009,"USERS":55},
         {"YEAR":2010,"USERS":90},
         {"YEAR":2011,"USERS":145},
@@ -29,12 +29,10 @@
         {"YEAR":2014,"USERS":347},
         {"YEAR":2015,"USERS":414}]},
 
-{"Platform":"MySpace", "Date":"", "Current_size":1,
+{"Platform":"MySpace", "Date":"08.01.2003", "Current_size":50.6,
 "Users": []},
 
 {"Platform":"WhatsApp", "Date":"01.01.2010", "Current_size":900,
-"Users": [{"YEAR":2013,"USERS":400},
-          {"YEAR":2014,"USERS":650},
-          {"YEAR":2015,"USERS":900}]}]
+"Users": [{"2013": 400}, {"2014": 650}, {"2015": 900}]}]
 
 

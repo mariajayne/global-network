@@ -4,7 +4,7 @@
 
 $.getJSON("../data/social-media/social-media-users.json", function(json) {
     console.log(json);
+    console.log("test");
 });
 
 
-console.log("test");
