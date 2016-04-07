@@ -1,38 +1,68 @@
 [{"Platform":"Twitter", "Date":"07.15.2006", "Current_size":305,
 "Users": [{"2010":54},
-        {"YEAR":2011,"USERS":117},
-        {"YEAR":2012,"USERS":185},
-        {"YEAR":2013,"USERS":231.7},
-        {"YEAR":2014,"USERS":288},
-        {"YEAR":2015,"USERS":305}]},
+          {"2011":117},
+          {"2012":185},
+          {"2013":231.7},
+          {"2014":288},
+          {"2015":305}]},
 
 {"Platform":"Facebook", "Date":"03.01.2004", "Current_size":1591,
-"Users": [{"YEAR":2004,"USERS":1},
-        {"YEAR":2005,"USERS":6},
-        {"YEAR":2006,"USERS":12},
-        {"YEAR":2007,"USERS":58},
-        {"YEAR":2008,"USERS":145},
-        {"YEAR":2009,"USERS":360},
-        {"YEAR":2010,"USERS":608},
-        {"YEAR":2011,"USERS":845},
-        {"YEAR":2012,"USERS":1056},
-        {"YEAR":2013,"USERS":1230},
-        {"YEAR":2014,"USERS":1393},
-        {"YEAR":2015,"USERS":1591}]},
+"Users": [{"2004":1},
+        {"2005":6},
+        {"2006":12},
+        {"2007":58},
+        {"2008":145},
+        {"2009":360},
+        {"2010":608},
+        {"2011":845},
+        {"2012":1056},
+        {"2013":1230},
+        {"2014":1393},
+        {"2015":1591}]},
 
-{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":414,
-"Users": [{"YEAR":2009,"USERS":55},
-        {"YEAR":2010,"USERS":90},
-        {"YEAR":2011,"USERS":145},
-        {"YEAR":2012,"USERS":202},
-        {"YEAR":2013,"USERS":277},
-        {"YEAR":2014,"USERS":347},
-        {"YEAR":2015,"USERS":414}]},
-
-{"Platform":"MySpace", "Date":"08.01.2003", "Current_size":50.6,
+{"Platform":"LinkedIn", "Date":"05.01.2003", "Current_size":100,
 "Users": []},
 
 {"Platform":"WhatsApp", "Date":"01.01.2010", "Current_size":900,
-"Users": [{"2013": 400}, {"2014": 650}, {"2015": 900}]}]
+"Users": [{"2013": 400}, {"2014": 650}, {"2015": 900}]},
+
+{"Platform":"QQ", "Date":"02.01.1999", "Current_size": 820,
+"Users": [{"2010":647.6},
+          {"2011":721},
+          {"2012":798},
+          {"2013":808},
+          {"2014":815},
+          {"2015":820}]},
+
+{"Platform":"QZone", "Date":"01.01.2005", "Current_size":653,
+"Users":[]},
+
+{"Platform":"Tumblr", "Date":"02.19.2007", "Current_size":555,
+"Users":[]},
+
+{"Platform":"Instagram", "Date":"10.06.2010", "Current_size":400,
+"Users":[{"2010":1},
+         {"2011":14},
+         {"2012":80},
+         {"2013":150},
+         {"2014":300},
+         {"2015":400}]},
+
+{"Platform":"Baidu Tieba", "Date":"12.03.2003", "Current_size":300,
+"Users":[]}, 
+
+{"Platform":"Sina Weibo", "Date":"08.14.2009", "Current_size":222,
+"Users":[]},
+
+{"Platform":"yy", "Date":"01.01.2005", "Current_size":122,
+"Users":[]},
+
+{"Platform":"VK", "Date":"10.10.2006", "Current_size":100,
+"Users":[]},
+
+{"Platform":"Pinterest", "Date":"03.01.2010", "Current_size":100,
+"Users":[]}]
+
+
 
 

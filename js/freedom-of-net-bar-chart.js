@@ -117,7 +117,7 @@ BarChart.prototype.updateVis = function(){
     vis.data.sort(function(a,b){ return a.Total_score - b.Total_score});
 
     //  Update domain
-    vis.x.domain(vis.data.map(function(d){return d.Country}))
+    vis.x.domain(vis.data.map(function(d){return d.Country}));
     vis.y.domain([0,d3.max(vis.data,function(d){return d.Total_score})]);
 
     //  Call axis functions with the new domain
