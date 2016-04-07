@@ -12,7 +12,7 @@ var colorScale = d3.scale.category20();
 var timeLine;
 
 // Date parser
-var dateFormat = d3.time.format("%m.%d.%Y").parse;
+var dateFormat = d3.time.format("%m-%d-%Y").parse;
 
 
 //  Start application by loading the data
@@ -28,6 +28,10 @@ function loadData(){
             allData.forEach(function(d){
                 d.Date = dateFormat(d.Date);
             });
+
+            console.log(d3.extent(allData, function(d) {
+                return d.Date;
+            }));
 
             //   Create visualization
             createVis();

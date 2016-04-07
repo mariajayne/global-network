@@ -17,7 +17,7 @@ Timeline.prototype.initVis = function() {
     vis.margin = { top: 40, right: 0, bottom: 60, left: 60 };
 
     vis.width = 1200 - vis.margin.left - vis.margin.right,
-        vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area
@@ -30,7 +30,7 @@ Timeline.prototype.initVis = function() {
     // scales
     vis.x = d3.time.scale()
         .range(0, vis.width)
-        .domain([dateFormat("1998.01.01"), dateFormat("2016.01.01")]);
+        .domain([dateFormat("01-01-1998"), dateFormat("01-01-2016")]);
 
 
     // Axis
@@ -67,7 +67,11 @@ Timeline.prototype.updateVis = function() {
         return b.Current_size - a.Current_size;
     });
 
-    console.log(vis.data[0].Date);
+    (console.log(vis.data[0].Date));
+
+    console.log(d3.extent(vis.data, function(d) {
+        d.Date;
+    }));
     console.log(vis.x(vis.data[0].Date));
 
 
