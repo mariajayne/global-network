@@ -70,7 +70,7 @@ Timeline.prototype.updateVis = function() {
     (console.log(vis.data[0].Date));
 
     console.log(d3.extent(vis.data, function(d) {
-        d.Date;
+        return d.Date;
     }));
     console.log(vis.x(vis.data[0].Date));
 
