@@ -1,1 +1,48 @@
 /* style-social-media.css contains settings only valid for social-media.html */
+
+/***********/
+/* GENERAL */
+/***********/
+
+@font-face {
+    font-family: foxCat;
+    src: url(../fonts/Fox&Cat.ttf);
+}
+
+/* Centering whole visualization */
+#timeline-drawing-space {
+    display : block;
+    margin : auto;
+}
+
+body {
+    background-color : #222222;
+    fill : white;
+    opacity : .8;
+    font-family : foxCat;
+    font-size : 20px;
+    color : white;
+}
+
+/*************/
+/* TIME LINE */
+/*************/
+
+.domain {
+    fill: none;
+    stroke: white;
+    stroke-width: 1;
+    color : white;
+}
+
+.x-axis text {
+    fill : white;
+}
+
+#platformInfo {
+    font-size : 12px;
+    position : absolute;
+    text-anchor : middle;
+
+}
+

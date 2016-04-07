@@ -14,7 +14,6 @@ var timeLine;
 // Date parser
 var dateFormat = d3.time.format("%m-%d-%Y").parse;
 
-
 //  Start application by loading the data
 loadData();
 
@@ -29,9 +28,9 @@ function loadData(){
                 d.Date = dateFormat(d.Date);
             });
 
-            console.log(d3.extent(allData, function(d) {
-                return d.Date;
-            }));
+            allData.sort(function(a,b) {
+                return b.Current_size - a.Current_size;
+            });
 
             //   Create visualization
             createVis();
