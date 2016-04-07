@@ -96,13 +96,13 @@ Timeline.prototype.updateVis = function() {
     circle.on("mouseover", function(d) {
         vis.title.text(d.Platform);
         vis.platformInfo.innerHTML = "Active users: " + d.Current_size + " million";
-        d3.selectAll(".circle").transition().duration(500).attr("opacity", 0.1);
-        d3.select(this).transition().duration(500).attr("opacity", 0.7)});
+        d3.selectAll(".circle").transition().duration(250).attr("opacity", 0.1);
+        d3.select(this).transition().duration(250).attr("opacity", 0.7)});
 
     circle.on("mouseout", function(d) {
         vis.title.text("Social networks");
         vis.platformInfo.innerHTML = "";
-        d3.selectAll(".circle").transition().duration(500).attr("opacity",.5);
+        d3.selectAll(".circle").transition().duration(250).attr("opacity",.5);
     });
 
     circle.exit()
