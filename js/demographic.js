@@ -24,7 +24,7 @@ var gdpChart,
 loadData();
 
 function loadData(){
-    d3.csv("../data/demographicData.csv",function(error,csvData){
+    d3.csv("../data/demographics-edited.csv",function(error,csvData){
         if(!error){
             allData = csvData;
 
