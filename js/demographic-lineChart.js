@@ -108,7 +108,7 @@ LineChart.prototype.initVis = function(){
 
 LineChart.prototype.wrangleData = function(){
     var vis = this;
-    var countryScope = "USA"    //  Make this listen to map.
+    var countryScope = "SWE"    //  Make this listen to map.
     vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
     vis.updateVis();
 }
