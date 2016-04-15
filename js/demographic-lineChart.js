@@ -5,10 +5,17 @@
 var commasFormatter = d3.format(",.0f");
 
 var metricMap = {
-    "gdp" : "Gross Domestic Product (GDP)",
-    "internet" : "Internet Users ",
-    "unemployment" : "Unemployment",
-    "university" : "University"
+    "gdp" : "GDP (current LCU)",
+    "internet" : "Internet users (per 100 people) ",
+    "unemployment" : "Total Unemployment (% of labor force)",
+    "university" : "Gross enrolment ratio, University(%)"
+}
+
+var labelMap = {
+    "gdp" : "$",
+    "internet" : "%",
+    "unemployment" : "%",
+    "university" : "%"
 }
 
 LineChart= function(_parentElement,_data,_metric){
@@ -16,6 +23,8 @@ LineChart= function(_parentElement,_data,_metric){
     this.data = _data;
     this.displayData = [];
     this.metric = _metric;
+
+
     this.initVis();
 }
 
@@ -24,8 +33,8 @@ LineChart.prototype.initVis = function(){
 
     //  Defining margins
     vis.margin = {top:30,right:20,bottom:20,left:100}
-    vis.width = 300 - vis.margin.left - vis.margin.right;
-    vis.height = 150 - vis.margin.top - vis.margin.bottom;
+    vis.width = 600 - vis.margin.left - vis.margin.right;
+    vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -60,7 +69,7 @@ LineChart.prototype.initVis = function(){
 
     //  Appending line
     vis.line = d3.svg.line()
-        .defined(function(d){return d})
+        .defined(function(d) {return !isNaN(d[vis.metric])})
         .x(function(d){return vis.x(d.year)})
         .y(function(d){return vis.y(d[vis.metric])})
         .interpolate('basis');
@@ -81,7 +90,7 @@ LineChart.prototype.initVis = function(){
         .attr("x", 0)
         .attr("dy", ".75em")
         .attr("transform", "rotate(0)")
-        .text("$");
+        .text(labelMap[vis.metric]);
 
     //  Appending title
     vis.svg.append("text")
@@ -99,9 +108,8 @@ LineChart.prototype.initVis = function(){
 
 LineChart.prototype.wrangleData = function(){
     var vis = this;
-
-    vis.displayData = vis.data.countries[15].years;
-
+    var countryScope = "USA"    //  Make this listen to map.
+    vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
     vis.updateVis();
 }
 
@@ -109,8 +117,8 @@ LineChart.prototype.wrangleData = function(){
 LineChart.prototype.updateVis = function(){
     var vis = this;
 
-    vis.x.domain(d3.extent(vis.displayData,function(d){return d.year}))
-    vis.y.domain([0,d3.max(vis.displayData,function(d){return d[vis.metric]})])
+    vis.x.domain(d3.extent(vis.displayData,function(d){return d.year}));
+    vis.y.domain([0,d3.max(vis.displayData,function(d) {return d[vis.metric]})]);
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);

@@ -54,12 +54,11 @@ function processData(error,data1,data2){
 
 }
 
-
 function createVis() {
     gdpChart = new LineChart("gdp-chart",demographicData,"gdp");
     educationChart = new LineChart("education-chart",demographicData,"university");
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
-    freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
+    //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
 }
 

@@ -14,9 +14,6 @@ BarChart = function(_parentElement,_data){
     this.data = _data;
     this.displayData = [];
 
-    //  Debug RAW data
-    console.log(this.data);
-
     this.initVis();
 }
 
@@ -122,9 +119,6 @@ BarChart.prototype.updateVis = function(){
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
-
-    var path = svg.selectAll("path")
-        .attr("d", line);
 
     //  Create rectangles
     var rect = vis.svg.selectAll("rect")
