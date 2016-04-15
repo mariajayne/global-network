@@ -91,9 +91,6 @@ BarChart.prototype.initVis = function(){
         .attr("transform", "rotate(0)")
         .text("Freedom of the internet");
 
-    vis.fisheye = d3.fisheye();
-
-
     //  Init wrangleData
     vis.wrangleData();
 
@@ -105,7 +102,7 @@ BarChart.prototype.wrangleData = function(){
     var vis = this;
 
     //  Currently no data wrangling needed
-    //  Update the visualization
+    //  Update vis
     vis.updateVis();
 }
 
