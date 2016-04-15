@@ -2,16 +2,20 @@
  * Created by akselreiten on 14/04/16.
  */
 
+/**
+ * Created by akselreiten on 14/04/16.
+ */
+
 var commasFormatter = d3.format(",.0f")
 
-GDPChart= function(_parentElement,_data){
+InternetChart= function(_parentElement,_data){
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
     this.initVis();
 }
 
-GDPChart.prototype.initVis = function(){
+InternetChart.prototype.initVis = function(){
     var vis = this;
 
     //  Defining margins
@@ -58,7 +62,7 @@ GDPChart.prototype.initVis = function(){
     vis.line = d3.svg.line()
         .defined(function(d){return d})
         .x(function(d){return vis.x(d.year)})
-        .y(function(d){return vis.y(d.gdp)})
+        .y(function(d){return vis.y(d.internet)})
         .interpolate('basis');
 
 
@@ -79,13 +83,13 @@ GDPChart.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".75em")
         .attr("transform", "rotate(0)")
-        .text("Gross Domestic Product (GDP)");
+        .text("Internet users");
 
     vis.wrangleData();
 }
 
 
-GDPChart.prototype.wrangleData = function(){
+InternetChart.prototype.wrangleData = function(){
     var vis = this;
 
     vis.displayData = vis.data.countries[1].years;
@@ -95,11 +99,11 @@ GDPChart.prototype.wrangleData = function(){
 }
 
 
-GDPChart.prototype.updateVis = function(){
+InternetChart.prototype.updateVis = function(){
     var vis = this;
 
     vis.x.domain(d3.extent(vis.displayData,function(d){return d.year}))
-    vis.y.domain([0,d3.max(vis.displayData,function(d){return d.gdp})])
+    vis.y.domain([0,d3.max(vis.displayData,function(d){return d.internet})])
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);

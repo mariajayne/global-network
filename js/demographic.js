@@ -2,11 +2,6 @@
  * Created by akselreiten on 14/04/16.
  */
 
-///////////////////////////////////////////
-/////////     Main          ///////////////
-/////////     Controller    ///////////////
-///////////////////////////////////////////
-
 //  Will be used to save the loaded JSON data
 var allData = [];
 
@@ -19,32 +14,40 @@ var gdpChart,
     employmentChart,
     internetChart;
 
+// Date parser to convert strings to date objects
+var parseDate = d3.time.format("%Y").parse;
 
 //  Start application by loading the data
 loadData();
 
 function loadData(){
-    d3.csv("../data/demographics-edited.csv",function(error,csvData){
+    d3.json("../data/demographics/demographics-by-year.json",function(error,csvData){
         if(!error){
+
+            //  Saving data to global variable
             allData = csvData;
 
-            //   Preparing the data
-            allData.forEach(function(d){
-                console.log(d.country)
-
+            //  Preprosessing data
+            allData.countries.forEach(function(d){
+                d.years.forEach(function(k){
+                    k.gdp = +k.gdp;
+                    k.unemployment = +k.unemployment;
+                    k.university = +k.university;
+                    k.water = +k.water;
+                    k.internet = +k.internet;
+                    k.year = parseDate(k.year.toString());
+                })
             });
-
-            //   Create visualization
-
         }
+
+        //   Create visualization
+        createVis();
+
     });
-}
-
-function processData(){
-
 }
 
 function createVis() {
     gdpChart = new GDPChart("gdp-chart",allData);
+    //internetChart = new InternetChart("internet-chart",allData);
 }
 
