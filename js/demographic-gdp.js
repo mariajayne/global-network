@@ -2,7 +2,26 @@
  * Created by akselreiten on 14/04/16.
  */
 
-var commasFormatter = d3.format(",.0f")
+var commasFormatter = d3.format(",.0f");
+
+function mouseOver(d,i){
+    tooltip.style("display",null);
+    svg.selectAll(".layer")
+        .transition()
+        .duration(200)
+        .attr("opacity",function(d,j){
+            return j != i ? 0.7 : 1;});
+}
+
+//  Appends values and line
+function mouseMove(d,i){
+    console.log("move")
+}
+
+//  Dishighlights area
+function mouseOut(d,i){
+    console.log("out")
+}
 
 GDPChart= function(_parentElement,_data){
     this.parentElement = _parentElement;
@@ -80,6 +99,7 @@ GDPChart.prototype.initVis = function(){
         .attr("dy", ".75em")
         .attr("transform", "rotate(0)")
         .text("Gross Domestic Product (GDP)");
+
 
     vis.wrangleData();
 }
