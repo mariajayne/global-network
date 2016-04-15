@@ -11,10 +11,6 @@ var metricMap = {
     "university" : "University"
 }
 
-var labelMap = {
-    "gdp" : ""
-}
-
 LineChart= function(_parentElement,_data,_metric){
     this.parentElement = _parentElement;
     this.data = _data;

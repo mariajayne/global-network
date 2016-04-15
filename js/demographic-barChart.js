@@ -23,10 +23,10 @@ BarChart = function(_parentElement,_data){
 BarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 0, bottom: 60, left: 60 };
+    vis.margin = { top: 40, right: 60, bottom: 60, left: 60 };
 
-    vis.width = 800 - vis.margin.left - vis.margin.right,
-    vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.width = $( document ).width()- vis.margin.left - vis.margin.right,
+    vis.height = 300 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area
@@ -149,7 +149,7 @@ BarChart.prototype.updateVis = function(){
         .attr("y",0)
         .attr("x",-10)
         .attr("dy",".35em")
-        .attr("transform","rotate(-90)")
+        .attr("transform","rotate(-65)")
         .style("text-anchor","end");
 
     //  Update y-label
