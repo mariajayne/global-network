@@ -11,10 +11,19 @@ var gdpChart,
     educationChart,
     employmentChart,
     internetChart,
-    freedomOfNetChart;
+    freedomOfNetChart,
+    timeline;
 
 // Date parser to convert strings to date objects
 var parseDate = d3.time.format("%Y").parse;
+
+function brushed(){
+    gdpChart.x.domain(
+        timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent()
+    );
+
+    gdpChart.wrangleData();
+}
 
 //  Start application by loading the data
 loadData();
@@ -59,6 +68,7 @@ function createVis() {
     educationChart = new LineChart("education-chart",demographicData,"university");
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
-    //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
+    freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
+    timeline = new Timeline("timeline-container",demographicData.countries[0],"gdp")
 }
 

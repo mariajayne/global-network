@@ -13,7 +13,7 @@ var labelMap = {
     "gdp" : "$USD",
     "internet" : "% of population",
     "unemployment" : "% of work force",
-    "university" : "% of population"
+    "university" : "%"
 }
 
 var formatValue = d3.format(".2s");
@@ -168,7 +168,7 @@ LineChart.prototype.initVis = function(){
             .attr("y1", 0).attr("y2", -vis.height);
         vis.focus.select("text.y1")
             .attr("transform","translate(" + vis.x(d.year) + "," + 35 + ")")
-            .text("Value: " + formatYLabel(d[vis.metric],vis.metric));
+            .text(formatYLabel(d[vis.metric],vis.metric));
         vis.focus.select("text.y2")
             .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
             .text("Year: " + formatYear(d.year));
