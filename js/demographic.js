@@ -47,7 +47,9 @@ function loadData(){
 }
 
 function createVis() {
-    gdpChart = new GDPChart("gdp-chart",allData);
-    //internetChart = new InternetChart("internet-chart",allData);
+    gdpChart = new LineChart("gdp-chart",allData,"gdp");
+    educationChart = new LineChart("education-chart",allData,"university");
+    employmentChart = new LineChart("employment-chart",allData,"unemployment");
+    internetChart = new LineChart("internet-chart",allData,"internet");
 }
 
