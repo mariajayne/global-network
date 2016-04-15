@@ -91,6 +91,8 @@ BarChart.prototype.initVis = function(){
         .attr("transform", "rotate(0)")
         .text("Freedom of the internet");
 
+    vis.fisheye = d3.fisheye();
+
 
     //  Init wrangleData
     vis.wrangleData();
@@ -124,6 +126,9 @@ BarChart.prototype.updateVis = function(){
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
 
+    var path = svg.selectAll("path")
+        .attr("d", line);
+
     //  Create rectangles
     var rect = vis.svg.selectAll("rect")
         .data(vis.data);
@@ -138,7 +143,11 @@ BarChart.prototype.updateVis = function(){
         .style("fill",function(d){return vis.colorScale[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
-        .on("mouseout",function(d){vis.tooltip.text("")});
+        .on("mouseout",function(d){vis.tooltip.text("")})
+        .on("mousemove",function(){
+            fisheye.center(d3.mouse(this));
+            path.attr("d", function(d) { return line(d.map(fisheye)); });
+        });
 
     rect.exit()
         .transition()
