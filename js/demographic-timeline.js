@@ -7,6 +7,8 @@ Timeline = function(_parentElement, _data,_metric){
     this.data = _data;
     this.metric = _metric;
     this.displayData = this.data.years;
+
+    console.log(this.displayData);
     this.initVis();
 }
 
@@ -48,6 +50,16 @@ Timeline.prototype.initVis = function(){
         .datum(vis.displayData)
         .attr("fill", "#ccc")
         .attr("d", vis.area);
+
+    //  Appending main title
+    vis.svg.append("text")
+        .attr("class", "axis-title")
+        .attr("text-anchor", "middle")
+        .attr("y", 20)
+        .attr("x", vis.width/2)
+        .attr("dy", ".75em")
+        .attr("transform", "rotate(0)")
+        .text("Global Internet Users from 1991 to 2015");
 
     // Initialize brush component
     vis.brush = d3.svg.brush()

@@ -31,7 +31,7 @@ loadData();
 function loadData() {
 
     queue()
-        .defer(d3.json, "../data/demographics/demographics-by-year.json")
+        .defer(d3.json, "../data/demographics/test-demographics-by-year.json")
         .defer(d3.json, "../data/freedom-house/freedom_house_2015.json")
         .await(processData);
 
@@ -51,6 +51,15 @@ function processData(error,data1,data2){
         })
     });
 
+    demographicData.world.forEach(function(d){
+        d.years.forEach(function(k){
+            k.average_gdp = +k.average_gdp;
+            k.total_gdp = +k.total_gdp;
+            k.total_internet_usage = +k.total_internet_usage;
+            k.year = parseDate(k.year.toString());
+        })
+    })
+
     freedomData = data2;
     freedomData.forEach(function(d){
         d.Total_score = +d.Total_score;
@@ -69,6 +78,6 @@ function createVis() {
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
     freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
-    timeline = new Timeline("timeline-container",demographicData.countries[0],"gdp")
+    timeline = new Timeline("timeline-container",demographicData.world[0],"total_internet_usage")
 }
 
