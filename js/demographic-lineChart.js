@@ -32,6 +32,7 @@ LineChart= function(_parentElement,_data,_metric){
     this.displayData = [];
     this.metric = _metric;
     this.initVis();
+    console.log(this.data);
 }
 
 LineChart.prototype.initVis = function(){
@@ -39,8 +40,8 @@ LineChart.prototype.initVis = function(){
 
     //  Defining margins, height and width
     vis.margin = {top:30,right:20,bottom:20,left:100}
-    vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
+    vis.width = 350 - vis.margin.left - vis.margin.right;
+    vis.height = 200 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -180,8 +181,16 @@ LineChart.prototype.initVis = function(){
 
 LineChart.prototype.wrangleData = function(){
     var vis = this;
-    var countryScope = "USA"    //  Make this listen to map.
-    vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
+    var countryScope;
+
+    if (selectedCountries.length == 0){
+        vis.displayData = vis.data.world[0].years
+    }
+    else{
+        var countryScope = selectedCountries[0] || "USA"
+        vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
+    }
+
     vis.updateVis();
 }
 

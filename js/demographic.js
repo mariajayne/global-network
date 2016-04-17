@@ -5,6 +5,7 @@
 //  Will be used to save the loaded JSON data
 var demographicData = [];
 var freedomData = [];
+var map;
 
 //  Variables for the visualization instances
 var gdpChart,
@@ -12,16 +13,37 @@ var gdpChart,
     employmentChart,
     internetChart,
     freedomOfNetChart,
-    timeline;
+    timeline,
+    worldMap;
+
+//  Variables for selecting countries on map
+var selectedCountries = []
+var defaultCountry = "USA";
+var defaultCountryColor = "gray";
+var selectedCountryColor = "black";
+
+function selectCountry(d){
+    var country = d.properties.id;
+    if (selectedCountries.indexOf(country) != -1){
+        selectedCountries.splice(selectedCountries.indexOf(country))
+        d3.select("#" + country).style("fill",defaultCountryColor);
+    }
+    else{
+        selectedCountries.push(country);
+        d3.select("#" + country).style("fill",selectedCountryColor);
+    }
+    internetChart.wrangleData();
+    gdpChart.wrangleData();
+    educationChart.wrangleData();
+    employmentChart.wrangleData();
+
+}
 
 // Date parser to convert strings to date objects
 var parseDate = d3.time.format("%Y").parse;
 
 function brushed(){
-    gdpChart.x.domain(
-        timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent()
-    );
-
+    gdpChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
     gdpChart.wrangleData();
 }
 
@@ -33,11 +55,12 @@ function loadData() {
     queue()
         .defer(d3.json, "../data/demographics/test-demographics-by-year.json")
         .defer(d3.json, "../data/freedom-house/freedom_house_2015.json")
+        .defer(d3.json, "../data/demographics/world-topo.json")
         .await(processData);
 
 }
 
-function processData(error,data1,data2){
+function processData(error,data1,data2,data3){
 
     demographicData = data1;
     demographicData.countries.forEach(function(d){
@@ -68,6 +91,8 @@ function processData(error,data1,data2){
         d.Violations_of_user_rights = +d.Violations_of_user_rights;
     });
 
+    map = data3;
+
     createVis();
 
 }
@@ -79,5 +104,6 @@ function createVis() {
     internetChart = new LineChart("internet-chart",demographicData,"internet");
     freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
     timeline = new Timeline("timeline-container",demographicData.world[0],"total_internet_usage")
+    worldMap = new WorldMap("world-map",map,demographicData);
 }
 

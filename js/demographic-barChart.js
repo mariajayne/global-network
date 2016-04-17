@@ -134,11 +134,7 @@ BarChart.prototype.updateVis = function(){
         .style("fill",function(d){return vis.colorScale[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
-        .on("mouseout",function(d){vis.tooltip.text("")})
-        .on("mousemove",function(){
-            fisheye.center(d3.mouse(this));
-            path.attr("d", function(d) { return line(d.map(fisheye)); });
-        });
+        .on("mouseout",function(d){vis.tooltip.text("")});
 
     rect.exit()
         .transition()

@@ -7,8 +7,6 @@ Timeline = function(_parentElement, _data,_metric){
     this.data = _data;
     this.metric = _metric;
     this.displayData = this.data.years;
-
-    console.log(this.displayData);
     this.initVis();
 }
 
