@@ -4,6 +4,9 @@
 
 //  Will be used to save the loaded JSON data
 var allData = [];
+var platformData = [];
+var countryData = [];
+var platformCountryBreakdown = {};
 
 //  Set ordinal color scale
 var colorScale = d3.scale.category20();
@@ -18,19 +21,25 @@ var dateFormat = d3.time.format("%m-%d-%Y").parse;
 loadData();
 
 function loadData(){
-    d3.json("../data/social-media/social-media-users.json",function(error,jsonData){
+    d3.json("../data/social-media/social-network-users.json",function(error,jsonData){
         if(!error){
             allData = jsonData;
-            console.log(allData);
+            platformData = allData.Platform;
+            countryData = allData.Country;
+            platformCountryBreakdown = allData.PlatformPercent;
 
             //   Preparing the data
-            allData.forEach(function(d){
+            platformData.forEach(function(d){
                 d.Date = dateFormat(d.Date);
+                d.Msg = (d.Msg === "true");
             });
 
-            allData.sort(function(a,b) {
+            platformData.sort(function(a,b) {
                 return b.Current_size - a.Current_size;
             });
+
+            console.log(countryData);
+            console.log(platformCountryBreakdown);
 
             //   Create visualization
             createVis();
@@ -39,5 +48,12 @@ function loadData(){
 }
 
 function createVis() {
-    timeLine = new Timeline("social-media-timeline", allData);
+    timeLine = new Timeline("social-media-timeline", platformData);
+    barChart = new BarChart("social-media-bar-chart", countryData, platformCountryBreakdown);
+}
+
+function selectPlatform(platform) {
+   barChart.chosen = false;
+   barChart.current = platform;
+   barChart.updateVis();
 }
