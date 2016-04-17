@@ -86,7 +86,7 @@ BarChart.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Freedom of the internet");
+        .text("Freedom of the internet in 2014");
 
     //  Init wrangleData
     vis.wrangleData();

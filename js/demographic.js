@@ -5,7 +5,7 @@
 //  Will be used to save the loaded JSON data
 var demographicData = [];
 var freedomData = [];
-var map;
+var map = [];
 
 //  Variables for the visualization instances
 var gdpChart,
@@ -32,19 +32,26 @@ function selectCountry(d){
         selectedCountries.push(country);
         d3.select("#" + country).style("fill",selectedCountryColor);
     }
-    internetChart.wrangleData();
-    gdpChart.wrangleData();
-    educationChart.wrangleData();
-    employmentChart.wrangleData();
-
+    wrangleChartData();
 }
+
 
 // Date parser to convert strings to date objects
 var parseDate = d3.time.format("%Y").parse;
 
 function brushed(){
+    internetChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
     gdpChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
+    educationChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
+    employmentChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
+    wrangleChartData();
+}
+
+function wrangleChartData(){
+    internetChart.wrangleData();
     gdpChart.wrangleData();
+    educationChart.wrangleData();
+    employmentChart.wrangleData();
 }
 
 //  Start application by loading the data

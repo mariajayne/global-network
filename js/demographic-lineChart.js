@@ -32,7 +32,6 @@ LineChart= function(_parentElement,_data,_metric){
     this.displayData = [];
     this.metric = _metric;
     this.initVis();
-    console.log(this.data);
 }
 
 LineChart.prototype.initVis = function(){
@@ -50,22 +49,32 @@ LineChart.prototype.initVis = function(){
         .append("g")
         .attr("transform", "translate("+ vis.margin.left+ "," + vis.margin.top + ")");
 
+    //  Overlay with path clipping
+    vis.svg.append("defs").append("clipPath")
+        .attr("id","clip")
+        .append("rect")
+        .attr("width",vis.width)
+        .attr("height",vis.height);
+
     // Scales
-    vis.x = d3.time.scale().range([0, vis.width]);
+    vis.x = d3.time.scale()
+        .range([0, vis.width])
+        .domain(d3.extent(vis.data.countries[0].years, function(d){return d.year}));
+
     vis.y = d3.scale.linear().range([vis.height, 0]);
 
     //  Axis
     vis.xAxis = d3.svg.axis()
         .scale(vis.x)
         .orient("bottom")
-        .ticks(7);
+        .ticks(6);
 
     vis.yAxis = d3.svg.axis()
         .scale(vis.y)
         .orient("left")
         .tickFormat(function(d){return formatYLabel(d, vis.metric)})
         //.tickFormat(function(d) { return "$" + commasFormatter(d/1000000) + "M"; })
-        .ticks(7);
+        .ticks(6);
 
     vis.svg.append("g")
         .attr("class", "x-axis axis")
@@ -154,6 +163,8 @@ LineChart.prototype.initVis = function(){
         .on("mouseout",function(){vis.focus.style("display","none");})
         .on("mousemove",mouseMove);
 
+
+
     function mouseMove() {
 
         var x0 = vis.x.invert(d3.mouse(this)[0])
@@ -174,7 +185,6 @@ LineChart.prototype.initVis = function(){
             .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
             .text("Year: " + formatYear(d.year));
     }
-
     vis.wrangleData();
 }
 
@@ -187,7 +197,7 @@ LineChart.prototype.wrangleData = function(){
         vis.displayData = vis.data.world[0].years
     }
     else{
-        var countryScope = selectedCountries[0] || "USA"
+        var countryScope = selectedCountries[0]
         vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
     }
 
@@ -198,7 +208,6 @@ LineChart.prototype.wrangleData = function(){
 LineChart.prototype.updateVis = function(){
     var vis = this;
 
-    vis.x.domain(d3.extent(vis.displayData,function(d){return d.year}));
     vis.y.domain([0,d3.max(vis.displayData,function(d) {return d[vis.metric]})]);
 
     // Call axis functions with the new domain
