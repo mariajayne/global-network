@@ -24,13 +24,16 @@ var selectedCountryColor = "black";
 
 function selectCountry(d){
     var country = d.properties.id;
+    var countryName = d.properties.admin;
     if (selectedCountries.indexOf(country) != -1){
         selectedCountries.splice(selectedCountries.indexOf(country))
         d3.select("#" + country).style("fill",defaultCountryColor);
+        d3.select("#bar-" + countryName).style("fill",defaultCountryColor);
     }
     else{
         selectedCountries.push(country);
         d3.select("#" + country).style("fill",selectedCountryColor);
+        d3.select("#bar-" + countryName).style("fill",selectedCountryColor);
     }
     wrangleChartData();
 }

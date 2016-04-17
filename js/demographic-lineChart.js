@@ -3,16 +3,16 @@
  */
 
 var metricMap = {
-    "gdp" : "GDP (current LCU)",
-    "internet" : "Internet users (per 100 people) ",
-    "unemployment" : "Total Unemployment (% of labor force)",
-    "university" : "Gross enrolment ratio, University(%)"
+    "gdp" : "", // "GDP (current LCU)",
+    "internet" : "", //"Internet users (per 100 people) ",
+    "unemployment" : "", //"Total Unemployment (% of labor force)",
+    "university" : "", //"Gross enrolment ratio, University(%)"
 }
 
 var labelMap = {
-    "gdp" : "$USD",
-    "internet" : "% of population",
-    "unemployment" : "% of work force",
+    "gdp" : "Gross Domestic Product (USD)",
+    "internet" : "Internet users (% of population)",
+    "unemployment" : "Unemployment (% of work force)",
     "university" : "%"
 }
 

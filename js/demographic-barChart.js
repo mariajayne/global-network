@@ -41,7 +41,8 @@ BarChart.prototype.initVis = function(){
     vis.y = d3.scale.linear()
         .range([vis.height,0]);
 
-    vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
+    vis.colorScale = {"Free" : '#dfdfdf',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
+    // The colorful: vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
     //vis.colorScale = d3.scale.category10().domain(vis.data.map(function(d){return d.Status}));
 
     //  Axis
@@ -127,6 +128,8 @@ BarChart.prototype.updateVis = function(){
     rect.enter()
         .append("rect")
         .attr("class","bar")
+        .attr("id",function(d){
+            return "bar-" + d.Country})
         .attr("x", function(d){return vis.x(d.Country)})
         .attr("y", function(d){return vis.y(d.Total_score)})
         .attr("width", vis.x.rangeBand())
