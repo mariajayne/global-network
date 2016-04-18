@@ -23,6 +23,20 @@
 
 <div class="container-fluid">
 
+    <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
+    <div class="container">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
+        <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+            <ul data-offcanvass="yes">
+                <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
+                <li class="active"><a href="../countries/countries.html">Demographics</a></li>
+                <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
+                <li class="active"><a href="../process/process.html">Process Book</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+
     <div class="row">
         <div class="col-md-12 nav-container">
             <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
@@ -44,7 +58,7 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="map"></div>
     </div>
-    <div id="odometer" class="odometer">1234567</div>
+    <div id="odometer" class="odometer">1991</div>
 
 
 </div>
@@ -57,11 +71,20 @@
 <script src="../js/d3.min.js"></script>
 <script src="../js/odometer.min.js"></script>
 
+<script>
+    window.odometerOptions = {
+        duration: 2.5 * 1000,
+        format: 'd'
+    };
+</script>
+
+
 <!-- Visualization objects -->
 <script src="../js/front-page-map.js"></script>
 
 <!-- Load data, create visualizations -->
 <script src="../js/front-page.js"></script>
+<script src="../js/main.js"></script>
 
 </body>
 </html>

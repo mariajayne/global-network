@@ -1,66 +1,4 @@
-var nameSet;
 var dataset;
-
-var childrenData = {
-    "name":"World",
-    "children":[
-        {
-            "REGION": "Africa",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Carribbean",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Central America",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Eastern Europe",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Middle East",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "North America",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "South Asia",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Southeast Asia",
-            "children": [
-
-            ]
-        },
-        {
-            "REGION": "Western Europe",
-            "children": [
-
-            ]
-        }
-
-    ]
-};
 
 var chartOptions = {
     gdp : "GDP (U.S. Dollars)",
@@ -77,7 +15,7 @@ d3.select("#data-select").selectAll("option")
     .attr("value",function (key) { return key; })
     .text(function (key) { return chartOptions[key]; });
 
-var selectedYear = 2009;
+var selectedYear = 1991;
 var selectedCat = "gdp";
 
 var margin = {top: 40, right: 40, bottom: 40, left: 40};
@@ -85,24 +23,6 @@ var margin = {top: 40, right: 40, bottom: 40, left: 40};
 var width = 900 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
-loadData();
-
-function loadData() {
-    d3.json("../data/treemap/treeMapData.json", function(error, jsonData){
-        if(!error){
-            dataset = jsonData;
-
-            childrenData.children.forEach(function(data) {
-                dataset.forEach(function (d) {
-                    if (d.region === data.REGION)
-                        data.children.push(d);
-                })
-            });
-
-            renderTreeMap();
-        }
-    });
-}
 
 var mousemove = function(d) {
     var xPosition = d3.event.pageX + 5;
@@ -121,6 +41,9 @@ var mousemove = function(d) {
 var mouseout = function() {
     d3.select("#tooltip").classed("hidden", true);
 };
+
+renderTreeMap();
+
 
 function renderTreeMap() {
 
