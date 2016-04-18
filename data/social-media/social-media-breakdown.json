@@ -1,0 +1,35 @@
+{"Country":"Argentina", "Percent":[{"Facebook":42},{"WhatsApp":37},{"Facebook Messenger":29},{"Twitter":12},
+{"Instagram":12},{"Twitter":18},{"Skype":13},{"LinkedIn":10},{"Pinterest":8}]},
+
+{"Country":"Australia", "Percent":[{"Facebook":41},{"Facebook Messenger":26},{"Skype":13},{"LinkedIn":11},
+{"Twitter":10},{"WhatsApp":10},{"Instagram":10},{"Pinterest":9},{"Tumblr":6}]},
+
+{"Country":"China", "Percent":[{"WeChat":24},{"QZone":21},{"Sina Weibo":16},{"Baidu Tieba":14},{"Facebook":5},
+{"Facebook Messenger":4}]},
+
+{"Country":"India", "Percent":[{"Facebook":13},{"WhatsApp":12},{"Facebook Messenger":11},{"Skype":10},
+{"Twitter":8},{"LinkedIn":7},{"Instagram":7},{"WeChat":6}]},
+
+{"Country":"USA", "Percent":[{"Facebook":41},{"Facebook Messenger":26},{"Twitter":17},{"Pinterest":15},
+{"Instagram":15},{"LinkedIn":11},{"Snapchat":11},{"Skype":9},{"Tumblr":8}]},
+
+{"Country":"Mexico", "Percent":[{"Facebook":25},{"WhatsApp":23},{"Facebook Messenger":21},{"Twitter":16},
+{"Skype":13},{"Instagram":12},{"Pinterest":10},{"LinkedIn":9},{"Tumblr":9}]},
+
+{"Country":"Brazil","Percent":[{"Facebook":31},{"WhatsApp":29},{"Facebook Messenger":24},{"Instagram":15},
+{"Skype":15},{"Twitter":14},{"LinkedIn":12},{"Snapchat":9},{"Pinterest":8}]},
+
+{"Country":"South Africa","Percent":[{"Whatsapp":33},{"Facebook":30},{"Facebook Messenger":20%},
+{"LinkedIn":13},{"Pinterest":11},{"Instagram":10},{"BlackBerry Messenger":9},
+{"Skype":9}]},
+
+{"Country":"Russia", "Percent":[{"VKontakte":39},{"Facebook":24},{"Skype":19},{"Viber":15},
+{"WhatsApp":15},{"Instagram":12},{"Twitter":11},{"Facebook Messenger":6}]},
+
+{"Country":"Germany", "Percent":[{"WhatsApp":39},{"Facebook":38},{"Facebook Messenger":20},
+{"Skype":10},{"Instagram":7},{"Twitter":7},{"Pinterest":4},{"LinkedIn":3}]},
+
+{"Country":"United Kingdom", "Percent":[{"Facebook":47},{"Facebook Messenger":32},
+{"WhatsApp":24},{"Twitter":20},{"Instagram":14},{"Skype":13},{"Snapchat":12},{"LinkedIn":10},
+{"Pinterest":8}]}
+]

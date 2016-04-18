@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Social Media</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-social-media.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12 nav-container">
+            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
+                <div class="container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
+                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+                        <ul data-offcanvass="yes">
+                            <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
+                            <li class="active"><a href="../countries/countries.html">Demographics</a></li>
+                            <li class="active"><a href="#">Social Medias</a></li>
+                            <li class="active"><a href="../process/process.html">Process Book</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="social-media-col">
+
+            <div id="platform-icons"></div>
+            <!-- <div id="platformInfo"></div> -->
+            <div id="social-media-timeline">
+            </div>
+
+        </div>
+    </div>
+
+   <div class="row">
+       <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+
+            <h3 id="platformName"></h3>
+            <p id="platformDate">Hover over a circle to see information about the selected platform.</p>
+            <p id="platformUsers">Click on a circle to lock on to that specific platform.</p>
+            <p id="platformAbout"></p>
+
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1"></div>
+        <div class="col-lg-7 col-md-7 col-sm-7">
+
+            <div id="social-media-bar-chart"></div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- Load JS libraries -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+
+<!-- Visualization objects -->
+<script src="../js/social-media-timeline.js"></script>
+<script src="../js/social-media-bar-chart.js"></script>
+
+<!-- Load data, create visualizations -->
+<script src="../js/social-media.js"></script>
+
+</body>
+</html>

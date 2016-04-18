@@ -1,0 +1,120 @@
+/* style-social-media.css contains settings only valid for social-media.html */
+
+/***********/
+/* GENERAL */
+/***********/
+
+@font-face {
+    font-family: foxCat;
+    src: url(../fonts/Fox&Cat.ttf);
+}
+
+/* Centering whole visualization */
+#timeline-drawing-space {
+    display : block;
+    margin : auto;
+}
+
+body {
+    background-color : #222222;
+    fill : white;
+    opacity : .8;
+    font-family : foxCat;
+    font-size : 15px;
+    color : white;
+}
+
+#title {
+    font-size : 30px;
+}
+
+.fa {
+    color : white;
+}
+
+#sub-title {
+    position : absolute;
+}
+
+.category-rect {
+    position : absolute;
+    fill-opacity : 0;
+    fill : black;
+    y : 6px;
+}
+
+#chosen-rect {
+    stroke : none;
+    fill : white;
+    fill-opacity : 0.2;
+}
+
+#boundary-rect {
+    stroke : white;
+    fill : none;
+}
+
+.svg-img path{
+    fill : white;
+    color : white;
+}
+
+.platform-icon {
+    position : absolute;
+    display : inline;
+}
+
+/*************/
+/* TIME LINE */
+/*************/
+
+.domain {
+    fill: none;
+    stroke: white;
+    stroke-width: 1;
+    color : white;
+}
+
+.x-axis text {
+    fill : white;
+}
+
+#platformInfo {
+    position : absolute;
+    text-anchor : middle;
+    text-align : center;
+}
+
+.circle {
+    fill : white;
+}
+
+
+/*************/
+/* Bar Chart */
+/*************/
+
+
+.axis path,
+.axis line{
+    stroke : none;
+    fill: none;
+}
+
+.bar {
+    fill : white;
+    opacity : .9;
+}
+
+.tick line{
+    opacity : 0.8;
+}
+
+.grid .tick {
+    stroke: #222222;
+    stroke-opacity: .8;
+    shape-rendering: crispEdges;
+}
+.grid path {
+    stroke-width: 0;
+}

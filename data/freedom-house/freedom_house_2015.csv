@@ -1,0 +1,66 @@
+Country;Status;Total_score;Obstacle_to_access;Limits_on_content;Violations_of_user_rights
+Angola;Partly Free;39;14;8;17
+Argentina;Free;27;7;8;12
+Armenia;Free;28;6;10;12
+Australia;Free;19;2;5;12
+Azerbaijan;Partly Free;56;13;19;24
+Bahrain;Not Free;72;11;27;34
+Bangladesh;Partly Free;51;12;12;27
+Belarus;Not Free;64;15;21;28
+Brazil;Free;29;7;6;16
+Cambodia;Partly Free;48;14;15;19
+Canada;Free;16;3;4;9
+China;Not Free;88;18;30;40
+Colombia;Partly Free;32;8;8;16
+Cuba;Not Free;81;22;27;32
+Ecuador;Partly Free;37;8;11;18
+Egypt;Not Free;61;14;13;34
+Estonia;Free;7;1;3;3
+Ethiopia;Not Free;82;23;28;31
+France;Free;24;3;6;15
+Gambia, The;Not Free;65;18;21;26
+Georgia;Free;24;7;6;11
+Germany;Free;18;4;5;9
+Hungary;Free;24;4;9;11
+Iceland;Free;6;1;1;4
+India;Partly Free;40;12;10;18
+Indonesia;Partly Free;42;11;12;19
+Iran;Not Free;87;20;31;36
+Italy;Free;23;4;6;13
+Japan;Free;22;4;7;11
+Jordan;Partly Free;50;12;16;22
+Kazakhstan;Not Free;61;14;23;24
+Kenya;Free;29;9;7;13
+Kyrgyzstan;Partly Free;35;11;8;16
+Lebanon;Partly Free;45;13;12;20
+Libya;Partly Free;54;20;12;22
+Malawi;Partly Free;40;15;12;13
+Malaysia;Partly Free;43;8;14;21
+Mexico;Partly Free;39;9;10;20
+Morocco;Partly Free;43;11;9;23
+Myanmar;Not Free;63;18;17;28
+Nigeria;Partly Free;33;10;8;15
+Pakistan;Not Free;69;20;20;29
+Philippines;Free;27;10;5;12
+Russia;Not Free;62;10;23;29
+Rwanda;Partly Free;50;11;20;19
+Saudi Arabia;Not Free;73;15;24;34
+Singapore;Partly Free;41;6;14;21
+South Africa;Free;27;8;7;11
+South Korea;Partly Free;34;3;14;17
+Sri Lanka;Partly Free;47;14;13;20
+Sudan;Not Free;65;18;19;28
+Syria;Not Free;87;24;26;37
+Thailand;Not Free;63;9;22;32
+Tunisia;Partly Free;38;10;8;20
+Turkey;Partly Free;58;13;20;25
+Uganda;Partly Free;36;11;7;18
+Ukraine;Partly Free;37;8;10;19
+United Arab Emirates;Not Free;68;14;22;32
+United Kingdom;Free;24;2;6;16
+United States;Free;19;3;2;14
+Uzbekistan;Not Free;78;19;28;31
+Venezuela;Partly Free;57;17;18;22
+Vietnam;Not Free;76;13;29;34
+Zambia;Partly Free;40;11;12;17
+Zimbabwe;Partly Free;56;15;16;25

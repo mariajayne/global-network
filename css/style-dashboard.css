@@ -1,0 +1,161 @@
+/* style-dashboard.css contains settings only valid for dashboard.html */
+
+
+/***********/
+/* GENERAL */
+/***********/
+
+@font-face {
+    font-family: foxCat;
+    src: url(../fonts/Fox&Cat.ttf);
+}
+
+body {
+    text-align: center;
+    background-color : #222222;
+    fill : white;
+    opacity : .8;
+    font-family : foxCat;
+    font-size : 15px;
+    color : white;
+}
+
+.container-fluid {
+    padding-right: 5px;
+    padding-left: 5px;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+/***************/
+/*    AXIS     */
+/***************/
+.axis {
+    font: 10px sans-serif;
+    fill: gray;
+}
+
+.axis-title {
+    fill: gray;
+    font-size: 12px;
+}
+
+.axis path, line {
+    fill: none;
+    stroke: #333;
+    shape-rendering: crispEdges;
+}
+
+.x-axis {
+    font-size: 12px;
+}
+
+.x-axis path {
+    display: none;
+}
+
+.x-axis text {
+    font-size: 8px;
+}
+
+.y-axis path {
+    display: none;
+}
+
+.y-axis text {
+    font-size: 8px;
+}
+
+.title-label{
+    font-size: 12px;
+    font-weight:bold;
+}
+
+
+
+/***************/
+/*  LINE CHART */
+/***************/
+.line{
+    fill: none;
+    stroke: gray;
+    opacity: 1;
+    clip-path: url(#clip);
+}
+
+.brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+}
+
+
+/***************/
+/*  BAR CHART  */
+/***************/
+
+.bar {
+    opacity:0.8;
+}
+
+.bar:hover {
+    opacity:1;
+}
+
+
+/***************/
+/*     MAP     */
+/***************/
+
+.btn-dashboard{
+    opacity:0.5;
+}
+
+.btn-dashboard:hover{
+    opacity:1;
+}
+
+/***************/
+/*  Tool tip   */
+/***************/
+
+.t1{
+    font-size:10px;
+}
+
+
+/*********************/
+/*  TOOLTIP OVERLAY  */
+/*********************/
+.d3-tip {
+    line-height: 1;
+    padding: 12px;
+    background: rgba(0,0,0,0.8);
+    color: #fff;
+    border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+    box-sizing: border-box;
+    display: inline;
+    font-size: 10px;
+    width: 100%;
+    line-height: 1;
+    color: rgba(0,0,0,0.8);
+    content: "\25BC";
+    position: absolute;
+    text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+    margin: -1px 0 0;
+    top: 100%;
+    left: 0;
+}
+
+#tooltip-info {
+    color: gray;
+    font-size: 10px;
+}

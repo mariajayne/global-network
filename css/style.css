@@ -1,0 +1,20 @@
+/* style.css contains our fundamental style-settings */
+
+@font-face {
+    font-family: foxCat;
+    src: url(../fonts/Fox&Cat.ttf);
+}
+
+body{
+    font-family: "Arial";
+    background-color: #222222;
+    fill : white;
+    opacity : .8;
+    font-family : foxCat;
+    font-size : 15px;
+    color : white;
+}
+
+.nav-container{
+    padding-bottom:80px;
+}

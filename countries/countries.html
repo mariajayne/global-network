@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Multi-Dimensional View</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-countries.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-12 nav-container">
+            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
+                <div class="container">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
+                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+                        <ul data-offcanvass="yes">
+                            <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
+                            <li class="active"><a href="#">Demographics</a></li>
+                            <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
+                            <li class="active"><a href="../process/process.html">Process Book</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <h1>A Multi-Dimensional View</h1>
+
+            <form class="form-inline">
+                <div class="form-group">
+                    <label for="rankingType">Select Data</label>
+                    <select class="form-control" id="data-select">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rankingType">Select Year</label>
+                    <select class="form-control" id="year-select">
+                    </select>
+                </div>
+            </form>
+
+            <div id="tree-map"></div>
+            <div id="tooltip" class="hidden">
+                <p id="heading"></p>
+                <p id="moreInfo"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Load JS libraries -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/queue.js"></script>
+<script src="../js/topojson.min.js"></script>
+<script src="../js/d3.geo.zoom.js"></script>
+<script src="../js/d3.tip.js"></script>
+
+<script src="../js/treeMap.js"></script>
+
+
+</body>
+</html>
+
