@@ -2,7 +2,7 @@
  * Created by MagnusMoan on 17/04/16.
  */
 
-var yearDelay = 5000.0;
+var yearDelay = 2500.0;
 var nodeDelay, blinkDelay;
 
 WorldMap = function(_parentElement, _mapData, _data) {
@@ -126,5 +126,5 @@ WorldMap.prototype.updateVisualization = function (newNode){
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
         });
 
-    $(circle[0]).fadeTo(blinkDelay,.5);
+    /*$(circle[0]).fadeTo(blinkDelay,.5);*/
 }

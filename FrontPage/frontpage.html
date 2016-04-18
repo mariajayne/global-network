@@ -11,6 +11,7 @@
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/odometer-theme-plaza.css">
 
@@ -21,6 +22,20 @@
 <body>
 
 <div class="container-fluid">
+
+    <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
+    <div class="container">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
+        <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
+            <ul data-offcanvass="yes">
+                <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
+                <li class="active"><a href="../countries/countries.html">Demographics</a></li>
+                <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
+                <li class="active"><a href="../process/process.html">Process Book</a></li>
+            </ul>
+        </div>
+    </div>
+    </nav>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="map"></div>
@@ -40,7 +55,7 @@
 
 <script>
     window.odometerOptions = {
-        duration: 5 * 1000,
+        duration: 2.5 * 1000,
         format: 'd'
     };
 </script>
@@ -51,6 +66,7 @@
 
 <!-- Load data, create visualizations -->
 <script src="../js/front-page.js"></script>
+<script src="../js/main.js"></script>
 
 </body>
 </html>

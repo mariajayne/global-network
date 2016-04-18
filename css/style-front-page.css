@@ -1,17 +1,17 @@
 body {
-    background : #201F1D;
+    background : black;
 }
 
 .projection {
-    fill: #201F1D;
-    stroke: #201F1D;
-    stroke-width: .2px;
+    fill : black;
+    stroke : white;
+    stroke-width : .1px;
 }
 
 #odometer {
     position: absolute;
-    left : 50%;
-    top : 80%;
+    left : 48%;
+    top : 87%;
     font-size: 50px;
     background : #201F1D;
     color : white;
