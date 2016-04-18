@@ -16,9 +16,10 @@ with open('populationWorld.csv') as p:
 #   Reads Jacobs tree-structured JSON-file
 with open('treeJson.json') as f:
 	data = json.load(f)
+print len(data["countries"])
 
 #   Iterates through all 188 countries
-for i in range(188):
+for i in range(213):
 	country = {}
 	country["country_id"] = data["countries"][i]["code"]
 	country["internet"] = []
@@ -30,7 +31,7 @@ for i in range(188):
 
 	countries.append(country)
 
-print json.dumps(countries,sort_keys=True,indent=3,separators=(',',': '))
+#print json.dumps(countries,sort_keys=True,indent=3,separators=(',',': '))
 
 with open('BCList.json','w') as outfile:
 	json.dump(countries,outfile)

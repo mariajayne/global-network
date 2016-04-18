@@ -1,7 +1,7 @@
 #!/bin/bash
-# My example bash script
 
-python toNewUsers.py
-python generateNewCities.py
+python BCParser.py
+python DParser.py
+python EParser.py
 
 echo "Files succesfully run"

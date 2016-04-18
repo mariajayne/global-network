@@ -1,4 +1,5 @@
 import json
+from random import shuffle
 
 with open('AList.json') as f1:
     A = json.load(f1)
@@ -8,8 +9,6 @@ with open('DList.json') as f2:
 
 def sortCityBySize(A):
     for country in A.keys():
-        if str(country) == "USA":
-            A[country] = sorted(A[country], key = lambda city: int(city[1]))
         A[country] = sorted(A[country], key = lambda city : int(city[1]), reverse=False)
 
 sortCityBySize(A)
@@ -50,7 +49,14 @@ def generateCities(citiesUsers):
 
     return result
 
+def shuffleCities(cities):
+    for year in cities:
+        shuffle(year)
+
+    return cities
+
+
 with open('Test.json', 'w') as outfile:
-    json.dump(generateCities(mergeCityNewUsers(A, D)), outfile)
+    json.dump(shuffleCities(generateCities(mergeCityNewUsers(A, D))), outfile)
 #with open('EList.json', 'w') as outfile:
 #    json.dump(generateCities(mergeCityNewUsers(A, D)), outfile)
