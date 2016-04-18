@@ -194,12 +194,11 @@ LineChart.prototype.wrangleData = function(){
     var vis = this;
     var countryScope;
 
-    if (selectedCountries.length == 0){
-        vis.displayData = vis.data.world[0].years
-    }
+    if (selectedCountries.length == 0){vis.displayData = vis.data.world[0].years}
     else{
         var countryScope = selectedCountries[0]
         vis.displayData = vis.data.countries.filter(function(d){return (d.country_id == countryScope)})[0].years
+        //vis.displayData = vis.data.countries.filter(function(d){return (countryScope.indexOf(d.country_id) >= 0)})
     }
 
     vis.updateVis();
