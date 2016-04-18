@@ -21,7 +21,7 @@ BarChart.prototype.initVis = function(){
 
     vis.margin = { top: 40, right: 0, bottom: 100, left: 40 };
 
-    vis.width = screen.width/3.5 - vis.margin.left - vis.margin.right,
+    vis.width = screen.width/3 - vis.margin.left - vis.margin.right,
         vis.height = 350 - vis.margin.top - vis.margin.bottom;
 
 
@@ -117,7 +117,7 @@ BarChart.prototype.updateVis = function(){
         //vis.title.text("Social media usage in ".concat(vis.current));
         vis.displayData = vis.platformData;
     } else {
-        //vis.title.text(vis.current.concat(" usage in %"));
+        vis.title.text("Percent of population using " + vis.current);
         vis.displayData = vis.countryData;
     }
 

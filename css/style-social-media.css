@@ -40,13 +40,12 @@ body {
     position : absolute;
     fill-opacity : 0;
     fill : black;
-    y : 6px;
 }
 
 #chosen-rect {
     stroke : none;
-    fill : white;
-    fill-opacity : 0.2;
+    fill : #1E90FF;
+    fill-opacity : 0.4;
 }
 
 #boundary-rect {

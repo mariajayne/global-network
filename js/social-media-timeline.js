@@ -21,7 +21,7 @@ Timeline.prototype.initVis = function() {
 
     vis.margin = { top: 30, right: 40, bottom: 30, left: 40 };
 
-    vis.width = screen.width/1.5 - vis.margin.left - vis.margin.right,
+    vis.width = screen.width/1.1 - vis.margin.left - vis.margin.right;
     vis.height = screen.width/4 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
@@ -47,9 +47,10 @@ Timeline.prototype.initVis = function() {
 
     // Positioning of the bar chart
     var barChart = document.getElementById("social-media-bar-chart");
-    barChart.style.left = screen.width / 2.0 + "px";
+    var foo = ((svgWidth / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
+    barChart.style.left = (foo + (screen.width/2.0)) + "px";
 
-
+    console.log(vis.height);
 
     // Scales
     vis.x = d3.time.scale()
@@ -57,7 +58,7 @@ Timeline.prototype.initVis = function() {
         .domain([dateFormat("01-01-1997"), dateFormat("01-01-2015")]);
 
     vis.r = d3.scale.linear()
-        .range([0, 150])
+        .range([0, vis.height/2.4])
         .domain([0,d3.max(vis.data, function(d){return d.Current_size})]);
 
 
@@ -96,50 +97,50 @@ Timeline.prototype.initVis = function() {
     var yPosition = 12;
 
     vis.rectSocialNetwork = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 132)
+        .attr("x", (vis.width / 2.0) - 136)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "network")
-        .attr("width", 100)
+        .attr("width", 110)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectSocialMsg = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 18)
+        .attr("x", (vis.width / 2.0) - 26)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "msg")
-        .attr("width", 113)
+        .attr("width", 130.5)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectAll = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 109)
+        .attr("x", (vis.width / 2.0) + 105)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "all")
-        .attr("width", 23)
+        .attr("width", 34)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectBoundary = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 133)
+        .attr("x", (vis.width / 2.0) - 137)
         .attr("y", yPosition)
         .attr("id", "boundary-rect")
-        .attr("width", 265)
-        .attr("height", rectHeight);
+        .attr("width", 276)
+        .attr("height", 25);
 
     vis.rectChosenCategory = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 109)
+        .attr("x", (vis.width / 2.0) + 105)
         .attr("y", yPosition)
         .attr("id", "chosen-rect")
-        .attr("width", 23)
+        .attr("width", 34)
         .attr("height", rectHeight);
 
     // Social media icons
@@ -268,7 +269,6 @@ Timeline.prototype.hoverAction = function(d, circle) {
 
     d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity", 0.1);
     d3.select(circle).transition().duration(transitionTime).attr("opacity", 0.7);
-
 
     vis.platformReleaseDate.html("Release date: " + dateToString(d.Date));
     vis.platformUsers.html("Monthly active users: " + d.Current_size + " million");
