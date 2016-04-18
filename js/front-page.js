@@ -12,13 +12,15 @@ function loadData() {
 
     queue()
         .defer(d3.json, "../data/demographics/world-topo.json")
+        .defer(d3.json, "../data/nodeMap/EList.json")
         .await(processData);
 
 }
 
-function processData(error,data){
+function processData(error,data1,data2){
 
-    map = data;
+    map = data1;
+    demographicData = data2;
 
     createVis();
 

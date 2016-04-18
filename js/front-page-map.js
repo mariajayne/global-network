@@ -2,18 +2,26 @@
  * Created by MagnusMoan on 17/04/16.
  */
 
+var yearDelay = 200.0;
+
 WorldMap = function(_parentElement, _mapData, _data){
     this.parentElement = _parentElement;
     this.mapData = _mapData;
     this.data = _data;
     this.displayData = this.data;
-
+    /*
     this.cities = [{"City":"NY", "Pop":8175133, "Long":-74.006, "Lat":40.714},
         {"City":"LA", "Pop":3792621, "Long":-118.244, "Lat":34.052},
         {"City":"Chicago", "Pop":2695598, "Long":-87.65, "Lat":41.85},
         {"City":"Brooklyn", "Pop":2300664, "Long":-73.95, "Lat":40.65},
         {"City":"Houston", "Pop":2099451, "Long":-95.363, "Lat":29.763},
-        {"City":"Oslo", "Pop":500000, "Long":10.7522, "Lat":59.9139}];
+        {"City":"Oslo", "Pop":500000, "Long":10.7522, "Lat":59.9139}];*/
+
+    this.cities = this.data;
+
+    /*for (var i = 1; i < this.cities.length; i++) {
+        this.cities[i] = this.cities[i].concat(this.cities[i-1]);
+    }*/
 
     this.initVis();
 
@@ -24,9 +32,9 @@ WorldMap.prototype.initVis = function(){
 
     var vis = this;
 
-    vis.margin = {top: 0, right: 20, bottom: 0, left: 20};
-    vis.width = 1200 - vis.margin.left - vis.margin.right;
-    vis.height = 800 - vis.margin.top - vis.margin.bottom;
+    vis.margin = {top: 200, right: 20, bottom: 0, left: 20};
+    vis.width = 2000 - vis.margin.left - vis.margin.right;
+    vis.height = 1000 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -36,8 +44,8 @@ WorldMap.prototype.initVis = function(){
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     vis.projection = d3.geo.mercator()
-        .center([15,45])
-        .scale(120)
+        .center([15,50])
+        .scale(250)
         .translate([vis.width / 2, vis.height / 2]);
 
     vis.path = d3.geo.path()
@@ -47,8 +55,8 @@ WorldMap.prototype.initVis = function(){
 
     vis.r = d3.scale.log()
         .base(Math.E)
-        .domain([100000,8175133])
-        .range([1,10]);
+        .domain([10000,10000000])
+        .range([0.5,5]);
 
     console.log(vis.r(8175133));
 
@@ -68,20 +76,58 @@ WorldMap.prototype.createVisualization = function (){
         .attr("d",vis.path)
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;})
-        .style("fill","grey");
-        //.on("click", selectCountry)
 
-    var node = vis.svg.selectAll(".node")
-        .data(vis.cities)
-        .enter()
-        .append("circle")
+
+    var outerCounter = 0;
+    var refreshId = window.setInterval(function() {
+        vis.current_year = vis.cities[outerCounter];
+        var innerCounter = 0;
+        var innerRefreshId = window.setInterval(function() {
+            vis.updateVisualization(vis.current_year[innerCounter]);
+            innerCounter++;
+            if (innerCounter == vis.current_year.length) {
+                clearInterval(innerRefreshId);
+            }
+        }, yearDelay / vis.current_year.length);
+        outerCounter++;
+        if (outerCounter == vis.cities.length - 1){
+            clearInterval(refreshId);
+        }
+    }, yearDelay)
+}
+
+WorldMap.prototype.updateVisualization = function (newNode){
+
+    var vis = this;
+    var timeBetween = vis.current_year.length / yearDelay;
+
+
+    vis.svg.append("circle")
         .attr("class", "node")
+        .attr("fill", "white")
+        .attr("r", function(d) { return vis.r(newNode.Pop)})
+        .attr("transform", function(d) {
+            return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
+        })
+        .transition()
+        .delay(300)
+        .attr("opacity",.5);
+
+    /*
+    var circle = vis.svg.selectAll(".node")
+        .data(vis.current_year);
+
+    circle.enter()
+        .append("circle")
+        .attr("class", "node");
+
+    circle
+        .style("box-shadow", "0 0 30px 15px #fff")
+        .transition()
+        .delay(function(d,i) { return i * 10})
         .attr("r", function(d) { return vis.r(d.Pop)})
-        .attr("fill", "yellow")
+        .attr("fill", "#FEFCD7")
         .attr("transform", function(d) {
             return "translate(" + vis.projection([d.Long, d.Lat]) + ")";
-        })
-        .on("click", function(d) {console.log(d.City) });
-
-
+        });*/
 }

@@ -1,3 +1,14 @@
 body {
-    background : black;
+    background : #201F1D;
 }
+
+.projection {
+    fill: #201F1D;
+    stroke: #5B6073;
+    stroke-width: .1px;
+}
+/*
+.node {
+    fill : #DE8D47
+}
+*/
