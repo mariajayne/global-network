@@ -1,6 +1,7 @@
 {"Platform":
 [{"Platform":"Twitter", "Msg":"false",
 "Symbol":"fa-twitter", "Date":"07-15-2006", "Current_size":305,
+"About": "Twitter is an online social networking service that enables users to send and read short 140-character messages called \"tweets\"",
 "Users": [{"2010":54},
           {"2011":117},
           {"2012":185},
@@ -10,14 +11,17 @@
 
 {"Platform":"Line", "Msg":"true",
 "Symbol":"", "Date":"03-01-2011", "Current_size":212,
+"About":"Line is a proprietary application for instant communications on electronic devices such as smartphones, tablet computers and personal computers. Line users exchange texts, images, video and audio, and conduct free VoIP conversations and video conferences.",
 "Users":[]},
 
 {"Platform":"WhatsApp", "Msg":"true",
 "Symbol":"fa-whatsapp", "Date":"01-01-2010", "Current_size":900,
+"About":"WhatsApp Messenger is an American proprietary cross-platform instant messaging client for smartphones. It uses the Internet to send text messages, documents, images, video, user location and audio media messages to other users using standard cellular mobile numbers.",
 "Users": [{"2013": 400}, {"2014": 650}, {"2015": 900}]},
 
 {"Platform":"QQ", "Msg":"true", 
 "Symbol":"fa-qq", "Date":"02-01-1999", "Current_size": 820,
+"About":"Tencent QQ, popularly known as QQ, is an instant messaging software service developed by Chinese company Tencent Holdings Limited. QQ also offers a variety of services, including online social games, music, shopping, microblogging, movies, platform of games and group and voice chat.",
 "Users": [{"2010":647.6},
           {"2011":721},
           {"2012":798},
@@ -27,6 +31,7 @@
 
 {"Platform":"Facebook", "Msg":"false", "Symbol":"fa-facebook-square", "Date":"03-01-2004", 
 "Current_size":1591,
+"About":"Facebook is a corporation and online social networking service headquartered in Menlo Park, California, in the United States. Its website was launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.",
 "Users": [{"2004":1},
         {"2005":6},
         {"2006":12},
@@ -42,15 +47,19 @@
 
 {"Platform":"LinkedIn", "Msg":"false", 
 "Symbol":"fa-linkedin", "Date":"05-01-2003", "Current_size":100,
+"About":"LinkedIn is a business-oriented social networking service. Founded in December 14, 2002 and launched on May 5, 2003, it is mainly used for professional networking.",
 "Users": []},
 
 {"Platform":"QZone", "Msg":"false", "Symbol":"fa-qq", "Date":"01-01-2005", "Current_size":653,
+"About":"Qzone is a social networking website, which was created by Tencent in 2005. It allows users to write blogs, keep diaries, send photos, listen to music, and watch videos. It's only available in China.",
 "Users":[]},
 
 {"Platform":"Tumblr", "Msg":"false", "Symbol":"fa-tumblr", "Date":"02-19-2007", "Current_size":555,
+"About":"Tumblr is a microblogging platform and social networking website founded by David Karp in 2007, and owned by Yahoo! since 2013. The service allows users to post multimedia and other content to a short-form blog.",
 "Users":[]},
 
 {"Platform":"Instagram", "Msg":"false", "Symbol":"fa-instagram", "Date":"10-06-2010", "Current_size":400,
+"About":"Instagram is an online mobile photo-sharing, video-sharing, and social networking service that enables its users to take pictures and videos, and share them either publicly or privately on the app, as well as through a variety of other social networking platforms, such as Facebook, Twitter, Tumblr, and Flickr.",
 "Users":[{"2010":1},
          {"2011":14},
          {"2012":80},
@@ -59,44 +68,55 @@
          {"2015":400}]},
 
 {"Platform":"Baidu Tieba", "Msg":"false", "Symbol": "", "Date":"12-03-2003", "Current_size":300,
+"About":"Baidu Tieba is the largest Chinese communication platform provided by the Chinese search engine company, Baidu. The website functions by having users search or create a forum by typing a keyword, and if the bar has not been created before, it is then created upon the search.",
 "Users":[]}, 
 
 {"Platform":"Sina Weibo", "Msg":"false", "Symbol":"fa-weibo", "Date":"08-14-2009", "Current_size":222,
+"About":"Sina Weibo is a Chinese microblogging website. Akin to a hybrid of Twitter and Facebook, it is one of the most popular sites in China.",
 "Users":[]},
 
 {"Platform":"yy", "Msg":"false", "Symbol":"", "Date":"01-01-2005", "Current_size":122,
+"About":"YY is a Chinese video-based social network. It features a virtual currency which users can earn through activities such as karaoke or creating tutorial videos, then convert to real cash.",
 "Users":[]},
 
 {"Platform":"VKontakte", "Msg":"false", 
 "Symbol":"fa-vk", "Date":"10-10-2006", "Current_size":100,
+"About":"VK (originally VKontakte) is the largest European online social networking service. It is based in St. Petersburg. It is available in several languages, but is especially popular among Russian-speaking users. Like other social networks, VK allows users to message each other publicly or privately, to create groups, public pages and events, share and tag images, audio and video, and to play browser-based games.",
 "Users":[]},
 
 {"Platform":"Pinterest", "Msg":"false", "Symbol":"fa-pinterest", "Date":"03-01-2010", "Current_size":100,
+"About":"Pinterest is a web and mobile application company that operates a photo sharing website. Pinterest CEO Ben Silbermann summarized the company as a \"catalog of ideas,\" rather than as a social network, that inspires users to \"go out and do that thing.\"",
 "Users":[]},
 
 {"Platform":"Facebook Messenger", "Msg":"true", "Symbol":"fa-facebook", "Date":"08-09-2011", 
 "Current_size":800,
+"About":"Facebook Messenger is an instant messaging service and software application which provides text and voice communication. Integrated with Facebook's web-based Chat feature Messenger lets Facebook users chat with friends both on mobile and on the main website.",
 "Users":[]},
 
 {"Platform":"WeChat", "Msg":"true", "Symbol":"fa-wechat", "Date":"01-21-2011", 
 "Current_size":650,
+"About":"WeChat is a mobile text and voice messaging communication service developed by Tencent in China",
 "Users":[]},
 
 {"Platform":"Skype", "Msg":"true", "Symbol":"fa-skype", "Date":"08-29-2003",
 "Current_size":300,
+"About":"Skype is an application that provides video chat and voice call services. Users may exchange such digital documents as images, text, video and any others, and may transmit both text and video messages.",
 "Users":[]},
 
 {"Platform":"Viber", "Msg":"true", "Symbol":"fa-viber", "Date":"12-02-2010",
 "Current_size":249,
+"About":"Viber is an instant messaging and Voice over IP (VoIP) app for smartphones developed by Viber Media. In addition to instant messaging, users can exchange images, video and audio media messages.",
 "Users":[]},
 
 {"Platform":"Snapchat", "Msg":"true", "Symbol":"fa-snapchat", "Date":"09-01-2011",
 "Current_size":200,
+"About":"Snapchat is an image messaging application software product created by Evan Spiegel, Bobby Murphy, and Reggie Brown when they were students at Stanford University. Snapchat is primarily used for creating multimedia messages referred to as \"snaps\"; snaps can consist of a photo or short video, and can be edited to include filters and effects, text captions, and drawings.",
 "Users":[]},
 
 {"Platform":"BlackBerry Messenger", "Msg":"true", 
 "Symbol":"", "Date":"08-01-2005",
 "Current_size":100,
+"About":"BlackBerry Messenger, also known as BBM, is a proprietary Internet-based instant messenger and videotelephony application included on BlackBerry devices that allows messaging and voice calls between BlackBerry, iOS, Windows Phone and Android users.",
 "Users":[]}],
 
 
