@@ -78,7 +78,7 @@ body {
 /***************/
 .line{
     fill: none;
-    stroke: gray;
+    stroke: #0099FF;
     opacity: 1;
     clip-path: url(#clip);
 }
