@@ -2,13 +2,14 @@
  * Created by MagnusMoan on 17/04/16.
  */
 
-var yearDelay = 200.0;
+var yearDelay = 5000.0;
 
 WorldMap = function(_parentElement, _mapData, _data){
     this.parentElement = _parentElement;
     this.mapData = _mapData;
     this.data = _data;
     this.displayData = this.data;
+    this.odometer = document.getElementById("odometer");
     /*
     this.cities = [{"City":"NY", "Pop":8175133, "Long":-74.006, "Lat":40.714},
         {"City":"LA", "Pop":3792621, "Long":-118.244, "Lat":34.052},
@@ -18,23 +19,32 @@ WorldMap = function(_parentElement, _mapData, _data){
         {"City":"Oslo", "Pop":500000, "Long":10.7522, "Lat":59.9139}];*/
 
     this.cities = this.data;
+    console.log(this.cities);
 
     /*for (var i = 1; i < this.cities.length; i++) {
         this.cities[i] = this.cities[i].concat(this.cities[i-1]);
     }*/
+
+
+    setTimeout(function(){
+        this.odometer.innerHTML = 7654321;
+    }, 1000);
 
     this.initVis();
 
 
 }
 
+
+
 WorldMap.prototype.initVis = function(){
 
     var vis = this;
 
-    vis.margin = {top: 200, right: 20, bottom: 0, left: 20};
-    vis.width = 2000 - vis.margin.left - vis.margin.right;
-    vis.height = 1000 - vis.margin.top - vis.margin.bottom;
+    vis.margin = {top: -250, right: 20, bottom: 100, left: 20};
+    vis.width = screen.width - vis.margin.left - vis.margin.right;
+    vis.height = screen.height - vis.margin.bottom;
+
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -44,8 +54,8 @@ WorldMap.prototype.initVis = function(){
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     vis.projection = d3.geo.mercator()
-        .center([15,50])
-        .scale(250)
+        .center([15,70])
+        .scale(200)
         .translate([vis.width / 2, vis.height / 2]);
 
     vis.path = d3.geo.path()
@@ -55,8 +65,8 @@ WorldMap.prototype.initVis = function(){
 
     vis.r = d3.scale.log()
         .base(Math.E)
-        .domain([10000,10000000])
-        .range([0.5,5]);
+        .domain([1000,100000000])
+        .range([0.5,7]);
 
     console.log(vis.r(8175133));
 
@@ -75,7 +85,13 @@ WorldMap.prototype.createVisualization = function (){
         .enter().append("path")
         .attr("d",vis.path)
         .attr("class","projection")
-        .attr("id",function(d){return "" + d.properties.id;})
+        .attr("id",function(d){return "" + d.properties.id;});
+
+    /*for (var i = 0; i < vis.cities.length; i++) {
+        for (var j = 0; j < vis.cities[i].length; j++) {
+            vis.updateVisualization(vis.cities[i][j]);
+        }
+    }*/
 
 
     var outerCounter = 0;
@@ -99,7 +115,7 @@ WorldMap.prototype.createVisualization = function (){
 WorldMap.prototype.updateVisualization = function (newNode){
 
     var vis = this;
-    var timeBetween = vis.current_year.length / yearDelay;
+    var timeBetween = yearDelay / vis.current_year.length;
 
 
     vis.svg.append("circle")
@@ -108,10 +124,10 @@ WorldMap.prototype.updateVisualization = function (newNode){
         .attr("r", function(d) { return vis.r(newNode.Pop)})
         .attr("transform", function(d) {
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
-        })
-        .transition()
-        .delay(300)
-        .attr("opacity",.5);
+        });
+        /*.transition()
+        .delay(timeBetween)
+        .attr("opacity",.5);*/
 
     /*
     var circle = vis.svg.selectAll(".node")
