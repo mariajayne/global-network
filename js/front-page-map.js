@@ -5,29 +5,16 @@
 var yearDelay = 5000.0;
 var nodeDelay, blinkDelay;
 
-WorldMap = function(_parentElement, _mapData, _data){
+WorldMap = function(_parentElement, _mapData, _data) {
     this.parentElement = _parentElement;
     this.mapData = _mapData;
     this.data = _data;
     this.displayData = this.data;
     this.odometer = document.getElementById("odometer");
-    /*
-    this.cities = [{"City":"NY", "Pop":8175133, "Long":-74.006, "Lat":40.714},
-        {"City":"LA", "Pop":3792621, "Long":-118.244, "Lat":34.052},
-        {"City":"Chicago", "Pop":2695598, "Long":-87.65, "Lat":41.85},
-        {"City":"Brooklyn", "Pop":2300664, "Long":-73.95, "Lat":40.65},
-        {"City":"Houston", "Pop":2099451, "Long":-95.363, "Lat":29.763},
-        {"City":"Oslo", "Pop":500000, "Long":10.7522, "Lat":59.9139}];*/
-
     this.cities = this.data;
-    console.log(this.cities);
-
 
     this.initVis();
-
-
 }
-
 
 
 WorldMap.prototype.initVis = function(){
@@ -131,7 +118,6 @@ WorldMap.prototype.updateVisualization = function (newNode){
 
     var vis = this;
 
-
     var circle = vis.svg.append("circle")
         .attr("class", "node")
         .attr("fill", "white")
@@ -141,22 +127,4 @@ WorldMap.prototype.updateVisualization = function (newNode){
         });
 
     $(circle[0]).fadeTo(blinkDelay,.5);
-
-    /*
-    var circle = vis.svg.selectAll(".node")
-        .data(vis.current_year);
-
-    circle.enter()
-        .append("circle")
-        .attr("class", "node");
-
-    circle
-        .style("box-shadow", "0 0 30px 15px #fff")
-        .transition()
-        .delay(function(d,i) { return i * 10})
-        .attr("r", function(d) { return vis.r(d.Pop)})
-        .attr("fill", "#FEFCD7")
-        .attr("transform", function(d) {
-            return "translate(" + vis.projection([d.Long, d.Lat]) + ")";
-        });*/
 }
