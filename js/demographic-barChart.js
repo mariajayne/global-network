@@ -156,5 +156,16 @@ BarChart.prototype.updateVis = function(){
         .text("Total Score")
         .style("font-size",8);
 
+    // Draw grid lines
+    vis.svg.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0,0)")
+        .call(d3.svg.axis()
+            .scale(vis.x)
+            .orient("left")
+            .tickValues(vis.yTicks)
+            .tickSize(vis.height, 0,0)
+            .tickFormat(""));
+
 
 }

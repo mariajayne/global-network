@@ -37,6 +37,11 @@ Timeline.prototype.initVis = function(){
         .scale(vis.x)
         .orient("bottom");
 
+    vis.yAxis = d3.svg.axis()
+        .scale(vis.y)
+        .orient("left")
+        .ticks(4);
+
     // SVG area path generator
     vis.area = d3.svg.area()
         .defined(function(d) {return !isNaN(d[vis.metric])})
@@ -75,6 +80,11 @@ Timeline.prototype.initVis = function(){
         .attr("class", "x-axis axis")
         .attr("transform", "translate(0," + vis.height + ")")
         .call(vis.xAxis);
+
+    vis.svg.append("g")
+        .attr("class", "x-axis axis")
+        .attr("transform", "translate(0," + 0 + ")")
+        .call(vis.yAxis);
 
 }
 

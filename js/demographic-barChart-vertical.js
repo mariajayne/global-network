@@ -59,7 +59,7 @@ VerticalBarChart.prototype.initVis = function(){
 
     //  Tooltip placeholder
     vis.tooltip = vis.svg.append("g")
-        .attr("transform","translate(10,10)")
+        .attr("transform","translate(100,30)")
         .append("text")
         .attr("class","t1")
         .attr("dx",8)
@@ -78,11 +78,11 @@ VerticalBarChart.prototype.initVis = function(){
     vis.svg.append("text")
         .attr("class", "title-label")
         .attr("text-anchor", "middle")
-        .attr("y", 0)
-        .attr("x", vis.width/2)
+        .attr("y", -10)
+        .attr("x", vis.width/2 -20)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Freedom of the internet in 2014");
+        .text("Degree of National Surveillance and Censorship (% 2014)");
 
     //  Init wrangleData
     vis.wrangleData();

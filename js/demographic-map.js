@@ -60,13 +60,8 @@ WorldMap.prototype.initVis = function(){
         .attr("id", "btn-demographics")
         .attr("width", 100)
         .attr("height", 23)
-        .style("fill","lightblue")
+        .style("fill","yellow")
         .on("click",changeView);
-
-    vis.rectDemographics.append("text")
-        .attr("x",20)
-        .attr("y",20)
-        .text("hejarflihbaerf");
 
     this.createVisualization();
 
