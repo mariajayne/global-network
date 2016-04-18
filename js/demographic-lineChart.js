@@ -31,6 +31,7 @@ LineChart= function(_parentElement,_data,_metric){
     this.data = _data;
     this.displayData = [];
     this.metric = _metric;
+    console.log(this.data);
     this.initVis();
 }
 
