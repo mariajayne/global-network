@@ -14,12 +14,12 @@ VerticalBarChart = function(_parentElement,_data){
 VerticalBarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 60, bottom: 60, left: 100 };
+    vis.margin = { top: 20, right: 60, bottom: 60, left: 100 };
 
 
     //  $(document).width()
     vis.width = 300- vis.margin.left - vis.margin.right;
-    vis.height = 700 - vis.margin.top - vis.margin.bottom;
+    vis.height = 670 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area

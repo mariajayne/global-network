@@ -35,7 +35,7 @@ WorldMap.prototype.initVis = function(){
 
     vis.margin = {top: 0, right: 20, bottom: 0, left: 20};
     vis.width = 800 - vis.margin.left - vis.margin.right;
-    vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.height = 450 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
