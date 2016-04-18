@@ -19,10 +19,10 @@ Timeline = function(_parentElement,_data) {
 Timeline.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 100, right: 40, bottom: 60, left: 40 };
+    vis.margin = { top: 30, right: 40, bottom: 30, left: 40 };
 
     vis.width = 1400 - vis.margin.left - vis.margin.right,
-    vis.height = 600 - vis.margin.top - vis.margin.bottom;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
@@ -149,7 +149,13 @@ Timeline.prototype.initVis = function() {
 
     });
 
-    vis.platformInfo = $("#platformInfo");
+
+
+    // Platform information textbox
+    vis.platformName = $("#platformName");
+    vis.platformReleaseDate = $("#platformDate");
+    vis.platformUsers = $("#platformUsers");
+    vis.platformAbout = $("#platformAbout");
 
     vis.wrangleData();
 };
@@ -207,7 +213,7 @@ Timeline.prototype.updateVis = function() {
     circle.on("mouseout", function(d) {
         if (!vis.clicked) {
             d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity",.5);
-            vis.platformInfo.html("");
+            //vis.platformInfo.html("");
         }
     });
 
@@ -250,7 +256,21 @@ Timeline.prototype.hoverAction = function(d, circle) {
     d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity", 0.1);
     d3.select(circle).transition().duration(transitionTime).attr("opacity", 0.7);
 
-    var x = vis.platformInfoX + vis.x(d.Date);
+
+    vis.platformReleaseDate.html("Release date: " + dateToString(d.Date));
+    vis.platformUsers.html("Monthly active users: " + d.Current_size + " million");
+    vis.platformAbout.html(d.About);
+
+    var htmlString = d.Platform;
+    if (d.Symbol.length == 0) {
+        htmlString = htmlString.concat(" <img src=\"../data/social-media/".concat(d.Platform.replace(/\s/g, '')) + ".svg\"" +
+            " type=\"image/svg.xml\" class=\"svg-img\" style=\"height:15px;width:15px;\"></img>");
+    } else {
+        htmlString = htmlString.concat(" <i class=\"fa ".concat(d.Symbol).concat("\"></i>"));
+    }
+    vis.platformName.html( htmlString);
+
+    /*var x = vis.platformInfoX + vis.x(d.Date);
 
     vis.platformInfo.css("left", x);
     vis.platformInfo.css("margin-top", vis.height + vis.margin.top + vis.margin.bottom);
@@ -265,6 +285,6 @@ Timeline.prototype.hoverAction = function(d, circle) {
     vis.platformInfo.html(htmlString + "<br> Release date: " + dateToString(d.Date)
         + "<br> Monthly active users: " + d.Current_size + " million");
     x -= (+vis.platformInfo.css("width").slice(0,-2))/2.0;
-    vis.platformInfo.css("left", x);
+    vis.platformInfo.css("left", x);*/
 
 }

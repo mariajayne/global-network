@@ -44,6 +44,7 @@ function loadData(){
             //   Create visualization
             createVis();
         }
+        console.log(error);
     });
 }
 
