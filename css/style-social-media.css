@@ -64,6 +64,10 @@ body {
     display : inline;
 }
 
+#platformInformationText {
+    position : absolute;
+}
+
 /*************/
 /* TIME LINE */
 /*************/
@@ -117,4 +121,8 @@ body {
 }
 .grid path {
     stroke-width: 0;
+}
+
+#social-media-bar-chart {
+    position : absolute;
 }

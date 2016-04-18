@@ -21,8 +21,8 @@ Timeline.prototype.initVis = function() {
 
     vis.margin = { top: 30, right: 40, bottom: 30, left: 40 };
 
-    vis.width = 1400 - vis.margin.left - vis.margin.right,
-    vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.width = screen.width/1.5 - vis.margin.left - vis.margin.right,
+    vis.height = screen.width/4 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
@@ -37,6 +37,19 @@ Timeline.prototype.initVis = function() {
         +$("#timeline-drawing-space").css("width").slice(0,-2);
     vis.platformInfoX = (vis.platformInfoX / 2.0) + +$("#social-media-col").css("padding-left").slice(0,-2)
         + vis.margin.left;
+
+    // Positioning of the platform information
+    var svgWidth = document.getElementById("timeline-drawing-space").getBoundingClientRect().width;
+
+    var e = document.getElementById("platformInformationText");
+    e.style.left = "" + ((screen.width - svgWidth)/2.0 + vis.margin.left) + "px";
+    e.style.width = (svgWidth / 3.0) + "px";
+
+    // Positioning of the bar chart
+    var barChart = document.getElementById("social-media-bar-chart");
+    barChart.style.left = screen.width / 2.0 + "px";
+
+
 
     // Scales
     vis.x = d3.time.scale()

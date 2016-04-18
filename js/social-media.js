@@ -49,8 +49,8 @@ function loadData(){
 }
 
 function createVis() {
-    timeLine = new Timeline("social-media-timeline", platformData);
     barChart = new BarChart("social-media-bar-chart", countryData, platformCountryBreakdown);
+    timeLine = new Timeline("social-media-timeline", platformData);
 }
 
 function selectPlatform(platform) {
