@@ -1,15 +1,9 @@
 /**
- * Created by akselreiten on 05/04/16.
- */
-
-/*
- * BarChart - Object constructor function
- * @param _parentElement 	-- the HTML element in which to draw the visualization
- * @param _data	-- the data
+ * Created by akselreiten on 17/04/16.
  */
 
 
-BarChart = function(_parentElement,_data){
+VerticalBarChart = function(_parentElement,_data){
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
@@ -17,13 +11,15 @@ BarChart = function(_parentElement,_data){
     this.initVis();
 }
 
-BarChart.prototype.initVis = function(){
+VerticalBarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 60, bottom: 60, left: 60 };
+    vis.margin = { top: 40, right: 60, bottom: 60, left: 100 };
 
-    vis.width = $( document ).width()- vis.margin.left - vis.margin.right,
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
+
+    //  $(document).width()
+    vis.width = 300- vis.margin.left - vis.margin.right;
+    vis.height = 700 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area
@@ -34,12 +30,12 @@ BarChart.prototype.initVis = function(){
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     //  Scales
-    vis.x = d3.scale.ordinal()
-        .range(0,vis.width)
-        .rangeRoundBands([0,vis.width],.2);
+    vis.x = d3.scale.linear()
+        .range([0,vis.width]);
 
-    vis.y = d3.scale.linear()
-        .range([vis.height,0]);
+    vis.y = d3.scale.ordinal()
+        .range(vis.height,0)
+        .rangeRoundBands([0,vis.height],.2);
 
     vis.colorScale = {"Free" : 'white',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
     // The colorful: vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
@@ -60,7 +56,6 @@ BarChart.prototype.initVis = function(){
 
     vis.svg.append("g")
         .attr("class","y-axis axis");
-
 
     //  Tooltip placeholder
     vis.tooltip = vis.svg.append("g")
@@ -96,7 +91,7 @@ BarChart.prototype.initVis = function(){
 
 
 //  Function for data wrangling.
-BarChart.prototype.wrangleData = function(){
+VerticalBarChart.prototype.wrangleData = function(){
     var vis = this;
 
     //  Currently no data wrangling needed
@@ -106,7 +101,7 @@ BarChart.prototype.wrangleData = function(){
 
 
 //  The drawing function
-BarChart.prototype.updateVis = function(){
+VerticalBarChart.prototype.updateVis = function(){
 
     var vis = this;
 
@@ -114,8 +109,8 @@ BarChart.prototype.updateVis = function(){
     vis.data.sort(function(a,b){ return a.Total_score - b.Total_score});
 
     //  Update domain
-    vis.x.domain(vis.data.map(function(d){return d.Country}));
-    vis.y.domain([0,d3.max(vis.data,function(d){return d.Total_score})]);
+    vis.x.domain([0,100]);
+    vis.y.domain(vis.data.map(function(d){return d.Country}));
 
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
@@ -128,12 +123,11 @@ BarChart.prototype.updateVis = function(){
     rect.enter()
         .append("rect")
         .attr("class","bar")
-        .attr("id",function(d){
-            return "bar-" + d.Country})
-        .attr("x", function(d){return vis.x(d.Country)})
-        .attr("y", function(d){return vis.y(d.Total_score)})
-        .attr("width", vis.x.rangeBand())
-        .attr("height",function(d){return vis.height - vis.y(d.Total_score);})
+        .attr("id",function(d){return "bar-" + d.Country})
+        .attr("x", 0)
+        .attr("y", function(d){return vis.y(d.Country)})
+        .attr("width", function(d){return vis.x(d.Total_score);})
+        .attr("height",vis.y.rangeBand())
         .style("fill",function(d){return vis.colorScale[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
@@ -146,15 +140,15 @@ BarChart.prototype.updateVis = function(){
     //  Update label positioning
     vis.svg.selectAll(".x-axis text")
         .attr("y",0)
-        .attr("x",-10)
+        .attr("x",0)
         .attr("dy",".35em")
-        .attr("transform","rotate(-65)")
+        .attr("transform","rotate(0)")
         .style("text-anchor","end");
 
-    //  Update y-label
+    /*  Update y-label
     vis.svg.selectAll(".y-label")
         .text("Total Score")
-        .style("font-size",8);
+        .style("font-size",8); */
 
 
 }
