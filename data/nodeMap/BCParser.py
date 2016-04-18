@@ -30,9 +30,6 @@ for i in range(188):
 
 	countries.append(country)
 
-print len(countries[0]["internet"])
-print len(countries[0]["population"])
-
 print json.dumps(countries,sort_keys=True,indent=3,separators=(',',': '))
 
 with open('BCList.json','w') as outfile:

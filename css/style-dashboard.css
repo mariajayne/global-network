@@ -1,25 +1,30 @@
 /* style-dashboard.css contains settings only valid for dashboard.html */
 
+
+/***********/
+/* GENERAL */
+/***********/
+
+@font-face {
+    font-family: foxCat;
+    src: url(../fonts/Fox&Cat.ttf);
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f7f7f7;
     text-align: center;
-}
-
-h1 {
-    font-weight: 100;
-    margin-top: 50px;
-}
-
-h2 {
-    font-weight: 300;
-    font-size: 18px;
-    margin-bottom: 40px;
+    background-color : #222222;
+    fill : white;
+    opacity : .8;
+    font-family : foxCat;
+    font-size : 15px;
+    color : white;
 }
 
 .container-fluid {
     padding-right: 5px;
     padding-left: 5px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 
 /***************/
@@ -27,11 +32,11 @@ h2 {
 /***************/
 .axis {
     font: 10px sans-serif;
-    fill: #333;
+    fill: gray;
 }
 
 .axis-title {
-    fill: black;
+    fill: gray;
     font-size: 8px;
 }
 
@@ -65,8 +70,8 @@ h2 {
 /***************/
 .line{
     fill: none;
-    stroke: #000;
-    opacity: 0.7;
+    stroke: gray;
+    opacity: 1;
     clip-path: url(#clip);
 }
 

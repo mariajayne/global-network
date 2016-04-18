@@ -41,7 +41,7 @@ BarChart.prototype.initVis = function(){
     vis.y = d3.scale.linear()
         .range([vis.height,0]);
 
-    vis.colorScale = {"Free" : '#dfdfdf',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
+    vis.colorScale = {"Free" : 'white',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
     // The colorful: vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
     //vis.colorScale = d3.scale.category10().domain(vis.data.map(function(d){return d.Status}));
 

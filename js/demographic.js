@@ -18,9 +18,8 @@ var gdpChart,
 
 //  Variables for selecting countries on map
 var selectedCountries = []
-var defaultCountry = "USA";
 var defaultCountryColor = "gray";
-var selectedCountryColor = "black";
+var selectedCountryColor = "white";
 
 function selectCountry(d){
     var country = d.properties.id;
