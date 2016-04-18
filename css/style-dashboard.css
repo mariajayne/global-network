@@ -37,7 +37,7 @@ body {
 
 .axis-title {
     fill: gray;
-    font-size: 8px;
+    font-size: 12px;
 }
 
 .axis path, line {
@@ -56,6 +56,14 @@ body {
 
 .x-axis text {
     font-size: 8px;
+}
+
+.y-axis path {
+    display: none;
+}
+
+.y-axis text {
+    font-size: 9px;
 }
 
 .title-label{
@@ -95,6 +103,17 @@ body {
 }
 
 
+/***************/
+/*     MAP     */
+/***************/
+
+.btn-dashboard{
+    opacity:0.5;
+}
+
+.btn-dashboard:hover{
+    opacity:1;
+}
 
 /***************/
 /*  Tool tip   */

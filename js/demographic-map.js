@@ -3,6 +3,24 @@
  */
 
 
+function changeView(){
+    if ($("#internet-chart").is(":visible")){
+        $("#col3").insertBefore("#col2");
+        $("#internet-chart").hide(0);
+        $("#gdp-chart").hide(0);
+        $("#employment-chart").hide(0);
+        $("#freedom-of-net-barchart-vertical").show(0);
+    }else{
+        $("#col2").insertBefore("#col3");
+        $("#internet-chart").show(0);
+        $("#gdp-chart").show(0);
+        $("#employment-chart").show(0);
+        $("#freedom-of-net-barchart-vertical").hide(0);
+    }
+
+
+}
+
 WorldMap = function(_parentElement, _mapData, _data){
     this.parentElement = _parentElement;
     this.mapData = _mapData;
@@ -34,6 +52,22 @@ WorldMap.prototype.initVis = function(){
     vis.path = d3.geo.path()
         .projection(vis.projection);
 
+    // Add rectangles for choosing view
+    vis.rectDemographics = vis.svg.append("rect")
+        .attr("x", vis.width/2 - 30)
+        .attr("y", vis.height * 0.95)
+        .attr("class", "btn-dashboard")
+        .attr("id", "btn-demographics")
+        .attr("width", 100)
+        .attr("height", 23)
+        .style("fill","lightblue")
+        .on("click",changeView);
+
+    vis.rectDemographics.append("text")
+        .attr("x",20)
+        .attr("y",20)
+        .text("hejarflihbaerf");
+
     this.createVisualization();
 
 }
@@ -51,7 +85,9 @@ WorldMap.prototype.createVisualization = function (){
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;})
         .style("fill",defaultCountryColor)
-        .on("click", selectCountry)
+        .on("click", selectCountry);
+
+
 
 
 }

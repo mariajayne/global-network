@@ -13,6 +13,7 @@ var gdpChart,
     employmentChart,
     internetChart,
     freedomOfNetChart,
+    freedomOfNetVerticalChart,
     timeline,
     worldMap;
 
@@ -107,12 +108,14 @@ function processData(error,data1,data2,data3){
 }
 
 function createVis() {
+    $("#freedom-of-net-barchart-vertical").hide(0);
     gdpChart = new LineChart("gdp-chart",demographicData,"gdp");
     educationChart = new LineChart("education-chart",demographicData,"university");
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
-    freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
-    timeline = new Timeline("timeline-container",demographicData.world[0],"total_internet_usage")
+    //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
+    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData);
+    timeline = new Timeline("timeline-container",demographicData.world[0],"total_internet_usage");
     worldMap = new WorldMap("world-map",map,demographicData);
 }
 
