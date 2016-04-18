@@ -3,6 +3,7 @@
  */
 
 var yearDelay = 5000.0;
+var nodeDelay, blinkDelay;
 
 WorldMap = function(_parentElement, _mapData, _data){
     this.parentElement = _parentElement;
@@ -21,14 +22,6 @@ WorldMap = function(_parentElement, _mapData, _data){
     this.cities = this.data;
     console.log(this.cities);
 
-    /*for (var i = 1; i < this.cities.length; i++) {
-        this.cities[i] = this.cities[i].concat(this.cities[i-1]);
-    }*/
-
-
-    setTimeout(function(){
-        this.odometer.innerHTML = 7654321;
-    }, 1000);
 
     this.initVis();
 
@@ -65,10 +58,8 @@ WorldMap.prototype.initVis = function(){
 
     vis.r = d3.scale.log()
         .base(Math.E)
-        .domain([1000,100000000])
-        .range([0.5,7]);
-
-    console.log(vis.r(8175133));
+        .domain([1000,10000000])
+        .range([0.5,10]);
 
     this.createVisualization();
 
@@ -86,25 +77,49 @@ WorldMap.prototype.createVisualization = function (){
         .attr("d",vis.path)
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;});
-
-    /*for (var i = 0; i < vis.cities.length; i++) {
+    /*
+    for (var i = 0; i < vis.cities.length; i++) {
         for (var j = 0; j < vis.cities[i].length; j++) {
             vis.updateVisualization(vis.cities[i][j]);
         }
     }*/
 
 
-    var outerCounter = 0;
-    var refreshId = window.setInterval(function() {
+    var outerCounter = 1;
+    var year = 1992;
+    vis.current_year = vis.cities[0];
+    nodeDelay = (yearDelay / vis.current_year.length);
+    blinkDelay = .2*nodeDelay;
+
+    var innerCounter = 0;
+    setTimeout(function() {
+        vis.odometer.innerHTML = 1992;
+    }, 0);
+
+    var innerRefreshId = setInterval(function() {
+        vis.updateVisualization(vis.current_year[innerCounter]);
+        innerCounter++;
+        if (innerCounter == vis.current_year.length) {
+            clearInterval(innerRefreshId);
+        }
+    }, nodeDelay);
+
+    var refreshId = setInterval(function() {
         vis.current_year = vis.cities[outerCounter];
+
+        vis.odometer.innerHTML = year + 1;
+        year++;
+
+        nodeDelay = (yearDelay / vis.current_year.length);
+        blinkDelay =.2*nodeDelay;
         var innerCounter = 0;
-        var innerRefreshId = window.setInterval(function() {
+        var innerRefreshId = setInterval(function() {
             vis.updateVisualization(vis.current_year[innerCounter]);
             innerCounter++;
             if (innerCounter == vis.current_year.length) {
                 clearInterval(innerRefreshId);
             }
-        }, yearDelay / vis.current_year.length);
+        }, nodeDelay);
         outerCounter++;
         if (outerCounter == vis.cities.length - 1){
             clearInterval(refreshId);
@@ -115,19 +130,17 @@ WorldMap.prototype.createVisualization = function (){
 WorldMap.prototype.updateVisualization = function (newNode){
 
     var vis = this;
-    var timeBetween = yearDelay / vis.current_year.length;
 
 
-    vis.svg.append("circle")
+    var circle = vis.svg.append("circle")
         .attr("class", "node")
         .attr("fill", "white")
         .attr("r", function(d) { return vis.r(newNode.Pop)})
         .attr("transform", function(d) {
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
         });
-        /*.transition()
-        .delay(timeBetween)
-        .attr("opacity",.5);*/
+
+    $(circle[0]).fadeTo(blinkDelay,.5);
 
     /*
     var circle = vis.svg.selectAll(".node")
