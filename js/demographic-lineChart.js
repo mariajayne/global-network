@@ -17,7 +17,7 @@ var labelMap = {
 }
 
 var formatValue = d3.format(".2s");
-var formatPercent = d3.format(".0%");
+var formatPercent = d3.format(".00%");
 var formatYear = d3.time.format("%Y");
 var bisectDate = d3.bisector(function(d) { return d.year; }).left;
 
@@ -118,6 +118,7 @@ LineChart.prototype.initVis = function(){
         .attr("transform", "rotate(0)")
         .text(metricMap[vis.metric]);
 
+
     //  Appending line and circle for tool-tips
     vis.focus = vis.svg.append("g").style("display","none");
 
@@ -137,7 +138,7 @@ LineChart.prototype.initVis = function(){
 
     vis.focus.append("text")
         .attr("class", "y1")
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("font-size",14)
         .style("stroke-width", "1px")
         .style("opacity", 0.8)
@@ -208,7 +209,11 @@ LineChart.prototype.wrangleData = function(){
 LineChart.prototype.updateVis = function(){
     var vis = this;
 
-    vis.y.domain([0,d3.max(vis.displayData,function(d) {return d[vis.metric]})]);
+    if (vis.metric == 'internet'){
+        vis.y.domain([0,100]);
+    }else{
+        vis.y.domain([0,d3.max(vis.displayData,function(d) {return d[vis.metric]})]);
+    }
 
     // Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
@@ -224,7 +229,5 @@ LineChart.prototype.updateVis = function(){
     linegraph
         .style("stroke",2)
         .attr("d",vis.line(vis.displayData));
-
-
 
 }
