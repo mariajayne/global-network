@@ -69,24 +69,24 @@ function loadData() {
 function processData(error, world, countryData) {
   // function accepts any errors from the queue function as first argument, then
   // each data object in the order of chained defer() methods above
-  var countries = world.objects.countries.geometries; // store the path in variable for ease
-  for (var i in countries) { // for each geometry object
-    for (var j in countryData) { // for each row in the CSV
-      if (countries[i].properties.id == countryData[j].id) { // if they match
-        for (var k in countryData[i]) { // for each column in the a row within the CSV
-          if (k != 'name' && k != 'id') { // let's not add the name or id as props since we already have them
+  var countries = world.objects.countries.geometries;
+  for (var i in countries) {
+    for (var j in countryData) {
+      if (countries[i].properties.id == countryData[j].id) {
+        for (var k in countryData[i]) {
+          if (k != 'name' && k != 'id') {
             if (attributeArray.indexOf(k) == -1) {
-              attributeArray.push(k); // add new column headings to our array for later
+              attributeArray.push(k);
             }
-            countries[i].properties[k] = Number(countryData[j][k]) // add each CSV column key/value to geometry object
+            countries[i].properties[k] = Number(countryData[j][k])
           }
         }
-        break; // stop looking through the CSV since we made our match
+        break;
       }
     }
   }
-  d3.select('#clock').html(attributeArray[currentAttribute]); // populate the clock initially with the current year
-  drawMap(world); // let's mug the map now with our newly populated data object
+  d3.select('#clock').html(attributeArray[currentAttribute]);
+  drawMap(world);
 }
 
 function drawMap(world) {
@@ -112,9 +112,9 @@ function drawMap(world) {
       }
 
       tooltip.classed('hidden', false)
-        .attr('style', 'left:' + (mouse[0] + 150) +
-          'px; top:' + (mouse[1] + 20) + 'px')
-        .html(d.properties.admin + " " + currentYear + " " + percentage + "%");
+        .attr('style', 'left:' + (mouse[0] + 180) +
+          'px; top:' + (mouse[1] - 20) + 'px')
+        .html(d.properties.admin + "<br>" + currentYear + "<br>" + percentage + "%");
     })
     .on('mouseout', function() {
       tooltip.classed('hidden', true);
@@ -150,7 +150,7 @@ function getColor(valueIn, valuesIn) {
     .domain([valuesIn[0], valuesIn[1]])
     .range([0, 1]);
   // TODO decide if countries with no values should have a specific color
-  if (valueIn === undefined || valueIn == 0){
+  if (valueIn === undefined || valueIn == 0) {
     return color(0);
   } else {
     return color(valueIn);
