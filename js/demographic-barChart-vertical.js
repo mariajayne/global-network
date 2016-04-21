@@ -14,12 +14,11 @@ VerticalBarChart = function(_parentElement,_data){
 VerticalBarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 60, bottom: 60, left: 100 };
-
+    vis.margin = { top: 10, right: 60, bottom: 60, left: 100 };
 
     //  $(document).width()
     vis.width = 300- vis.margin.left - vis.margin.right;
-    vis.height = 670 - vis.margin.top - vis.margin.bottom;
+    vis.height = 650 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area
@@ -37,8 +36,8 @@ VerticalBarChart.prototype.initVis = function(){
         .range(vis.height,0)
         .rangeRoundBands([0,vis.height],.2);
 
-    vis.colorScale = {"Free" : 'white',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
-    // The colorful: vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
+    //vis.colorScale = {"Free" : 'white',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
+
     //vis.colorScale = d3.scale.category10().domain(vis.data.map(function(d){return d.Status}));
 
     //  Axis
@@ -78,7 +77,7 @@ VerticalBarChart.prototype.initVis = function(){
     vis.svg.append("text")
         .attr("class", "title-label")
         .attr("text-anchor", "middle")
-        .attr("y", -10)
+        .attr("y", 10)
         .attr("x", vis.width/2 -20)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
@@ -128,7 +127,7 @@ VerticalBarChart.prototype.updateVis = function(){
         .attr("y", function(d){return vis.y(d.Country)})
         .attr("width", function(d){return vis.x(d.Total_score);})
         .attr("height",vis.y.rangeBand())
-        .style("fill",function(d){return vis.colorScale[d.Status]});
+        .style("fill",function(d){return colorScaleCencorship[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
         .on("mouseout",function(d){vis.tooltip.text("")});
@@ -139,7 +138,7 @@ VerticalBarChart.prototype.updateVis = function(){
 
     //  Update label positioning
     vis.svg.selectAll(".x-axis text")
-        .attr("y",0)
+        .attr("y",-20)
         .attr("x",0)
         .attr("dy",".35em")
         .attr("transform","rotate(0)")

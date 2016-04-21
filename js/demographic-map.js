@@ -3,28 +3,9 @@
  */
 
 
-function changeView(){
-    if ($("#internet-chart").is(":visible")){
-        $("#col3").insertBefore("#col2");
-        $("#internet-chart").hide(0);
-        $("#gdp-chart").hide(0);
-        $("#employment-chart").hide(0);
-        $("#freedom-of-net-barchart-vertical").show(0);
-    }else{
-        $("#col2").insertBefore("#col3");
-        $("#internet-chart").show(0);
-        $("#gdp-chart").show(0);
-        $("#employment-chart").show(0);
-        $("#freedom-of-net-barchart-vertical").hide(0);
-    }
-
-
-}
-
-WorldMap = function(_parentElement, _mapData, _data){
+WorldMap = function(_parentElement, _mapData){
     this.parentElement = _parentElement;
     this.mapData = _mapData;
-    this.data = _data;
     this.displayData = this.data;
     this.initVis();
 }
@@ -63,6 +44,14 @@ WorldMap.prototype.initVis = function(){
         .style("fill","yellow")
         .on("click",changeView);
 
+    //	Tooltip
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([0,0])
+        .html(function(d){
+            return d.properties.admin;
+        });
+
     this.createVisualization();
 
 }
@@ -73,6 +62,9 @@ WorldMap.prototype.createVisualization = function (){
 
     vis.world = topojson.feature(vis.mapData, vis.mapData.objects.countries).features
 
+    vis.svg.call(vis.tip);
+
+
     vis.svg.selectAll("path")
         .data(vis.world)
         .enter().append("path")
@@ -80,7 +72,11 @@ WorldMap.prototype.createVisualization = function (){
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;})
         .style("fill",defaultCountryColor)
-        .on("click", selectCountry);
+        .on("click", selectCountry)
+        .on('mouseover',vis.tip.show)
+        .on('mouseout',vis.tip.hide);
+
+
 
 
 
