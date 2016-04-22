@@ -22,23 +22,18 @@
 
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-md-12 nav-container">
-            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-                <div class="container">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
-                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
-                        <ul data-offcanvass="yes">
-                            <li class="active"><a href="#">Internet Usage</a></li>
-                            <li class="active"><a href="../countries/countries.html">Demographics</a></li>
-                            <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
-                            <li class="active"><a href="../process/process.html">Process Book</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+    <!-- Row 1 -->
+    <div class="row headline">
+        <div class="col-md-3"></div>
+        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+        <div class="col-md-1"><a href="../index.html"><button class="btn-nav">Animation</button></a></div>
+        <div class="col-md-1"><a href="#"><button class="btn-nav"><u>Demographics</u></button></a></div>
+        <div class="col-md-1"><a href="../countries/countries.html"><button class="btn-nav">Metrics</button></a></div>
+        <div class="col-md-1"><a href="../social-media/social-media.html"><button class="btn-nav">Social Media</button></a></div>
+        <div class="col-md-1"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
+        <div class="col-md-3"></div>
     </div>
+
 
     <div class="row">
         <div class="col-md-12">
@@ -47,8 +42,9 @@
 
                     <div class="col-md-8" id="col1">
                         <div id="world-map"></div>
+                        <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
+                        <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Surveillance and Cencorship</button>
                         <div id="timeline-chart"></div>
-
                     </div>
 
                     <div class="col-md-4" id="col2">
@@ -65,7 +61,6 @@
 
     <div class="row">
         <div class="col-md-4" id="col3">
-            <!--<div id="freedom-of-net-barchart"></div>-->
             <div id="freedom-of-net-barchart-vertical"></div>
         </div>
     </div>

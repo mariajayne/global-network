@@ -8,7 +8,6 @@ VerticalBarChart = function(_parentElement,_data,_demographicData){
     this.data = _data;
     this.demographicData = _demographicData;
     this.displayData = [];
-
     this.initVis();
 }
 
@@ -20,7 +19,6 @@ VerticalBarChart.prototype.initVis = function(){
     //  $(document).width()
     vis.width = 300- vis.margin.left - vis.margin.right;
     vis.height = 650 - vis.margin.top - vis.margin.bottom;
-
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
@@ -46,12 +44,20 @@ VerticalBarChart.prototype.initVis = function(){
         .scale(vis.y)
         .orient("left");
 
+    /*vis.x2Axis = d3.svg.axis()
+        .scale(vis.x)
+        .orient("bottom");*/
+
     vis.svg.append("g")
         .attr("class","x-axis axis")
         .attr("transform","translate(0,"+vis.height+")");
 
     vis.svg.append("g")
         .attr("class","y-axis axis");
+
+    vis.svg.append("g")
+        .attr("class","x2-axis axis")
+        .attr("transform","translate(0,"+20+")");
 
     //  Tooltip placeholder
     vis.tooltip = vis.svg.append("g")
@@ -74,11 +80,23 @@ VerticalBarChart.prototype.initVis = function(){
     vis.svg.append("text")
         .attr("class", "title-label")
         .attr("text-anchor", "middle")
-        .attr("y", 10)
+        .attr("y", 0)
         .attr("x", vis.width/2 -20)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Degree of National Surveillance and Censorship (% 2014)");
+        .text("Degree of National Surveillance and Censorship (% 2014)")
+        .style("fill","black");
+
+    //  Appending line
+    vis.line = d3.svg.line()
+        .x(function(d){return vis.x(d.x)})
+        .y(function(d){return vis.y(d.y)});
+
+    //	Tooltip
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([0,0])
+        .html(function(d){return d.country + "<br><small>Internet usage 2014: " + d.internet2014 + "%</small>";});
 
     //  Init wrangleData
     vis.wrangleData();
@@ -109,7 +127,10 @@ VerticalBarChart.prototype.updateVis = function(){
 
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
+    //vis.svg.select(".x2-axis").call(vis.x2Axis);
     vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.call(vis.tip);
+
 
     //  Create rectangles
     var rect = vis.svg.selectAll("rect")
@@ -133,18 +154,25 @@ VerticalBarChart.prototype.updateVis = function(){
         .remove();
 
 
-    /*var dots = vis.svg.selectAll("dot")
-        .data(vis.displayData)
+    var dots = vis.svg.selectAll("dot")
+        .data(vis.demographicData)
         .enter();
 
     dots.append("circle")
-        .attr("r",3.5)
-        .attr("cx", function(d){ return 0})
-        .attr("cy", function(d){return 1});
+        .attr("class","dot")
+        .attr("r",3)
+        .attr("cx", function(d){return vis.x(d.internet2014)})
+        .attr("cy", function(d){return vis.y(d.country) + 3})
+        .style("fill","gray")
+        .on('mouseover',vis.tip.show)
+        .on('mouseout',vis.tip.hide);
 
-    */
-
-
+    /*
+    dots.append("text")
+        .attr("x", function(d){return vis.x(d.internet2014) + 10})
+        .attr("y", function(d){return vis.y(d.country) + 5})
+        .text(function(d){return d.country})
+        .style("fill","black");*/
 
     //  Update label positioning
     vis.svg.selectAll(".x-axis text")

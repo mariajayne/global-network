@@ -5,6 +5,7 @@
 //  Will be used to save the loaded JSON data
 var demographicData = [];
 var freedomData = [];
+var internetFreedomData = [];
 var map = [];
 var countryDigits = []
 var countryMapping = {}
@@ -146,11 +147,12 @@ function loadData() {
         .defer(d3.json, "../data/freedom-house/freedom_house_2015.json")
         .defer(d3.json, "../data/demographics/world-topo.json")
         .defer(d3.json, "../data/freedom-house/countryMapping.json")
+        .defer(d3.json, "../data/freedom-house/internetFreedomCountries.json")
         .await(processData);
 
 }
 
-function processData(error,data1,data2,data3,data4){
+function processData(error,data1,data2,data3,data4,data5){
 
     demographicData = data1;
     demographicData.countries.forEach(function(d){
@@ -181,7 +183,14 @@ function processData(error,data1,data2,data3,data4){
     });
 
     map = data3;
+
     countryMapping = data4;
+
+    internetFreedomData = data5;
+    internetFreedomData.forEach(function(d){
+        d.internet2014 = +d.internet2014;
+    });
+
     colorScale["WLD"] = "gray"
     createVis();
 
@@ -193,7 +202,7 @@ function createVis() {
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
     //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
-    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,demographicData);
+    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,internetFreedomData);
     timeline = new Timeline("timeline-chart",demographicData.world,"total_internet_users");
     worldMap = new WorldMap("world-map",map,freedomData);
 }
