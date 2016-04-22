@@ -181,14 +181,11 @@ LineChart.prototype.initVis = function(){
 LineChart.prototype.wrangleData = function(){
     var vis = this;
     var countryScope;
-
     if (selectedCountries.length == 0){vis.displayData = [vis.data.countries[13]]}
-
     else{
         var countryScope = selectedCountries
         vis.displayData = vis.data.countries.filter(function(d){return (countryScope.indexOf(d.country_id) >= 0)})
     }
-
     vis.updateVis();
 }
 

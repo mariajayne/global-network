@@ -17,5 +17,13 @@ with open('../nodeMap/countryMapping.csv','r') as c:
 		if row[1] == 'Korea, South':row[1] = "South Korea"
 		countries[row[1]] = row[11]
 
-with open('countryMapping.json','w') as outfile:
-	json.dump(countries,outfile)
+with open('freedom_house_2015.csv','r') as f:
+	reader = csv.reader(f)
+	for row in reader:
+		print row
+		break
+
+print countries
+
+#with open('countryMapping.json','w') as outfile:
+#	json.dump(countries,outfile)

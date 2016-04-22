@@ -2,10 +2,20 @@
  * Created by akselreiten on 17/04/16.
  */
 
+var legend_box_h = 100;
+var legend_box_w = 100;
+var cencorshipLabels = ["Free","Partly Free", "Not Free","No data"]
 
-WorldMap = function(_parentElement, _mapData){
+var cencorshipMapping = {
+    "#4daf4a": "Free",
+    "#377eb8": "Partly Free",
+    "#e41a1c": "Not Free"
+}
+
+WorldMap = function(_parentElement, _mapData,_freedomData){
     this.parentElement = _parentElement;
     this.mapData = _mapData;
+    this.freedomData = _freedomData;
     this.displayData = this.data;
     this.initVis();
 }
@@ -59,11 +69,8 @@ WorldMap.prototype.initVis = function(){
 WorldMap.prototype.createVisualization = function (){
 
     var vis = this;
-
     vis.world = topojson.feature(vis.mapData, vis.mapData.objects.countries).features
-
     vis.svg.call(vis.tip);
-
 
     vis.svg.selectAll("path")
         .data(vis.world)
@@ -72,13 +79,50 @@ WorldMap.prototype.createVisualization = function (){
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;})
         .style("fill",defaultCountryColor)
+        .style("stroke","white")
+        .style("stroke-width", .3)
         .on("click", selectCountry)
         .on('mouseover',vis.tip.show)
         .on('mouseout',vis.tip.hide);
 
+}
 
 
+WorldMap.prototype.updateVisualization = function() {
 
+    var vis = this;
+    var legendList;
 
+    //  Append legend only if cencorshipflag is on
+    if (cencorShipFlag > 0) {legendList = [colorScaleCencorship["Free"], colorScaleCencorship["Partly Free"], colorScaleCencorship["Not Free"],"gray"]}
+    else{legendList = [];}
+
+    var legendContainer = vis.svg.selectAll('g')
+        .data(legendList);
+
+    var legend = legendContainer.enter().append("g");
+    legend.append("rect");
+    legend.append("text");
+
+    legendContainer.select("rect")
+        .attr("x", 10)
+        .attr("y", function(d,i){return vis.height*3/4 + i * 20})
+        .attr("width", 15)
+        .attr("height",15)
+        .style("fill", function(d){
+            return d
+        });
+
+    legendContainer.select("text")
+        .attr("x", 40)
+        .attr("y", function(d,i){return 12 + vis.height*3/4 + i * 20})
+        .style("fill", function(d){
+            return d
+        })
+        .text(function(d,i){
+            return cencorshipLabels[i];
+        });
+
+    legendContainer.exit().remove();
 
 }

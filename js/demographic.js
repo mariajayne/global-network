@@ -9,13 +9,12 @@ var map = [];
 var countryDigits = []
 var countryMapping = {}
 var cencorShipFlag = -1;
+var cencorshipMapping = {};
 
 //  Variables for the visualization instances
 var gdpChart,
-    educationChart,
     employmentChart,
     internetChart,
-    freedomOfNetChart,
     freedomOfNetVerticalChart,
     timeline,
     worldMap;
@@ -35,63 +34,75 @@ function formatYLabel(point, metric){
 //  Variables for selecting countries on map
 var selectedCountries = ["WLD"]
 var defaultCountryColor = "gray";
-var selectedCountryColor = "white";
 var colorScale = d3.scale.category20();
 var colorScaleCencorship = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
 
-/*function selectCountry(d){
-    var country = d.properties.id;
-    var countryName = d.properties.admin;
-    if (selectedCountries.indexOf(country) != -1){
-        selectedCountries.splice(selectedCountries.indexOf(country))
-        d3.select("#" + country).style("fill",defaultCountryColor);
-        d3.select("#bar-" + countryName).style("fill",defaultCountryColor);
-    }
-    else{
-        selectedCountries.push(country);
-        d3.select("#" + country).style("fill",function(d){return colorScale(d.properties.id)});
-        d3.select("#bar-" + countryName).style("fill",selectedCountryColor);
-    }
-    wrangleChartData();
-}*/
-
 function selectCountry(d){
     if (cencorShipFlag < 0){setColorMapDemographic(d)}
-    else{setColorMapCencorShip(d)}
+    else{setColorMapCencorship(d)}
 }
 
+//  Enables selection of countries in "demographic mode"
 function setColorMapDemographic(d){
     var country = d.properties.id;
-    var countryName = d.properties.admin;
     if (selectedCountries.indexOf(country) != -1){
         selectedCountries.splice(selectedCountries.indexOf(country))
         d3.select("#" + country).style("fill",defaultCountryColor);
     }else{
         selectedCountries.push(country);
-        d3.select("#" + country).style("fill",function(d){return colorScale(d.properties.id)});
+        d3.select("#" + country).style("fill",colorScale(d.properties.id));
     }
     wrangleChartData();
 }
 
-function setColorMapCencorShip(){
+//  Enables selection of countries in "cencorship mode"
+function setColorMapCencorship(d){
+    var country = d.properties.id;
+    if (country in cencorshipMapping){
+        if (selectedCountries.indexOf(country) != -1){
+            selectedCountries.splice(selectedCountries.indexOf(country))
+            d3.select("#" + country).style("fill",colorScaleCencorship[cencorshipMapping[d.properties.id]]);
+            d3.select("#bar-" + country).style("fill",colorScaleCencorship[cencorshipMapping[d.properties.id]]);
+        }else{
+            selectedCountries.push(country);
+            d3.select("#" + country).style("fill", "white");
+            d3.select("#bar-" + country).style("fill","white");
+        }
+        wrangleChartData();
+    }
+}
+
+//  Set default colormap when in "cencorship"-mode
+function setDefaultColorMapCencorship(){
     freedomData.forEach(function(d){
-        d3.select("#" + countryMapping[d.Country]).style("fill", colorScaleCencorship[d.Status]);
+        d3.select("#" + countryMapping[d.Country])
+            .style("fill-opacity",.9)
+            .style("fill", colorScaleCencorship[d.Status]);
+        cencorshipMapping[countryMapping[d.Country]] = d.Status;
     });
 }
 
+//  Set default colors on map when in "demographic mode"
 function setDefaultColorMap(){
     demographicData.countries.forEach(function(d){
         if (d.country_id.length == 3){
-            d3.select("#" + d.country_id).style("fill",defaultCountryColor);
+            d3.select("#" + d.country_id)
+                .style("fill-opacity",1)
+                .style("fill",defaultCountryColor);
         }
-
     })
 }
 
+
 function changeView(){
     cencorShipFlag = cencorShipFlag * (-1)
-    if (cencorShipFlag > 0){setColorMapCencorShip()};
-    if (cencorShipFlag < 0){setDefaultColorMap()};
+    if (cencorShipFlag > 0){
+        setDefaultColorMapCencorship();
+        worldMap.updateVisualization();
+    };
+    if (cencorShipFlag < 0){
+        setDefaultColorMap()};
+        worldMap.updateVisualization();
     if ($("#internet-chart").is(":visible")){
         $("#col3").insertBefore("#col2");
         $("#internet-chart").hide(0);
@@ -122,7 +133,6 @@ function brushed(){
 function wrangleChartData(){
     internetChart.wrangleData();
     gdpChart.wrangleData();
-    //educationChart.wrangleData();
     employmentChart.wrangleData();
 }
 
@@ -171,12 +181,8 @@ function processData(error,data1,data2,data3,data4){
     });
 
     map = data3;
-
     countryMapping = data4;
-
-    //  Modify colorScale
     colorScale["WLD"] = "gray"
-
     createVis();
 
 }
@@ -187,8 +193,8 @@ function createVis() {
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
     //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
-    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData);
+    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,demographicData);
     timeline = new Timeline("timeline-chart",demographicData.world,"total_internet_users");
-    worldMap = new WorldMap("world-map",map);
+    worldMap = new WorldMap("world-map",map,freedomData);
 }
 
