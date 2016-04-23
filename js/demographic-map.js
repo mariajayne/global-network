@@ -14,7 +14,7 @@ var cencorshipMapping = {
 
 var attributeArray = ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"];
 var currentAttribute = 0,
-    currentYear = 1991,
+    currentYear = 2014,
     // attributeArray = [],
     countries,
     dataRange,
@@ -126,7 +126,7 @@ WorldMap.prototype.createVisualization = function() {
         .attr("id", function(d) {
             return "" + d.properties.id;
         })
-        .style("fill", defaultCountryColor)
+        .style("fill", "#4d94ff")
         .style("stroke", "white")
         .style("stroke-width", .3)
         .on("click", selectCountry)
@@ -149,12 +149,13 @@ WorldMap.prototype.createVisualization = function() {
 
 WorldMap.prototype.sequenceMap = function() {
   var vis = this;
-  dataRange = vis.getDataRange();
+  // dataRange = vis.getDataRange();
   var opacity;
   d3.selectAll('.country')
       .attr('fill-opacity', function(d) {
-          if (d.properties[attributeArray[currentAttribute]] !== undefined) {
-              opacity = vis.getColor();
+          if (d.properties[attributeArray[currentAttribute]] !== undefined
+              && !isNaN(d.properties[attributeArray[currentAttribute]])) {
+              opacity = getColor(d.properties[attributeArray[currentAttribute]]);
               return opacity;
           } else {
               return 0;
@@ -162,39 +163,25 @@ WorldMap.prototype.sequenceMap = function() {
       });
 }
 
-WorldMap.prototype.getColor = function() {
-  var countryData = this.mapData.objects.countries.geometries, valueIn,
-      valuesIn = dataRange;
-  console.log(countryData);
-  for (var i in countryData) {
-    console.log(countryData[i].properties[currentYear]);
-    valueIn = countryData[i].properties[currentYear];
+function getColor(valueIn) {
+  var vis = this;
+  // var countryData = vis.mapData.objects.countries.geometries, valueIn,
+  //     valuesIn = vis.getDataRange();
+  // console.log(valuesIn);
+  // console.log(countryData);
+  // for (var i = 0; i < countryData.length; i++) {
+    // console.log(countryData[i].properties.admin);
+    // valueIn = countryData[i].properties[currentYear];
     var color = d3.scale.linear()
-      .domain([valuesIn[0], valuesIn[1]])
-      .range([0, 1]);
+      .domain([0, 100])
+      .range([0.3, 1]);
     // TODO decide if countries with no values should have a specific color
-    if (valueIn === undefined || valueIn == 0){
-      return color(0);
-    } else {
+    if (valueIn !== undefined && !isNaN(valueIn)) {
       return color(valueIn);
+    } else {
+      return color(0);
     }
-  }
-}
-
-WorldMap.prototype.getDataRange = function() {
-  var min = Infinity,
-    max = -Infinity;
-  d3.selectAll('.country')
-    .each(function(d, i) {
-      var currentValue = d.properties[attributeArray[currentAttribute]];
-      if (currentValue <= min && currentValue != -99 && currentValue != 'undefined') {
-        min = currentValue;
-      }
-      if (currentValue >= max && currentValue != -99 && currentValue != 'undefined') {
-        max = currentValue;
-      }
-    });
-  return [min, max];
+  // }
 }
 
 WorldMap.prototype.animateMap = function() {
