@@ -7,8 +7,8 @@ var demographicData = [];
 var freedomData = [];
 var internetFreedomData = [];
 var map = [];
-var countryDigits = []
-var countryMapping = {}
+var countryDigits = [];
+var countryMapping = {};
 var cencorShipFlag = -1;
 var cencorshipMapping = {};
 
@@ -25,6 +25,8 @@ var formatValue = d3.format(".2s");
 var formatPercent = d3.format(".00%");
 var formatYear = d3.time.format("%Y");
 var bisectDate = d3.bisector(function(d) {return d.year; }).left;
+var parseDate = d3.time.format("%Y").parse;
+
 function formatYLabel(point, metric){
     if (metric == 'gdp' || 'total_internet_users'){return formatValue(point)}
     else if (metric == 'internet' || 'unemployment' || 'university'){return formatPercent(point/100)}
@@ -35,7 +37,6 @@ var selectedCountries = ["WLD"]
 var defaultCountryColor = "gray";
 var colorScale = d3.scale.category20();
 var colorScaleCencorship = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
-
 function selectCountry(d){
     if (cencorShipFlag < 0){setColorMapDemographic(d)}
     else{setColorMapCencorship(d)}
@@ -64,8 +65,8 @@ function setColorMapCencorship(d){
             d3.select("#bar-" + country).style("fill",colorScaleCencorship[cencorshipMapping[d.properties.id]]);
         }else{
             selectedCountries.push(country);
-            d3.select("#" + country).style("fill", "white");
-            d3.select("#bar-" + country).style("fill","white");
+            d3.select("#" + country).style("fill", "black");
+            d3.select("#bar-" + country).style("fill","black");
         }
         wrangleChartData();
     }
@@ -92,7 +93,7 @@ function setDefaultColorMap(){
     })
 }
 
-
+//  Changes view between Demographic mode and cencorship mode
 function changeView(){
     cencorShipFlag = cencorShipFlag * (-1)
     if (cencorShipFlag > 0){
@@ -118,9 +119,6 @@ function changeView(){
         $("#freedom-of-net-barchart-vertical").hide(0);
     }
 }
-
-// Date parser to convert strings to date objects
-var parseDate = d3.time.format("%Y").parse;
 
 function brushed(){
     internetChart.x.domain(timeline.brush.empty() ? timeline.x.domain() : timeline.brush.extent());
