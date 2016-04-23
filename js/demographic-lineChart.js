@@ -15,6 +15,8 @@ var labelMap = {
     "unemployment" : "Unemployment (% of work force)",
 }
 
+var styleColor = "gray"
+
 LineChart= function(_parentElement,_data,_metric){
     this.parentElement = _parentElement;
     this.data = _data;
@@ -89,10 +91,10 @@ LineChart.prototype.initVis = function(){
     //  Appending labels to y axis
     vis.svg.append("text")
         .attr("class", "y label")
-        .attr("text-anchor", "start")
-        .attr("y", -20)
-        .attr("x", 0)
-        .attr("dy", ".75em")
+        .attr("text-anchor", "middle")
+        .attr("y", -10)
+        .attr("x", vis.width/2)
+        .attr("dy", ".35em")
         .attr("transform", "rotate(0)")
         .text(labelMap[vis.metric]);
 
@@ -113,12 +115,12 @@ LineChart.prototype.initVis = function(){
     vis.focus.append("circle")
         .attr("class","y")
         .style("fill","#58B957")
-        .style("stroke","gray")
+        .style("stroke",styleColor)
         .attr("r",5);
 
     vis.focus.append("line")
         .attr("class","x")
-        .style("stroke","white")
+        .style("stroke",styleColor)
         .style("stroke-dasharray","10,5")
         .style("opacity",0.9)
         .attr("y1",0)
@@ -126,7 +128,7 @@ LineChart.prototype.initVis = function(){
 
     vis.focus.append("text")
         .attr("class", "y1")
-        .style("stroke", "white")
+        .style("stroke", styleColor)
         .style("font-size",14)
         .style("stroke-width", "1px")
         .style("opacity", 0.8)
@@ -135,7 +137,7 @@ LineChart.prototype.initVis = function(){
 
     vis.focus.append("text")
         .attr("class", "y2")
-        .style("stroke", "gray")
+        .style("stroke", styleColor)
         .style("font-size",12)
         .style("stroke-width", "0.75px")
         .style("opacity", 0.8)
@@ -169,7 +171,7 @@ LineChart.prototype.initVis = function(){
             .attr("y1", 0).attr("y2", -vis.height);
         vis.focus.select("text.y1")
             .attr("transform","translate(" + vis.x(d.year) + "," + 35 + ")")
-            .text(formatYLabel(d[vis.metric],vis.metric));
+            .text("Value: " + formatYLabel(d[vis.metric],vis.metric));
         vis.focus.select("text.y2")
             .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
             .text("Year: " + formatYear(d.year));
@@ -180,10 +182,9 @@ LineChart.prototype.initVis = function(){
 
 LineChart.prototype.wrangleData = function(){
     var vis = this;
-    var countryScope;
     if (selectedCountries.length == 0){vis.displayData = [vis.data.countries[13]]}
     else{
-        var countryScope = selectedCountries
+        var countryScope = selectedCountries;
         vis.displayData = vis.data.countries.filter(function(d){return (countryScope.indexOf(d.country_id) >= 0)})
     }
     vis.updateVis();
@@ -231,7 +232,7 @@ LineChart.prototype.updateVis = function(){
         .attr("transform",function(d){return "translate("+vis.x(d.year)+","+vis.y(d[vis.metric]) + ")"; })
         .attr("x",2)
         .attr("dy",".35em")
-        .style("stroke","white")
+        .style("stroke",styleColor)
         .style("font-size","10px")
         .text(function(d){return d.country_id;});
 

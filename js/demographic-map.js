@@ -37,13 +37,13 @@ WorldMap.prototype.initVis = function(){
 
     vis.projection = d3.geo.mercator()
         .center([15,45])
-        .scale(120)
+        .scale(100)
         .translate([vis.width / 2, vis.height / 2]);
 
     vis.path = d3.geo.path()
         .projection(vis.projection);
 
-    // Add rectangles for choosing view
+    /* Add rectangles for choosing view
     vis.rectDemographics = vis.svg.append("rect")
         .attr("x", vis.width/2 - 30)
         .attr("y", vis.height * 0.95)
@@ -52,7 +52,7 @@ WorldMap.prototype.initVis = function(){
         .attr("width", 100)
         .attr("height", 23)
         .style("fill","yellow")
-        .on("click",changeView);
+        .on("click",changeView);*/
 
     //	Tooltip
     vis.tip = d3.tip()

@@ -5,28 +5,14 @@
 /* GENERAL */
 /***********/
 
-@font-face {
-    font-family: foxCat;
-    src: url(../fonts/Fox&Cat.ttf);
-}
-
 body {
-    text-align: center;
-    background-color : white;
-    fill : white;
-    opacity : .8;
-    font-family : foxCat;
-    font-size : 15px;
-    color : white;
+    background-color: #fbfbfb;
+    font-family: "Segoe UI";
+    margin-top:10px;
     padding-left:0px;
     padding-right:0px;
 }
 
-.container-fluid {
-
-    padding-top:10px;
-    padding-bottom:10px;
-}
 
 button {
     position: relative;
@@ -81,7 +67,7 @@ button {
     margin: 10px 7px;
     padding: 5px;
     font-weight: 70;
-    font-size: 7px;
+    font-size: 9px;
     letter-spacing: 2px;
     color: #383736;
     border: none;
@@ -146,11 +132,6 @@ button {
     display: none;
 }
 
-.x2-axis path {
-    display:none;
-}
-
-
 .x-axis text {
     font-size: 8px;
 }
@@ -163,11 +144,15 @@ button {
     font-size: 8px;
 }
 
+.label{
+    font-size:10px;
+    color:black;
+}
+
 .title-label{
     font-size: 12px;
     font-weight:bold;
 }
-
 
 
 /***************/

@@ -2,7 +2,7 @@
  * Created by akselreiten on 14/04/16.
  */
 
-//  Will be used to save the loaded JSON data
+//  Global variables: JSON data, Mappings, Flags etc
 var demographicData = [];
 var freedomData = [];
 var internetFreedomData = [];
@@ -20,13 +20,11 @@ var gdpChart,
     timeline,
     worldMap;
 
-
-//  Formating functions
+//  Helper functions
 var formatValue = d3.format(".2s");
 var formatPercent = d3.format(".00%");
 var formatYear = d3.time.format("%Y");
 var bisectDate = d3.bisector(function(d) {return d.year; }).left;
-
 function formatYLabel(point, metric){
     if (metric == 'gdp' || 'total_internet_users'){return formatValue(point)}
     else if (metric == 'internet' || 'unemployment' || 'university'){return formatPercent(point/100)}
@@ -187,11 +185,8 @@ function processData(error,data1,data2,data3,data4,data5){
     countryMapping = data4;
 
     internetFreedomData = data5;
-    internetFreedomData.forEach(function(d){
-        d.internet2014 = +d.internet2014;
-    });
+    internetFreedomData.forEach(function(d){d.internet2014 = +d.internet2014;});
 
-    colorScale["WLD"] = "gray"
     createVis();
 
 }
