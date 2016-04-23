@@ -197,6 +197,5 @@ function createVis() {
     //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
     freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,internetFreedomData);
     timeline = new Timeline("timeline-chart",demographicData.world,"total_internet_users");
-    worldMap = new WorldMap("world-map",map,freedomData);
+    worldMap = new WorldMap("world-map",map,freedomData,demographicData);
 }
-
