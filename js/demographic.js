@@ -37,6 +37,11 @@ var selectedCountries = ["WLD"]
 var defaultCountryColor = "gray";
 var colorScale = d3.scale.category20();
 var colorScaleCencorship = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
+var colorScaleInternetAccess =
+    {"100%" : '#4d94ff',"90%" : 'rgba(77, 148, 255, 0.9)',"80%" : 'rgba(77, 148, 255, 0.8)',
+     "70%" : 'rgba(77, 148, 255, 0.7)', "60%" : 'rgba(77, 148, 255, 0.6)', "50%" : 'rgba(77, 148, 255, 0.5)',
+     "40%" : 'rgba(77, 148, 255, 0.4)',"30%" : 'rgba(77, 148, 255, 0.3)',"20%" : 'rgba(77, 148, 255, 0.2)',
+     "10%" : 'rgba(77, 148, 255, 0.1)',"5%" : 'rgba(77, 148, 255, 0.05)',"0%" : '#fff'}
 function selectCountry(d){
     if (cencorShipFlag < 0){setColorMapDemographic(d)}
     else{setColorMapCencorship(d)}

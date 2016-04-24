@@ -1,13 +1,14 @@
 .d3-slider-axis text {
-    fill: #fff;
+    fill: #000;
     font-size: 12px;
 }
 
 .d3-slider {
     position: relative;
+    font-family: Verdana,Arial,sans-serif;
     font-size: 1.1em;
     border: 1px solid #aaaaaa;
-    margin-top: 150px;
+    /*margin-top: 100px;*/
     z-index: 2;
 }
 
@@ -40,10 +41,10 @@
     position: absolute;
     width: 1.2em;
     height: 1.2em;
-    border: 1px solid #d3d3d3;
+    /*border: 1px solid #d3d3d3;
     border-radius: 4px;
     background: #eee;
-    background: linear-gradient(to bottom, #eee 0%, #ddd 100%);
+    background: linear-gradient(to bottom, #eee 0%, #ddd 100%);*/
     z-index: 3;
 }
 

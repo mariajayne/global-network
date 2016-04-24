@@ -12,9 +12,11 @@ var cencorshipMapping = {
     "#e41a1c": "Not Free"
 }
 
+var internetAccessLabels = ["100%", "90%", "80%", "70%", "60%", "50%", "40%", "30%", "20%", "10%", "5%", "0%", "No data"]
+
 var attributeArray = ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"];
 var currentAttribute = 0,
-    currentYear = 2014,
+    currentYear = 0,
     // attributeArray = [],
     countries,
     dataRange,
@@ -77,8 +79,10 @@ WorldMap.prototype.initVis = function() {
             return d.properties.admin;
         });
 
-    this.processData();
-
+    vis.processData();
+    vis.sequenceMap();
+    vis.animateMap();
+    vis.mapSlider();
 }
 
 WorldMap.prototype.processData = function() {
@@ -112,6 +116,7 @@ WorldMap.prototype.processData = function() {
 }
 
 WorldMap.prototype.createVisualization = function() {
+    currentYear = 1991;
     var vis = this;
     vis.world = topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
     vis.svg.call(vis.tip);
@@ -130,8 +135,7 @@ WorldMap.prototype.createVisualization = function() {
         .style("stroke", "white")
         .style("stroke-width", .3)
         .on("click", selectCountry)
-        .on('mouseover', function(d, i) {
-            console.log(d.properties[attributeArray[currentAttribute]]);
+        .on('mousemove', function(d, i) {
             if (d.properties[attributeArray[currentAttribute]] !== undefined
                 && !isNaN(d.properties[attributeArray[currentAttribute]])) {
                 percentage = (d.properties[attributeArray[currentAttribute]]).toFixed(2) + "%";
@@ -144,13 +148,11 @@ WorldMap.prototype.createVisualization = function() {
         })
         .on('mouseout', vis.tip.hide);
 
-    this.sequenceMap();
+    this.addLegend();
 }
 
 WorldMap.prototype.sequenceMap = function() {
-  var vis = this;
-  // dataRange = vis.getDataRange();
-  var opacity;
+  var vis = this, opacity;
   d3.selectAll('.country')
       .attr('fill-opacity', function(d) {
           if (d.properties[attributeArray[currentAttribute]] !== undefined
@@ -165,34 +167,18 @@ WorldMap.prototype.sequenceMap = function() {
 
 function getColor(valueIn) {
   var vis = this;
-  // var countryData = vis.mapData.objects.countries.geometries, valueIn,
-  //     valuesIn = vis.getDataRange();
-  // console.log(valuesIn);
-  // console.log(countryData);
-  // for (var i = 0; i < countryData.length; i++) {
-    // console.log(countryData[i].properties.admin);
-    // valueIn = countryData[i].properties[currentYear];
     var color = d3.scale.linear()
       .domain([0, 100])
-      .range([0.3, 1]);
-    // TODO decide if countries with no values should have a specific color
+      .range([0, 1]);
     if (valueIn !== undefined && !isNaN(valueIn)) {
       return color(valueIn);
     } else {
       return color(0);
     }
-  // }
 }
 
 WorldMap.prototype.animateMap = function() {
-  var timer;
-  var endSlider = false;
-
-  // $('#playbutton').click(function() {
-  //   playing1 = !playing1;
-  //   var animation = playing1 ? 'stop' : 'play';
-  //   $('#animate_to_' + animation).get(0).beginElement();
-  // });
+  var timer, endSlider = false, vis = this;
 
   d3.select('#playbutton')
     .on('click', function() {
@@ -204,15 +190,25 @@ WorldMap.prototype.animateMap = function() {
         if (playing && (currentAttribute < attributeArray.length - 1)) {
           currentAttribute++;
           currentYear = attributeArray[currentAttribute];
-          this.sequenceMap();
-          this.mapSlider();
+          vis.mapSlider();
+          d3.selectAll('.country')
+            .transition()
+            .duration(700)
+            .attr('fill-opacity', function(d) {
+              if (d.properties[currentYear] !== undefined
+                  && !isNaN(d.properties[currentYear])) {
+                  return getColor(d.properties[currentYear]);
+              } else {
+                  return 0;
+              }
+            });
           d3.select('#clock').html(currentYear);
-          setTimeout(periodicFunc, 500);
+          setTimeout(periodicFunc, 700);
         } else {
           console.log(currentAttribute);
           console.log(attributeArray.length);
           if (currentAttribute >= attributeArray.length - 1) {
-            sequenceMap();
+            vis.sequenceMap();
           }
           if ((currentAttribute == attributeArray.length - 1) && playing) {
 
@@ -227,7 +223,7 @@ WorldMap.prototype.animateMap = function() {
 }
 
 WorldMap.prototype.mapSlider = function() {
-  var minYear = 1990,
+  var minYear = 1991,
     maxYear = 2014;
 
   var yearSlider = d3.slider()
@@ -241,12 +237,16 @@ WorldMap.prototype.mapSlider = function() {
         }
         currentYear = attributeArray[currentAttribute];
         d3.select('#clock').html(currentYear);
-        dataRange = getDataRange();
         d3.selectAll('.country')
           .transition()
-          .duration(300)
+          .duration(700)
           .attr('fill-opacity', function(d) {
-            // return getColor(d.properties[currentYear], dataRange);
+            if (d.properties[currentYear] !== undefined
+                && !isNaN(d.properties[currentYear])) {
+                return getColor(d.properties[currentYear]);
+            } else {
+                return 0;
+            }
           });
       }
     });
@@ -254,16 +254,57 @@ WorldMap.prototype.mapSlider = function() {
   d3.select("#slider").call(yearSlider);
 
   if (currentYear != 0) {
-    console.log(currentYear);
-    // TODO figure out how to make this efficient...
     // bug when it restarts
     // TODO fix restarting issue
     yearSlider.destroy();
     yearSlider.value(currentYear);
     d3.select("#slider").call(yearSlider);
-    // d3.dispatch("slide", "slideend").slide(d3.event, currentYear);
-    // d3.select("#slider3").style(position, currentYear)
   }
+}
+
+WorldMap.prototype.addLegend = function() {
+
+    var vis = this;
+    var legendList;
+
+    //  Append legend only if cencorshipflag is on
+    legendList = [colorScaleInternetAccess["100%"], colorScaleInternetAccess["90%"],
+                  colorScaleInternetAccess["80%"], colorScaleInternetAccess["70%"],
+                  colorScaleInternetAccess["60%"], colorScaleInternetAccess["50%"],
+                  colorScaleInternetAccess["40%"], colorScaleInternetAccess["30%"],
+                  colorScaleInternetAccess["20%"], colorScaleInternetAccess["10%"],
+                  colorScaleInternetAccess["5%"], colorScaleInternetAccess["0%"],
+                  "gray"]
+
+    var legendContainer = vis.svg.selectAll('g')
+        .data(legendList);
+
+    var legend = legendContainer.enter().append("g");
+    legend.append("rect");
+    legend.append("text");
+
+    legendContainer.select("rect")
+        .attr("x", 5)
+        .attr("y", function(d, i) {
+            return vis.height * 0.43 + i * 20;
+        })
+        .attr("width", 15)
+        .attr("height", 15)
+        .style("fill", function(d) {
+            return d;
+        });
+
+    legendContainer.select("text")
+        .attr("x", 35)
+        .attr("y", function(d, i) {
+            return 12 + vis.height * 0.43 + i * 20
+        })
+        .style("fill", '#000')
+        .text(function(d, i) {
+            return internetAccessLabels[i];
+        });
+
+    legendContainer.exit().remove();
 }
 
 WorldMap.prototype.updateVisualization = function() {
@@ -289,12 +330,12 @@ WorldMap.prototype.updateVisualization = function() {
     legendContainer.select("rect")
         .attr("x", 10)
         .attr("y", function(d, i) {
-            return vis.height * 3 / 4 + i * 20
+            return vis.height * 3 / 4 + i * 20;
         })
         .attr("width", 15)
         .attr("height", 15)
         .style("fill", function(d) {
-            return d
+            return d;
         });
 
     legendContainer.select("text")
@@ -310,5 +351,4 @@ WorldMap.prototype.updateVisualization = function() {
         });
 
     legendContainer.exit().remove();
-
 }

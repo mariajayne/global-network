@@ -240,3 +240,13 @@ button {
     color: gray;
     font-size: 8px;
 }
+
+#playbutton {
+  width: 75px;
+  height: 75px;
+  top: 50%;
+  left: 50%;
+  margin: 325px 0 0 -35px;
+  position: absolute;
+  cursor: pointer;
+}

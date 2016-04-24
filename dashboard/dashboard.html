@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="description" content="">
@@ -8,91 +9,149 @@
 
     <!-- Load Google Font -->
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <!-- CSS libraries -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/d3.slider.css" />
 
     <!-- Custom CSS code -->
     <!--<link rel="stylesheet" href="../css/style.css">-->
     <link rel="stylesheet" href="../css/style-dashboard.css">
 </head>
+
 <body>
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Navbar -->
-    <div class="row headline">
-        <div class="col-md-3"></div>
-        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
-        <div class="col-md-1"><a href="../index.html"><button class="btn-nav">Animation</button></a></div>
-        <div class="col-md-1"><a href="#"><button class="btn-nav"><u>Demographics</u></button></a></div>
-        <div class="col-md-1"><a href="../countries/countries.html"><button class="btn-nav">Metrics</button></a></div>
-        <div class="col-md-1"><a href="../social-media/social-media.html"><button class="btn-nav">Social Media</button></a></div>
-        <div class="col-md-1"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
-        <div class="col-md-3"></div>
-    </div>
-    <hr>
-
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="col-md-8" id="col1">
-                        <div id="world-map"></div>
-                        <div id="timeline-chart"></div>
-
-                    </div>
-
-                    <div class="col-md-4" id="col2">
-                        <div id="internet-chart"></div>
-                        <div id="gdp-chart"></div>
-                        <div id="employment-chart"></div>
-                        <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
-                        <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Surveillance and Cencorship</button>
-                    </div>
-
-                </div>
+        <!-- Navbar -->
+        <div class="row headline">
+            <div class="col-md-3"></div>
+            <div class="col-md-1">
+                <a href="../frontpage/frontpage.html">
+                    <button class="btn-nav">Frontpage</button>
+                </a>
             </div>
-
+            <div class="col-md-1">
+                <a href="../index.html">
+                    <button class="btn-nav">Animation</button>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a href="#">
+                    <button class="btn-nav"><u>Demographics</u></button>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a href="../countries/countries.html">
+                    <button class="btn-nav">Metrics</button>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a href="../social-media/social-media.html">
+                    <button class="btn-nav">Social Media</button>
+                </a>
+            </div>
+            <div class="col-md-1">
+                <a href="../process/process.html">
+                    <button class="btn-nav">Process book</button>
+                </a>
+            </div>
+            <div class="col-md-3"></div>
         </div>
-    </div>
+        <hr>
 
-    <div class="row">
-        <div class="col-md-4" id="col3">
-            <div id="freedom-of-net-barchart-vertical"></div>
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-8" id="col1">
+                            <div id="world-map"></div>
+                            <div id="timeline-chart"></div>
+                            <svg id="playbutton" viewbox="0 0 140 140">
+                                <circle cx="70" cy="70" r="65" style="fill:#fff;stroke:#ddd" />
+                                <polygon id="shape" points="50,40 100,70 100,70 50,100, 50,40" style="fill:#aaa;">
+                                    <animate id="animate_to_stop" begin="indefinite" fill="freeze" attributeName="points" dur="500ms" to="45,45 95,45 95,95, 45,95 45,45" keySplines="
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1" keyTimes="0;0.22;0.33;0.55;0.66;0.88;1" calcMode="spline" />
+
+                                    <animate id="animate_to_play" begin="indefinite" fill="freeze" attributeName="points" dur="500ms" to="50,40 100,70 100,70 50,100, 50,40" keySplines="
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1;
+                            0.1 0.8 0.2 1" keyTimes="0;0.22;0.33;0.55;0.66;0.88;1" calcMode="spline" />
+                                </polygon>
+                            </svg>
+                            <span id="clock">Year</span>
+                            <div id="slider"></div>
+                            <svg height="10" width="10" xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                <defs>
+                                    <pattern id="diagonal-stripe-4" patternUnits="userSpaceOnUse" width="10" height="10">
+                                        <image xlink:href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScxMCcgaGVpZ2h0PScxMCc+CiAgPHJlY3Qgd2lkdGg9JzEwJyBoZWlnaHQ9JzEwJyBmaWxsPSdibGFjaycvPgogIDxwYXRoIGQ9J00tMSwxIGwyLC0yCiAgICAgICAgICAgTTAsMTAgbDEwLC0xMAogICAgICAgICAgIE05LDExIGwyLC0yJyBzdHJva2U9J3doaXRlJyBzdHJva2Utd2lkdGg9JzMnLz4KPC9zdmc+"
+                                            x="0" y="0" width="10" height="10"> </image>
+                                    </pattern>
+                                </defs>
+                            </svg>
+                        </div>
+
+                        <div class="col-md-4" id="col2">
+                            <div id="internet-chart"></div>
+                            <div id="gdp-chart"></div>
+                            <div id="employment-chart"></div>
+                            <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
+                            <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Surveillance and Cencorship</button>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
 
-    <!--Todo:
+        <div class="row">
+            <div class="col-md-4" id="col3">
+                <div id="freedom-of-net-barchart-vertical"></div>
+            </div>
+        </div>
+
+        <!--Todo:
     (4) Make tooltip to work in all charts simultaneously
     (5) Split freedomOfNet-data into segments, and simplify graph
     (6) Implement fisheye on the freedomOfNet-graph for reading labels-->
 
-</div>
+    </div>
 
-<!-- Load JS libraries -->
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/d3.min.js"></script>
-<script src="../js/d3.tip.js"></script>
-<script src="../js/queue.v1.min.js"></script>
-<script src="../js/topojson.v1.min.js"></script>
-<script src="../js/fisheye.js"></script>
+    <!-- Load JS libraries -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/d3.min.js"></script>
+    <script src="../js/d3.tip.js"></script>
+    <script src="../js/queue.v1.min.js"></script>
+    <script src="../js/topojson.v1.min.js"></script>
+    <script src="../js/fisheye.js"></script>
+    <script src="../js/d3.geo.projection.v0.min.js"></script>
+    <script src="../js/d3.slider.js"></script>
 
-<!-- Visualization objects -->
-<script src="../js/demographic-barChart.js"></script>
-<script src="../js/demographic-barChart-vertical.js"></script>
-<script src="../js/demographic-lineChart.js"></script>
-<script src="../js/demographic-timeline.js"></script>
-<script src="../js/demographic-map.js"></script>
+    <!-- Visualization objects -->
+    <script src="../js/demographic-barChart.js"></script>
+    <script src="../js/demographic-barChart-vertical.js"></script>
+    <script src="../js/demographic-lineChart.js"></script>
+    <script src="../js/demographic-timeline.js"></script>
+    <script src="../js/demographic-map.js"></script>
 
-<!-- Load data, create visualizations -->
-<script src="../js/demographic.js"></script>
+    <!-- Load data, create visualizations -->
+    <script src="../js/demographic.js"></script>
 
 </body>
+
 </html>
