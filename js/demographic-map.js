@@ -131,7 +131,7 @@ WorldMap.prototype.createVisualization = function() {
         .attr("id", function(d) {
             return "" + d.properties.id;
         })
-        .style("fill", "#4d94ff")
+        // .style("fill", "#4d94ff")
         .style("stroke", "white")
         .style("stroke-width", .3)
         .on("click", selectCountry)
@@ -154,26 +154,27 @@ WorldMap.prototype.createVisualization = function() {
 WorldMap.prototype.sequenceMap = function() {
   var vis = this, opacity;
   d3.selectAll('.country')
-      .attr('fill-opacity', function(d) {
-          if (d.properties[attributeArray[currentAttribute]] !== undefined
-              && !isNaN(d.properties[attributeArray[currentAttribute]])) {
-              opacity = getColor(d.properties[attributeArray[currentAttribute]]);
-              return opacity;
-          } else {
-              return 0;
-          }
-      });
+    .style('fill', function(d) {
+      // if (d.properties[attributeArray[currentAttribute]] !== undefined
+      //     && !isNaN(d.properties[attributeArray[currentAttribute]])) {
+        return getColor(d.properties[attributeArray[currentAttribute]]);
+      // }
+      // else {
+      //   return "url(#diagonal-stripe-4)";
+      // }
+    });
 }
 
 function getColor(valueIn) {
   var vis = this;
     var color = d3.scale.linear()
       .domain([0, 100])
-      .range([0, 1]);
+      .range([0.1, 1]);
     if (valueIn !== undefined && !isNaN(valueIn)) {
-      return color(valueIn);
+      return 'rgba(77, 148, 255, ' + color(valueIn) + ')';
     } else {
-      return color(0);
+      // opacity for undefined&NaN values since those are greyed out anyway
+      return 'rgba(105, 105, 105, ' + color(40) + ')';
     }
 }
 
@@ -194,14 +195,23 @@ WorldMap.prototype.animateMap = function() {
           d3.selectAll('.country')
             .transition()
             .duration(700)
-            .attr('fill-opacity', function(d) {
-              if (d.properties[currentYear] !== undefined
-                  && !isNaN(d.properties[currentYear])) {
-                  return getColor(d.properties[currentYear]);
-              } else {
-                  return 0;
-              }
+            .style('fill', function(d) {
+              // if (d.properties[attributeArray[currentAttribute]] !== undefined
+              //     && !isNaN(d.properties[attributeArray[currentAttribute]])) {
+                return getColor(d.properties[attributeArray[currentAttribute]]);
+              // }
+              // else {
+              //   return "url(#diagonal-stripe-4)";
+              // }
             });
+            // .attr('fill-opacity', function(d) {
+            //   if (d.properties[attributeArray[currentAttribute]] !== undefined
+            //       && !isNaN(d.properties[attributeArray[currentAttribute]])) {
+            //       return getColor(d.properties[currentYear]);
+            //   } else {
+            //       return 0;
+            //   }
+            // });
           d3.select('#clock').html(currentYear);
           setTimeout(periodicFunc, 700);
         } else {
@@ -240,13 +250,14 @@ WorldMap.prototype.mapSlider = function() {
         d3.selectAll('.country')
           .transition()
           .duration(700)
-          .attr('fill-opacity', function(d) {
-            if (d.properties[currentYear] !== undefined
-                && !isNaN(d.properties[currentYear])) {
-                return getColor(d.properties[currentYear]);
-            } else {
-                return 0;
-            }
+          .style('fill', function(d) {
+            // if (d.properties[attributeArray[currentAttribute]] !== undefined
+            //     && !isNaN(d.properties[attributeArray[currentAttribute]])) {
+                  return getColor(d.properties[currentYear]);
+            // }
+            // else {
+            //   return "url(#diagonal-stripe-4)";
+            // }
           });
       }
     });

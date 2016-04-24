@@ -242,11 +242,25 @@ button {
 }
 
 #playbutton {
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   top: 50%;
   left: 50%;
-  margin: 325px 0 0 -35px;
+  margin: 70px 0 0 250px;
   position: absolute;
   cursor: pointer;
+}
+
+#clock {
+  margin-top: 150px;
+  margin-left: 350px;
+}
+
+#timeline-chart {
+  margin-top: 30px;
+  margin-left: 75px;
+}
+
+#slider {
+  margin-top: 25px;
 }
