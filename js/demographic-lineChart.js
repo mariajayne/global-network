@@ -15,7 +15,7 @@ var labelMap = {
     "unemployment" : "Unemployment (% of work force)",
 }
 
-var styleColor = "gray"
+var styleColor = "gray";
 
 LineChart= function(_parentElement,_data,_metric){
     this.parentElement = _parentElement;
@@ -29,7 +29,7 @@ LineChart.prototype.initVis = function(){
     var vis = this;
 
     //  Defining margins, height and width
-    vis.margin = {top:30,right:40,bottom:20,left:23}
+    vis.margin = {top:30,right:40,bottom:20,left:25}
     vis.width = 350 - vis.margin.left - vis.margin.right;
     vis.height = 180 - vis.margin.top - vis.margin.bottom;
 
@@ -152,11 +152,9 @@ LineChart.prototype.initVis = function(){
         .style("pointer-events","all")
         .on("mouseover",function(){vis.focus.style("display",null);})
         .on("mouseout",function(){vis.focus.style("display","none");})
-        .on("mousemove",mouseMove);
+        .on("mousemove", mouseMove);
 
-
-
-    function mouseMove() {
+    function mouseMove () {
         var indexCountry = vis.displayData.length - 1;
         var x0 = vis.x.invert(d3.mouse(this)[0]);
         var i = bisectDate(vis.displayData[indexCountry].years, x0, 1);
@@ -176,7 +174,9 @@ LineChart.prototype.initVis = function(){
             .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
             .text("Year: " + formatYear(d.year));
     }
+
     vis.wrangleData();
+
 }
 
 

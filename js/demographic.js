@@ -65,8 +65,8 @@ function setColorMapCencorship(d){
             d3.select("#bar-" + country).style("fill",colorScaleCencorship[cencorshipMapping[d.properties.id]]);
         }else{
             selectedCountries.push(country);
-            d3.select("#" + country).style("fill", "black");
-            d3.select("#bar-" + country).style("fill","black");
+            d3.select("#" + country).style("fill", "orange");
+            d3.select("#bar-" + country).style("fill","orange");
         }
         wrangleChartData();
     }
@@ -110,6 +110,7 @@ function changeView(){
         $("#employment-chart").hide(0);
         $("#timeline-chart").hide(0);
         $("#freedom-of-net-barchart-vertical").show(0);
+        $("btn-demographics").css("fill","red");
     }else{
         $("#col2").insertBefore("#col3");
         $("#internet-chart").show(0);
@@ -131,6 +132,10 @@ function wrangleChartData(){
     internetChart.wrangleData();
     gdpChart.wrangleData();
     employmentChart.wrangleData();
+}
+
+function triggerLineChartToolTip(d){
+
 }
 
 //  Start application by loading the data
@@ -194,8 +199,8 @@ function createVis() {
     gdpChart = new LineChart("gdp-chart",demographicData,"gdp");
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");
-    //freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData);
-    freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,internetFreedomData);
+    freedomOfNetChart = new BarChart("freedom-of-net-barchart",freedomData,internetFreedomData);
+    //freedomOfNetVerticalChart = new VerticalBarChart("freedom-of-net-barchart-vertical",freedomData,internetFreedomData);
     timeline = new Timeline("timeline-chart",demographicData.world,"total_internet_users");
     worldMap = new WorldMap("world-map",map,freedomData);
 }

@@ -8,11 +8,13 @@
  * @param _data	-- the data
  */
 
+var regressionCountries = [];
 
-BarChart = function(_parentElement,_data){
+BarChart = function(_parentElement,_data, _demographicData){
     this.parentElement = _parentElement;
     this.data = _data;
     this.displayData = [];
+    this.demographicData = _demographicData;
 
     this.initVis();
 }
@@ -64,7 +66,7 @@ BarChart.prototype.initVis = function(){
 
     //  Tooltip placeholder
     vis.tooltip = vis.svg.append("g")
-        .attr("transform","translate(10,10)")
+        .attr("transform","translate(10,50)")
         .append("text")
         .attr("class","t1")
         .attr("dx",8)
@@ -87,7 +89,20 @@ BarChart.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Freedom of the internet in 2014");
+        .text("Internet usage vs Degree of National Censorship (% 2014)");
+
+    vis.line = d3.svg.line()
+        .x(function(d){
+            console.log(d)
+            return vis.x(d[0])})
+        .y(function(d){return vis.y(d[1])})
+        .interpolate('basis');
+
+    //	Tooltip
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([0,0])
+        .html(function(d){return d.country + "<br><small>Internet usage 2014: " + d.internet2014 + "%</small>";});
 
     //  Init wrangleData
     vis.wrangleData();
@@ -120,6 +135,7 @@ BarChart.prototype.updateVis = function(){
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.call(vis.tip);
 
     //  Create rectangles
     var rect = vis.svg.selectAll("rect")
@@ -129,12 +145,13 @@ BarChart.prototype.updateVis = function(){
         .append("rect")
         .attr("class","bar")
         .attr("id",function(d){
+            regressionCountries.push(d.Country)
             return "bar-" + d.Country})
         .attr("x", function(d){return vis.x(d.Country)})
         .attr("y", function(d){return vis.y(d.Total_score)})
         .attr("width", vis.x.rangeBand())
         .attr("height",function(d){return vis.height - vis.y(d.Total_score);})
-        .style("fill",function(d){return vis.colorScale[d.Status]});
+        .style("fill",function(d){return colorScaleCencorship[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
         .on("mouseout",function(d){vis.tooltip.text("")});
@@ -142,6 +159,28 @@ BarChart.prototype.updateVis = function(){
     rect.exit()
         .transition()
         .remove();
+
+    var dots = vis.svg.selectAll("dot")
+        .data(vis.demographicData)
+        .enter();
+
+    dots.append("circle")
+        .attr("class","dot")
+        .attr("r",2.5)
+        .attr("cx", function(d){return vis.x(d.country) + 7})
+        .attr("cy", function(d){return vis.y(d.internet2014)})
+        .style("fill","black")
+        .style("opacity","0.5")
+        .on('mouseover',vis.tip.show)
+        .on('mouseout',vis.tip.hide);
+
+    var lines = vis.svg.selectAll(".line")
+        .attr("class","line");
+
+    lines.append("path")
+        .attr("class","line")
+        .attr("d", vis.line(regressionLine))
+        .style("stroke","black");
 
     //  Update label positioning
     vis.svg.selectAll(".x-axis text")
@@ -156,16 +195,6 @@ BarChart.prototype.updateVis = function(){
         .text("Total Score")
         .style("font-size",8);
 
-    // Draw grid lines
-    vis.svg.append("g")
-        .attr("class", "grid")
-        .attr("transform", "translate(0,0)")
-        .call(d3.svg.axis()
-            .scale(vis.x)
-            .orient("left")
-            .tickValues(vis.yTicks)
-            .tickSize(vis.height, 0,0)
-            .tickFormat(""));
 
 
 }

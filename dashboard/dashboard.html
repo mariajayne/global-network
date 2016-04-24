@@ -25,7 +25,7 @@
     <!-- Navbar -->
     <div class="row headline">
         <div class="col-md-3"></div>
-        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Home</button></a></div>
         <div class="col-md-1"><a href="../index.html"><button class="btn-nav">Animation</button></a></div>
         <div class="col-md-1"><a href="#"><button class="btn-nav"><u>Demographics</u></button></a></div>
         <div class="col-md-1"><a href="../countries/countries.html"><button class="btn-nav">Metrics</button></a></div>
@@ -35,8 +35,6 @@
     </div>
     <hr>
 
-
-
     <div class="row">
         <div class="col-md-12">
             <div class="container-fluid">
@@ -45,15 +43,15 @@
                     <div class="col-md-8" id="col1">
                         <div id="world-map"></div>
                         <div id="timeline-chart"></div>
-
                     </div>
+
+                    <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
+                    <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Cencorship</button>
 
                     <div class="col-md-4" id="col2">
                         <div id="internet-chart"></div>
                         <div id="gdp-chart"></div>
                         <div id="employment-chart"></div>
-                        <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
-                        <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Surveillance and Cencorship</button>
                     </div>
 
                 </div>
@@ -63,9 +61,14 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4" id="col3">
-            <div id="freedom-of-net-barchart-vertical"></div>
+        <div class="col-md-3">
+            Freedom on the Net measures the subtle and not-so-subtle ways that governments and non-state actors around the world restrict our intrinsic rights online. Each country assessment includes a detailed narrative report and numerical score, based on methodology developed in consultation with international experts.
         </div>
+        <div class="col-md-9" id="col3">
+            <div id="freedom-of-net-barchart-vertical"></div>
+            <div id="freedom-of-net-barchart"></div>
+        </div>
+
     </div>
 
     <!--Todo:
@@ -85,6 +88,7 @@
 <script src="../js/fisheye.js"></script>
 
 <!-- Visualization objects -->
+<script src="../js/regressionLine.js"></script>
 <script src="../js/demographic-barChart.js"></script>
 <script src="../js/demographic-barChart-vertical.js"></script>
 <script src="../js/demographic-lineChart.js"></script>
