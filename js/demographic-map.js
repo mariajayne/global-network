@@ -18,16 +18,15 @@ var internetAccessLabels = ["100%", "90%", "80%", "70%", "60%", "50%", "40%", "3
 // attribute array of years for quick access of each year's percentages
 var attributeArray = ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"];
 
-//  striped pattern for countries with no available information
-var pattern;
-
+// Global variables, flags, etc.
 var currentAttribute = 0,
     currentYear = -2,
     countries,
     dataRange,
     playing = false,
     reachedEnd = false,
-    percentage;
+    percentage,
+    pattern;
 
 WorldMap = function(_parentElement, _mapData, _freedomData, _demographicData) {
     this.parentElement = _parentElement;
@@ -151,7 +150,6 @@ WorldMap.prototype.createVisualization = function() {
         .attr("id", function(d) {
             return "" + d.properties.id;
         })
-        // .style("fill", "#4d94ff")
         .style("stroke", "white")
         .style("stroke-width", .3)
         .on("click", selectCountry)
@@ -172,6 +170,7 @@ WorldMap.prototype.createVisualization = function() {
 
 WorldMap.prototype.sequenceMap = function() {
     var vis = this;
+
     d3.selectAll('.country')
         .style('fill', function(d) {
             return getColor(d.properties[attributeArray[currentAttribute]]);
@@ -230,8 +229,8 @@ WorldMap.prototype.animateMap = function() {
                             return getColor(d.properties[attributeArray[currentAttribute]]);
                         });
 
-                    vis.mapSlider();
                     d3.select('#clock').html(currentYear);
+                    vis.mapSlider();
                     setTimeout(periodicFunc, 700);
                 } else {
                     console.log(currentAttribute);
@@ -276,13 +275,13 @@ WorldMap.prototype.mapSlider = function() {
             }
         });
 
-    d3.select("#slider").call(yearSlider);
-
-    if (currentYear != -2) {
-        yearSlider.destroy();
-        yearSlider.value(currentYear);
         d3.select("#slider").call(yearSlider);
-    }
+
+        if (yearSlider.value() != undefined) {
+          yearSlider.destroy();
+        }
+        yearSlider.value(d3.select('#clock').html());
+        d3.select("#slider").call(yearSlider);
 }
 
 WorldMap.prototype.addLegend = function() {
