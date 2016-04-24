@@ -47,8 +47,8 @@ WorldMap.prototype.initVis = function() {
         bottom: 0,
         left: 20
     };
-    vis.width = 800 - vis.margin.left - vis.margin.right;
-    vis.height = 450 - vis.margin.top - vis.margin.bottom;
+    vis.width = 1000 - vis.margin.left - vis.margin.right;
+    vis.height = 550 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -59,7 +59,7 @@ WorldMap.prototype.initVis = function() {
 
     vis.projection = d3.geo.mercator()
         .center([15, 45])
-        .scale(100)
+        .scale(130)
         .translate([vis.width / 2, vis.height / 2]);
 
     vis.path = d3.geo.path()
@@ -166,7 +166,7 @@ WorldMap.prototype.createVisualization = function() {
         .on('mouseout', vis.tip.hide);
 
     d3.select('#anim-playing').html("stopped");
-    this.addLegend();
+    this.updateVisualization();
 }
 
 WorldMap.prototype.sequenceMap = function() {
@@ -247,6 +247,7 @@ WorldMap.prototype.animateMap = function() {
                         animation = 'play';
                         $('#animate_to_' + animation).get(0).beginElement();
                         reachedEnd = true;
+                        d3.select('#anim-playing').html("stopped");
                     }
                 }
             }, 1000);
@@ -287,63 +288,23 @@ WorldMap.prototype.mapSlider = function() {
     d3.select("#slider").call(yearSlider);
 }
 
-WorldMap.prototype.addLegend = function() {
-
-    var vis = this;
-    var legendList;
-
-    //  Append legend only if cencorshipflag is on
-    legendList = [colorScaleInternetAccess["100%"], colorScaleInternetAccess["90%"],
-        colorScaleInternetAccess["80%"], colorScaleInternetAccess["70%"],
-        colorScaleInternetAccess["60%"], colorScaleInternetAccess["50%"],
-        colorScaleInternetAccess["40%"], colorScaleInternetAccess["30%"],
-        colorScaleInternetAccess["20%"], colorScaleInternetAccess["10%"],
-        colorScaleInternetAccess["5%"], colorScaleInternetAccess["0%"],
-        "gray"
-    ]
-
-    var legendContainer = vis.svg.selectAll('g')
-        .data(legendList);
-
-    var legend = legendContainer.enter().append("g");
-    legend.append("rect");
-    legend.append("text");
-
-    legendContainer.select("rect")
-        .attr("x", 5)
-        .attr("y", function(d, i) {
-            return vis.height * 0.43 + i * 20;
-        })
-        .attr("width", 15)
-        .attr("height", 15)
-        .style("fill", function(d) {
-            return d;
-        });
-
-    legendContainer.select("text")
-        .attr("x", 35)
-        .attr("y", function(d, i) {
-            return 12 + vis.height * 0.43 + i * 20
-        })
-        .style("fill", '#000')
-        .text(function(d, i) {
-            return internetAccessLabels[i];
-        });
-
-    legendContainer.exit().remove();
-}
-
 WorldMap.prototype.updateVisualization = function() {
 
     var vis = this;
     var legendList;
 
-
     //  Append legend only if cencorshipflag is on
     if (cencorShipFlag > 0) {
         legendList = [colorScaleCencorship["Free"], colorScaleCencorship["Partly Free"], colorScaleCencorship["Not Free"], "gray"]
     } else {
-        legendList = [];
+        legendList = [colorScaleInternetAccess["100%"], colorScaleInternetAccess["90%"],
+            colorScaleInternetAccess["80%"], colorScaleInternetAccess["70%"],
+            colorScaleInternetAccess["60%"], colorScaleInternetAccess["50%"],
+            colorScaleInternetAccess["40%"], colorScaleInternetAccess["30%"],
+            colorScaleInternetAccess["20%"], colorScaleInternetAccess["10%"],
+            colorScaleInternetAccess["5%"], colorScaleInternetAccess["0%"],
+            "gray"
+        ];
     }
 
     var legendContainer = vis.svg.selectAll('g')
@@ -354,9 +315,15 @@ WorldMap.prototype.updateVisualization = function() {
     legend.append("text");
 
     legendContainer.select("rect")
-        .attr("x", 10)
+        .attr("x", function(d, i) {
+            if (cencorShipFlag > 0)
+                return 10;
+            return 5;
+        })
         .attr("y", function(d, i) {
-            return vis.height * 3 / 4 + i * 20;
+            if (cencorShipFlag > 0)
+                return vis.height * 3 / 4 + i * 20;
+            return vis.height * 0.43 + i * 20;
         })
         .attr("width", 15)
         .attr("height", 15)
@@ -365,15 +332,25 @@ WorldMap.prototype.updateVisualization = function() {
         });
 
     legendContainer.select("text")
-        .attr("x", 40)
+        .attr("x", function(d) {
+            if (cencorShipFlag > 0)
+                return 40;
+            return 35;
+        })
         .attr("y", function(d, i) {
-            return 12 + vis.height * 3 / 4 + i * 20
+            if (cencorShipFlag > 0)
+                return 12 + vis.height * 3 / 4 + i * 20;
+            return 12 + vis.height * 0.43 + i * 20;
         })
         .style("fill", function(d) {
-            return d
+            if (cencorShipFlag > 0)
+                return d;
+            return '#000';
         })
         .text(function(d, i) {
-            return cencorshipLabels[i];
+            if (cencorShipFlag > 0)
+                return cencorshipLabels[i];
+            return internetAccessLabels[i];
         });
 
     legendContainer.exit().remove();

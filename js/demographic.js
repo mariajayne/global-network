@@ -128,11 +128,11 @@ function setDefaultColorMap() {
 
 //  Changes view between Demographic mode and cencorship mode
 function changeView() {
+    cencorShipFlag = cencorShipFlag * (-1);
     if (d3.select('#anim-playing').html() == "stopped") {
-        cencorShipFlag = cencorShipFlag * (-1)
+        worldMap.updateVisualization();
         if (cencorShipFlag > 0) {
             setDefaultColorMapCencorship();
-            worldMap.updateVisualization();
         }
         if (cencorShipFlag < 0) {
             worldMap.sequenceMap();
