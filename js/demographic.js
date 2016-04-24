@@ -76,10 +76,10 @@ function setColorMapDemographic(d) {
         country = d.properties.id;
     if (selectedCountries.indexOf(country) != -1) {
         selectedCountries.splice(selectedCountries.indexOf(country), 1);
-        for(var i in colorInfo) {
-          if (country == i) {
-            d3.select("#" + country).style("fill", colorInfo[i]);
-          }
+        for (var i in colorInfo) {
+            if (country == i) {
+                d3.select("#" + country).style("fill", colorInfo[i]);
+            }
         }
     } else {
         selectedCountries.push(country);
@@ -128,36 +128,38 @@ function setDefaultColorMap() {
 
 //  Changes view between Demographic mode and cencorship mode
 function changeView() {
-    cencorShipFlag = cencorShipFlag * (-1)
-    if (cencorShipFlag > 0) {
-        setDefaultColorMapCencorship();
-        worldMap.updateVisualization();
-    }
-    if (cencorShipFlag < 0) {
-        worldMap.sequenceMap();
-    }
-    if ($("#internet-chart").is(":visible")) {
-        timerYear = d3.select('#clock').html();
-        $("#col3").insertBefore("#col2");
-        $("#internet-chart").hide(0);
-        $("#gdp-chart").hide(0);
-        $("#employment-chart").hide(0);
-        $("#timeline-chart").hide(0);
-        $("#playbutton").hide(0);
-        $("#slider").hide(0);
-        $("#freedom-of-net-barchart-vertical").show(0);
-        d3.select('#clock').html("2014");
-    } else {
-        $("#col2").insertBefore("#col3");
-        $("#internet-chart").show(0);
-        $("#gdp-chart").show(0);
-        $("#employment-chart").show(0);
-        $("#timeline-chart").show(0);
-        $("#playbutton").show(0);
-        $("#slider").show(0);
-        $("#freedom-of-net-barchart-vertical").hide(0);
-        d3.select('#clock').html(timerYear);
-    }
+        if (d3.select('#anim-playing').html() == "stopped") {
+        cencorShipFlag = cencorShipFlag * (-1)
+        if (cencorShipFlag > 0) {
+            setDefaultColorMapCencorship();
+            worldMap.updateVisualization();
+        }
+        if (cencorShipFlag < 0) {
+            worldMap.sequenceMap();
+        }
+        if ($("#internet-chart").is(":visible")) {
+            timerYear = d3.select('#clock').html();
+            $("#col3").insertBefore("#col2");
+            $("#internet-chart").hide(0);
+            $("#gdp-chart").hide(0);
+            $("#employment-chart").hide(0);
+            $("#timeline-chart").hide(0);
+            $("#playbutton").hide(0);
+            $("#slider").hide(0);
+            $("#freedom-of-net-barchart-vertical").show(0);
+            d3.select('#clock').html("2014");
+        } else {
+            $("#col2").insertBefore("#col3");
+            $("#internet-chart").show(0);
+            $("#gdp-chart").show(0);
+            $("#employment-chart").show(0);
+            $("#timeline-chart").show(0);
+            $("#playbutton").show(0);
+            $("#slider").show(0);
+            $("#freedom-of-net-barchart-vertical").hide(0);
+            d3.select('#clock').html(timerYear);
+        }
+      }
 }
 
 function brushed() {

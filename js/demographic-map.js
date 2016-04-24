@@ -165,6 +165,7 @@ WorldMap.prototype.createVisualization = function() {
         })
         .on('mouseout', vis.tip.hide);
 
+    d3.select('#anim-playing').html("stopped");
     this.addLegend();
 }
 
@@ -194,7 +195,7 @@ function getColor(valueIn) {
 WorldMap.prototype.countryColor = function() {
     var vis = this,
         colorsData =
-          topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
+        topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
     var countryColors = {};
     colorsData.forEach(function(d) {
         countryColors[d.properties.id] = getColor(d.properties[attributeArray[currentAttribute]]);
@@ -204,13 +205,18 @@ WorldMap.prototype.countryColor = function() {
 
 WorldMap.prototype.animateMap = function() {
     var timer, endSlider = false,
-        vis = this;
+        vis = this,
+        animation;
 
     d3.select('#playbutton')
         .on('click', function() {
             playing = !playing;
-            var animation = playing ? 'stop' : 'play';
+            animation = playing ? 'stop' : 'play';
             $('#animate_to_' + animation).get(0).beginElement();
+            if (playing)
+              d3.select('#anim-playing').html("playing");
+            else
+              d3.select('#anim-playing').html("stopped");
 
             setTimeout(function periodicFunc() {
                 if (reachedEnd && playing) {
@@ -233,8 +239,6 @@ WorldMap.prototype.animateMap = function() {
                     vis.mapSlider();
                     setTimeout(periodicFunc, 700);
                 } else {
-                    console.log(currentAttribute);
-                    console.log(attributeArray.length);
                     if (currentAttribute >= attributeArray.length - 1) {
                         vis.sequenceMap();
                     }
@@ -256,7 +260,6 @@ WorldMap.prototype.mapSlider = function() {
     var yearSlider = d3.slider()
         .axis(true).min(minYear).max(maxYear).step(1)
         .on("slide", function(evt, value) {
-            console.log(value);
             if (value % 1 === 0) {
                 for (var i = 0; i < attributeArray.length; i++) {
                     if (value == attributeArray[i]) {
@@ -275,13 +278,13 @@ WorldMap.prototype.mapSlider = function() {
             }
         });
 
-        d3.select("#slider").call(yearSlider);
+    d3.select("#slider").call(yearSlider);
 
-        if (yearSlider.value() != undefined) {
-          yearSlider.destroy();
-        }
-        yearSlider.value(d3.select('#clock').html());
-        d3.select("#slider").call(yearSlider);
+    if (yearSlider.value() != undefined) {
+        yearSlider.destroy();
+    }
+    yearSlider.value(d3.select('#clock').html());
+    d3.select("#slider").call(yearSlider);
 }
 
 WorldMap.prototype.addLegend = function() {
