@@ -162,7 +162,8 @@ WorldMap.prototype.createVisualization = function() {
             if (cencorShipFlag < 0) {vis.tip.html(d.properties.admin + "<br> Internet Usage (" + currentYear + "): " + percentage);}
             else {
                 console.log(d)
-                vis.tip.html(d.properties.admin + "<br> Internet Usage (2014): "+ d.properties[2014] + "%")}
+                vis.tip.html(d.properties.admin + "<br> Internet Usage (2014): "+ d.properties[2014] + "%")
+            }
             vis.tip.show(d);
 
         })
@@ -306,7 +307,7 @@ WorldMap.prototype.updateVisualization = function() {
             colorScaleInternetAccess["40%"], colorScaleInternetAccess["30%"],
             colorScaleInternetAccess["20%"], colorScaleInternetAccess["10%"],
             colorScaleInternetAccess["5%"], colorScaleInternetAccess["0%"],
-            "gray"
+            "lightgray"
         ];
     }
 

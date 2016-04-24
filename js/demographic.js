@@ -59,7 +59,8 @@ var colorScaleInternetAccess = {
     "20%": 'rgba(77, 148, 255, 0.2)',
     "10%": 'rgba(77, 148, 255, 0.1)',
     "5%": 'rgba(77, 148, 255, 0.05)',
-    "0%": '#fff'
+    "0%": '#fff',
+    "No data" : 'lightgray'
 }
 
 function selectCountry(d) {
