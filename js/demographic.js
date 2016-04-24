@@ -87,6 +87,7 @@ function setDefaultColorMapCencorship(){
     });
 }
 
+// TODO fix greying out issue
 //  Set default colors on map when in "demographic mode"
 function setDefaultColorMap(){
     demographicData.countries.forEach(function(d){
@@ -101,13 +102,14 @@ function setDefaultColorMap(){
 //  Changes view between Demographic mode and cencorship mode
 function changeView(){
     cencorShipFlag = cencorShipFlag * (-1)
-    if (cencorShipFlag > 0){
+    if (cencorShipFlag > 0) {
         setDefaultColorMapCencorship();
         worldMap.updateVisualization();
-    };
-    if (cencorShipFlag < 0){
-        setDefaultColorMap()};
-        worldMap.updateVisualization();
+    }
+    if (cencorShipFlag < 0) {
+        // setDefaultColorMap()
+        worldMap.sequenceMap();
+    }
     if ($("#internet-chart").is(":visible")){
         $("#col3").insertBefore("#col2");
         $("#internet-chart").hide(0);
