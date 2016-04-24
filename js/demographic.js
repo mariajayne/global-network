@@ -74,18 +74,15 @@ function setColorMapDemographic(d) {
     var colorInfo = worldMap.countryColor(),
         country = d.properties.id;
     if (selectedCountries.indexOf(country) != -1) {
-        console.log(country);
         selectedCountries.splice(selectedCountries.indexOf(country), 1);
         for(var i in colorInfo) {
           if (country == i) {
             d3.select("#" + country).style("fill", colorInfo[i]);
           }
         }
-        console.log(selectedCountries);
     } else {
         selectedCountries.push(country);
         d3.select("#" + country).style("fill", colorScale(d.properties.id));
-        console.log(selectedCountries);
     }
     wrangleChartData();
 }
