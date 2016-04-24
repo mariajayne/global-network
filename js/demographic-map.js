@@ -192,6 +192,17 @@ function getColor(valueIn) {
     }
 }
 
+WorldMap.prototype.countryColor = function() {
+    var vis = this,
+        colorsData =
+          topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
+    var countryColors = {};
+    colorsData.forEach(function(d) {
+        countryColors[d.properties.id] = getColor(d.properties[attributeArray[currentAttribute]]);
+    });
+    return countryColors;
+}
+
 WorldMap.prototype.animateMap = function() {
     var timer, endSlider = false,
         vis = this;
@@ -204,12 +215,14 @@ WorldMap.prototype.animateMap = function() {
 
             setTimeout(function periodicFunc() {
                 if (reachedEnd && playing) {
-                  currentAttribute = -1;
+                    currentAttribute = -1;
                 }
                 if (playing && (currentAttribute < attributeArray.length - 1)) {
                     reachedEnd = false;
                     currentAttribute++;
                     currentYear = attributeArray[currentAttribute];
+
+                    // TODO figure out why striped pattern won't cooperate and transition properly
                     d3.selectAll('.country')
                         .transition()
                         .duration(700)
