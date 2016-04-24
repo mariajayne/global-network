@@ -214,9 +214,9 @@ WorldMap.prototype.animateMap = function() {
             animation = playing ? 'stop' : 'play';
             $('#animate_to_' + animation).get(0).beginElement();
             if (playing)
-              d3.select('#anim-playing').html("playing");
+                d3.select('#anim-playing').html("playing");
             else
-              d3.select('#anim-playing').html("stopped");
+                d3.select('#anim-playing').html("stopped");
 
             setTimeout(function periodicFunc() {
                 if (reachedEnd && playing) {

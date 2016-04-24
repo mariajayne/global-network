@@ -128,7 +128,7 @@ function setDefaultColorMap() {
 
 //  Changes view between Demographic mode and cencorship mode
 function changeView() {
-        if (d3.select('#anim-playing').html() == "stopped") {
+    if (d3.select('#anim-playing').html() == "stopped") {
         cencorShipFlag = cencorShipFlag * (-1)
         if (cencorShipFlag > 0) {
             setDefaultColorMapCencorship();
@@ -159,7 +159,7 @@ function changeView() {
             $("#freedom-of-net-barchart-vertical").hide(0);
             d3.select('#clock').html(timerYear);
         }
-      }
+    }
 }
 
 function brushed() {
