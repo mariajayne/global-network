@@ -159,7 +159,7 @@ WorldMap.prototype.createVisualization = function() {
             } else {
                 percentage = "No data available";
             }
-            if (cencorShipFlag < 0) {vis.tip.html(d.properties.admin + "<br>" + currentYear + "<br>" + percentage);}
+            if (cencorShipFlag < 0) {vis.tip.html(d.properties.admin + "<br> Internet Usage (" + currentYear + "): " + percentage);}
             else {
                 console.log(d)
                 vis.tip.html(d.properties.admin + "<br> Internet Usage (2014): "+ d.properties[2014] + "%")}
