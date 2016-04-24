@@ -16,7 +16,7 @@ Timeline.prototype.initVis = function(){
     var vis = this;
 
     vis.margin = {top: 20, right: 20, bottom: 30, left: 30};
-    vis.width = 500 - vis.margin.left - vis.margin.right;
+    vis.width = 700 - vis.margin.left - vis.margin.right;
     vis.height = 120 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
