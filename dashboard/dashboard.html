@@ -8,7 +8,7 @@
     <title>Dashboard</title>
 
     <!-- Load Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <!-- CSS libraries -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -26,41 +26,56 @@
     <div class="container-fluid">
 
         <!-- Navbar -->
-        <div class="row headline">
-            <div class="col-md-3"></div>
-            <div class="col-md-1">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
                 <a href="../frontpage/frontpage.html">
-                    <button class="btn-nav">Frontpage</button>
+                    <button class="btn-nav">Home</button>
                 </a>
             </div>
-            <div class="col-md-1">
-                <a href="../index.html">
-                    <button class="btn-nav">Animation</button>
-                </a>
-            </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <a href="#">
-                    <button class="btn-nav"><u>Demographics</u></button>
+                    <button class="btn-nav"><u>Internet Usage</u></button>
                 </a>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <a href="../countries/countries.html">
-                    <button class="btn-nav">Metrics</button>
+                    <button class="btn-nav">Demographics</button>
                 </a>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <a href="../social-media/social-media.html">
                     <button class="btn-nav">Social Media</button>
                 </a>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-2">
                 <a href="../process/process.html">
                     <button class="btn-nav">Process book</button>
                 </a>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-1"></div>
         </div>
         <hr>
+
+        <div class="row">
+            <div class="col-md-8 headline" id="container-demographics">
+                <h2> Internet usage over time</h2>
+                <p>The Internet is a vast mosaic of economic activity, ranging from millions of daily online transactions and communications to smartphone downloads of TV shows. The Internet is changing how we communicate, work, socialize, create and share information around the world. But little is known about how the web in its entirety contributes to global growth, productivity, and employment. While large enterprises and national economies have reaped major benefits from this technological revolution, individual consumers and small, upstart entrepreneurs have been some of the greatest beneficiaries from the Internet’s empowering influence. </p>
+                <p>In the visualizations below, you can explore how the usage of internet has developed over time on a national and global basis. By selecting the countries of your interest, you can see how the growth of the web has affected the selected country’s level of GDP and employment. Select several countries simultaneously to compare countries against each other.</p>
+            </div>
+
+            <div class="col-md-8 headline container-cencorship" style="display: none;">
+                <h2>National Surveillance, Cencorship and Internet Usage</h2>
+                <p>As we increasingly rely on the internet, it is important that the rights we enjoy offline are also protected online. However, this is not the case in many countries of the world today. The freedoms of speech, information, privacy, and association enshrined in international covenants are fundamental to the upholding of liberal democratic values. Even in closed societies, technology can penetrate longstanding political and media restrictions, carving out a limited space for freedom online. The visualization below features a ranked, country-by-country assessment of online freedom, measured by the organization Freedom House.</p>
+            </div>
+
+            <div class="col-md-4 btn-container">
+                <button class="btn-filter" onclick="changeViewToDemographic()" id="btn-demographics" style="background-color: black; color:white" value="demographics"><i class="fa fa-filter"></i>Internet Usage</button>
+                <button class="btn-filter" onclick="changeViewToCencorship()" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Cencorship</button>
+            </div>
+        </div>
+
+
 
 
         <div class="row">
@@ -89,45 +104,30 @@
                 </svg>
                 <span id="anim-playing" style="display: none;"></span>
                 <div id="slider"></div>
-                <div id="timeline-chart"></div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
-                    <div class="demographic-explaination">
-                        <h4>How does factors like GDP and employment affect internet usage?</h4>
-                    </div>
-                    <div class="freedom-explaination">
-                        <h4>Does national surveillance and censorchip affect internet usage?</h4>
-                    </div>
-                    <button class="btn-filter" onclick="changeView()" id="btn-demographics" value="demographics"><i class="fa fa-filter"></i>Demographics</button>
-                    <button class="btn-filter" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Cencorship</button>
-                </div>
-                <div class="col-md-4">
                     <div id="internet-chart"></div>
                     <div id="gdp-chart"></div>
                     <div id="employment-chart"></div>
-                    <div class="freedom-explaination">
-                        <p>As we increasingly rely on the internet, it is important that the rights we enjoy offline are also protected online. The bar-chart below features a ranked, country-by-country assessment of online freedom, measured by the US organization, Freedom House.
-                        The freedoms of speech, information, privacy, and association enshrined in international covenants are fundamental to the upholding of liberal democratic values. Even in closed societies, technology can penetrate longstanding political and media restrictions, carving out a limited space for freedom online.</p>
-                        <p>The total score of 'Internet Freedom', as visualized below, measures the subtle and not-so-subtle ways that governments and non-state actors around the world restrict our intrinsic rights online. Each country assessment includes a numerical score, based on methodology developed in consultation with international experts. The circles in the chart shows the percentage of the population that uses the internet. Even though there are many outliers, we see a clear trend that countries with high online freedom, has a higher number of internet users.</p>
-
-
-                    </div>
+                    <div id="timeline-chart"></div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-4" id="col3">
-                <div id="freedom-of-net-barchart"></div>
+            <div class="col-md-12 container-cencorship" style="display:none;">
+                <h5>How do you measure Freedom of the Internet?</h5>
+            <p>The total score of 'Internet Freedom', as visualized below, measures the subtle and not-so-subtle ways that governments and non-state actors around the world restrict our intrinsic rights online. Each country assessment includes a numerical score, based on methodology developed in consultation with international experts. The circles in the chart shows the percentage of the population that uses the internet. Even though there are many outliers, we can see a trend that countries with high online freedom, has a higher number of internet users in 2014.</p>
             </div>
         </div>
 
-        <!--Todo:
-    (4) Make tooltip to work in all charts simultaneously
-    (5) Split freedomOfNet-data into segments, and simplify graph
-    (6) Implement fisheye on the freedomOfNet-graph for reading labels-->
+        <div class="row-fluid">
+            <div class="col-md-12" id="col3">
+                <div id="freedom-of-net-barchart" style="display: none;"></div>
+            </div>
+        </div>
 
 </div>
 
