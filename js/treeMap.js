@@ -74,7 +74,7 @@ var div = d3.select("#tree-map").append("div")
     .style("left", margin.left + "px")
     .style("top", margin.top + "px");
 
-d3.json("../data/treemap/treemap.json", function(error, root) {
+d3.json("../data/treemap/treeJson.json", function(error, root) {
     if (error) throw error;
 
     node = div.datum(root).selectAll(".node")
