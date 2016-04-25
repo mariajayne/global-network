@@ -5,10 +5,11 @@
 
 var transitionTime = 370;
 
-Timeline = function(_parentElement,_data) {
+Timeline = function(_parentElement,_data, _descriptionText) {
     this.parentElement = _parentElement;
     this.data = _data;
     this.chosenCategory = "all";
+    this.descriptionText = _descriptionText;
     this.clicked = false;
     this.clickedElement = null;
 
@@ -19,7 +20,7 @@ Timeline = function(_parentElement,_data) {
 Timeline.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 30, right: 40, bottom: 30, left: 40 };
+    vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
 
     vis.width = screen.width/1.1 - vis.margin.left - vis.margin.right;
     vis.height = screen.width/4 - vis.margin.top - vis.margin.bottom;
@@ -30,7 +31,7 @@ Timeline.prototype.initVis = function() {
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .attr("id", "timeline-drawing-space")
         .append("g")
-        .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+        .attr("transform", "translate(" + vis.margin.left + "," + (-18 + vis.margin.top )+ ")");
 
     // Variables used to position the different platform information tooltips
     vis.platformInfoX = +$("#social-media-col").css("width").slice(0,-2) -
@@ -49,8 +50,6 @@ Timeline.prototype.initVis = function() {
     var barChart = document.getElementById("social-media-bar-chart");
     var foo = ((svgWidth / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
     barChart.style.left = (foo + (screen.width/2.0)) + "px";
-
-    console.log(vis.height);
 
     // Scales
     vis.x = d3.time.scale()
@@ -97,50 +96,50 @@ Timeline.prototype.initVis = function() {
     var yPosition = 12;
 
     vis.rectSocialNetwork = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 136)
+        .attr("x", (vis.width / 2.0) - 130)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "network")
-        .attr("width", 110)
+        .attr("width", 108)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectSocialMsg = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 26)
+        .attr("x", (vis.width / 2.0) - 21)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "msg")
-        .attr("width", 130.5)
+        .attr("width", 118.5)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectAll = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 105)
+        .attr("x", (vis.width / 2.0) + 101)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "all")
-        .attr("width", 34)
+        .attr("width", 27)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectBoundary = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 137)
+        .attr("x", (vis.width / 2.0) - 130)
         .attr("y", yPosition)
         .attr("id", "boundary-rect")
-        .attr("width", 276)
+        .attr("width", 258)
         .attr("height", 25);
 
     vis.rectChosenCategory = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 105)
+        .attr("x", (vis.width / 2.0) + 101)
         .attr("y", yPosition)
         .attr("id", "chosen-rect")
-        .attr("width", 34)
+        .attr("width", 27)
         .attr("height", rectHeight);
 
     // Social media icons
@@ -163,13 +162,13 @@ Timeline.prototype.initVis = function() {
 
     });
 
-
-
     // Platform information textbox
     vis.platformName = $("#platformName");
     vis.platformReleaseDate = $("#platformDate");
     vis.platformUsers = $("#platformUsers");
     vis.platformAbout = $("#platformAbout");
+
+    vis.setSocialMediaText();
 
     vis.wrangleData();
 };
@@ -214,7 +213,12 @@ Timeline.prototype.updateVis = function() {
         .attr("cx", function(d) { return vis.x(d.Date)})
         .attr("cy", vis.height/2.0 + vis.margin.top)
         .attr("r", function(d) {return vis.r(d.Current_size)})
-        .attr("fill", "white")
+        .attr("fill", function(d) {
+            if (d.Msg){
+                return "#0d2e67";
+            }
+            return "#a31313";
+        })
         .attr("opacity",.5);
 
     // Hovering actions
@@ -227,22 +231,9 @@ Timeline.prototype.updateVis = function() {
     circle.on("mouseout", function(d) {
         if (!vis.clicked) {
             d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity",.5);
-            //vis.platformInfo.html("");
         }
     });
-
-    circle.on("click", function(d) {
-        if(vis.clickedElement != d.Platform) {
-            vis.clicked = true;
-            vis.clickedElement = d.Platform;
-        } else {
-            vis.clicked = false;
-        }
-        vis.hoverAction(d, this);
-        selectPlatform(d.Platform);
-    });
-
-
+    
     circle.exit()
         .remove();
 };
@@ -275,29 +266,61 @@ Timeline.prototype.hoverAction = function(d, circle) {
     vis.platformAbout.html(d.About);
 
     var htmlString = d.Platform;
-    if (d.Symbol.length == 0) {
+    if ((d.Symbol.length == 0) && (d.Platform != "yy")) {
         htmlString = htmlString.concat(" <img src=\"../data/social-media/".concat(d.Platform.replace(/\s/g, '')) + ".svg\"" +
-            " type=\"image/svg.xml\" class=\"svg-img\" style=\"height:15px;width:15px;\"></img>");
+            "id=\"" + (d.Platform.replace(/\s/g, '')) + "Svg\"   class=\"svg svg-img\"></img>");
     } else {
         htmlString = htmlString.concat(" <i class=\"fa ".concat(d.Symbol).concat("\"></i>"));
     }
     vis.platformName.html( htmlString);
-
-    /*var x = vis.platformInfoX + vis.x(d.Date);
-
-    vis.platformInfo.css("left", x);
-    vis.platformInfo.css("margin-top", vis.height + vis.margin.top + vis.margin.bottom);
-
-    var htmlString = "Platform: " + d.Platform;
-    if (d.Symbol.length == 0) {
-        htmlString = htmlString.concat(" <img src=\"../data/social-media/".concat(d.Platform.replace(/\s/g, '')) + ".svg\"" +
-            " type=\"image/svg.xml\" class=\"svg-img\" style=\"height:15px;width:15px;\"></img>");
-    } else {
-        htmlString = htmlString.concat(" <i class=\"fa ".concat(d.Symbol).concat("\"></i>"));
+    if ((d.Symbol.length == 0) && (d.Platform != "yy")) {
+        swapSvg();
     }
-    vis.platformInfo.html(htmlString + "<br> Release date: " + dateToString(d.Date)
-        + "<br> Monthly active users: " + d.Current_size + " million");
-    x -= (+vis.platformInfo.css("width").slice(0,-2))/2.0;
-    vis.platformInfo.css("left", x);*/
-
 }
+
+
+/* Helper function that removes an svg image loaded from file and replacing it with a generated image.
+   This new image looks exactly like the old one, but it's modifiable, which makes it possible to change
+   the color of it. */
+function swapSvg() {
+
+    jQuery('img.svg-img').each(function(){
+
+        var $img = jQuery(this);
+        var imgID = $img.attr('id');
+        var imgClass = $img.attr('class');
+        var imgURL = $img.attr('src');
+
+        jQuery.get(imgURL, function(data) {
+            console.log(data);
+            // Get the SVG tag, ignore the rest
+            var $svg = jQuery(data).find('svg');
+
+            // Add replaced image's ID to the new SVG
+            if(typeof imgID !== 'undefined') {
+                $svg = $svg.attr('id', imgID);
+            }
+
+            // Add replaced image's classes to the new SVG
+            if(typeof imgClass !== 'undefined') {
+                $svg = $svg.attr('class', imgClass+' replaced-svg');
+            }
+
+            // Remove any invalid XML tags as per http://validator.w3.org
+            $svg = $svg.removeAttr('xmlns:a');
+            console.log("test");
+
+            // Replace image with new SVG
+            $img.replaceWith($svg);
+
+        }, "xml");
+    });
+}
+
+// Function changing the text under the timeline to some general information text about social media
+Timeline.prototype.setSocialMediaText = function(){
+    var vis = this;
+    vis.platformName.html("Social media and internet usage");
+    vis.platformAbout.html("" + vis.descriptionText.Text);
+}
+

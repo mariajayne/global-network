@@ -9,7 +9,7 @@ with open('DList.json') as f2:
 
 def sortCityBySize(A):
     for country in A.keys():
-        A[country] = sorted(A[country], key = lambda city : int(city[1]), reverse=False)
+        shuffle(A[country])#, key = lambda city : int(city[1]), reverse=False)
 
 sortCityBySize(A)
 
@@ -25,10 +25,12 @@ def mergeCityNewUsers(A, D):
     return newList
 
 def generateCities(citiesUsers):
-    result = [[] for _ in range(len(citiesUsers[0]["NewUsers"]))]
-    for year in range(len(result)):
+    result = [[] for _ in range(len(citiesUsers[0]["NewUsers"]) + 1)]
+    for year in range(len(result)-1):
+	totalUsers = 0
         for country in citiesUsers:
             newUsers = int(country["NewUsers"][year])
+	    totalUsers += newUsers
             cities = country["Cities"]
             if len(cities) == 0:
                 continue
@@ -46,7 +48,7 @@ def generateCities(citiesUsers):
                         if len(cities) != 0:
                             boundary = min(int(x[1]) for x in cities)
                         break
-
+	result[-1].append(totalUsers)
     return result
 
 def shuffleCities(cities):

@@ -7,7 +7,7 @@
     <title>Social Media</title>
 
     <!-- Load Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -22,23 +22,18 @@
 
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-md-12 nav-container">
-            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-                <div class="container">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
-                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
-                        <ul data-offcanvass="yes">
-                            <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
-                            <li class="active"><a href="../countries/countries.html">Demographics</a></li>
-                            <li class="active"><a href="#">Social Medias</a></li>
-                            <li class="active"><a href="../process/process.html">Process Book</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
+
+    <div class="row headline">
+        <div class="col-md-3"></div>
+        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+        <div class="col-md-1"><a href="../index.html"><button class="btn-nav">Animation</button></a></div>
+        <div class="col-md-1"><a href="../dashboard/dashboard.html"><button class="btn-nav">Demographics</button></a></div>
+        <div class="col-md-1"><a href="../countries/countries.html"><button class="btn-nav">Metrics</button></a></div>
+        <div class="col-md-1"><a href="#"><button class="btn-nav"><u>Social Media</u></button></a></div>
+        <div class="col-md-1"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
+        <div class="col-md-3"></div>
     </div>
+    <hr>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="social-media-col">
@@ -54,10 +49,10 @@
    <div class="row">
 
             <div id="platformInformationText">
-                <h3 id="platformName"></h3>
-                <p id="platformDate">Hover over a circle to see information about the selected platform.</p>
-                <p id="platformUsers">Click on a circle to lock on to that specific platform.</p>
-                <p id="platformAbout"></p>
+                <h3 id="platformName">Social media and internet usage</h3>
+                <p id="platformDate"></p>
+                <p id="platformUsers"></p>
+                <p id="platformAbout">Test</p>
             </div>
 
             <div id="social-media-bar-chart"></div>
@@ -68,7 +63,10 @@
 <!-- Load JS libraries -->
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
+<script src="../js/queue.v1.min.js"></script>
 <script src="../js/d3.min.js"></script>
+<script src="../js/d3.tip.js"></script>
+
 
 <!-- Visualization objects -->
 <script src="../js/social-media-timeline.js"></script>
