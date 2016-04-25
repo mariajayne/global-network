@@ -59,7 +59,7 @@ body {
 }
 
 .node {
-    border: solid 1px #383736;
+    border: solid 1px white;
     font: 10px sans-serif;
     line-height: 12px;
     overflow: hidden;
