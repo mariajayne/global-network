@@ -100,6 +100,14 @@ WorldMap.prototype.initVis = function() {
             fill: "lightgray"
         });
 
+    // position clock and button based on screen size
+    document.getElementById('clock').setAttribute("style",
+                                        "margin-left:" + vis.width / 2 + "px");
+    document.getElementById('playbutton').setAttribute("style",
+                                        "margin-left:" + vis.width * 0.43 +
+                                        "px; " + "margin-top:" +
+                                        vis.height * 0.4 + "px");
+
     vis.processData();
     vis.sequenceMap();
     vis.animateMap();
@@ -131,12 +139,6 @@ WorldMap.prototype.processData = function() {
 
     // populate the clock initially with the current year
     d3.select('#clock').html(attributeArray[attributeArray.length - 1]);
-    document.getElementById('clock').setAttribute("style",
-                                        "margin-left:" + vis.width / 2 + "px");
-    document.getElementById('playbutton').setAttribute("style",
-                                        "margin-left:" + vis.width * 0.43 +
-                                        "px; " + "margin-top:" +
-                                        vis.height * 0.4 + "px");
     // create the map now with our newly populated data object
     vis.createVisualization();
 }
