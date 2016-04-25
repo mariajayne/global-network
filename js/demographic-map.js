@@ -13,7 +13,7 @@ var cencorshipMapping = {
 }
 
 // labels for default map legend
-var internetAccessLabels = ["100%", "90%", "80%", "70%", "60%", "50%", "40%", "30%", "20%", "10%", "5%", "0%", "No data"]
+var internetAccessLabels = ["100%", "75%", "50%", "25%", "10%","0%", "No data"]
 
 // attribute array of years for quick access of each year's percentages
 var attributeArray = ["1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014"];
@@ -24,7 +24,7 @@ var currentAttribute = 0,
     countries,
     dataRange,
     playing = false,
-    reachedEnd = false,
+    reachedEnd = true,
     percentage,
     pattern;
 
@@ -107,6 +107,7 @@ WorldMap.prototype.initVis = function() {
 }
 
 WorldMap.prototype.processData = function() {
+    var vis = this;
     var countryData = this.demographicData.countries;
     countries = this.mapData.objects.countries.geometries;
     // for each geometry object
@@ -129,17 +130,23 @@ WorldMap.prototype.processData = function() {
     }
 
     // populate the clock initially with the current year
-    d3.select('#clock').html(attributeArray[currentAttribute]);
+    d3.select('#clock').html(attributeArray[attributeArray.length - 1]);
+    document.getElementById('clock').setAttribute("style",
+                                        "margin-left:" + vis.width / 2 + "px");
+    document.getElementById('playbutton').setAttribute("style",
+                                        "margin-left:" + vis.width * 0.43 +
+                                        "px; " + "margin-top:" +
+                                        vis.height * 0.4 + "px");
     // create the map now with our newly populated data object
-    this.createVisualization();
+    vis.createVisualization();
 }
 
 WorldMap.prototype.createVisualization = function() {
-    currentYear = 1991;
+    currentYear = attributeArray[attributeArray.length - 1];
+    currentAttribute = attributeArray.length - 1;
     var vis = this;
     vis.world = topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
     vis.svg.call(vis.tip);
-    console.log(vis.world);
 
     vis.svg.selectAll("path")
         .data(vis.world)
@@ -306,12 +313,9 @@ WorldMap.prototype.updateVisualization = function() {
     if (cencorShipFlag > 0) {
         legendList = [colorScaleCencorship["Free"], colorScaleCencorship["Partly Free"], colorScaleCencorship["Not Free"], "gray"]
     } else {
-        legendList = [colorScaleInternetAccess["100%"], colorScaleInternetAccess["90%"],
-            colorScaleInternetAccess["80%"], colorScaleInternetAccess["70%"],
-            colorScaleInternetAccess["60%"], colorScaleInternetAccess["50%"],
-            colorScaleInternetAccess["40%"], colorScaleInternetAccess["30%"],
-            colorScaleInternetAccess["20%"], colorScaleInternetAccess["10%"],
-            colorScaleInternetAccess["5%"], colorScaleInternetAccess["0%"],
+        legendList = [colorScaleInternetAccess["100%"], colorScaleInternetAccess["75%"],
+            colorScaleInternetAccess["50%"], colorScaleInternetAccess["25%"],
+            colorScaleInternetAccess["10%"], colorScaleInternetAccess["0%"],
             "lightgray"
         ];
     }
@@ -332,7 +336,7 @@ WorldMap.prototype.updateVisualization = function() {
         .attr("y", function(d, i) {
             if (cencorShipFlag > 0)
                 return vis.height * 3 / 4 + i * 20;
-            return vis.height * 0.43 + i * 20;
+            return vis.height * 3/4 + i * 20;
         })
         .attr("width", 15)
         .attr("height", 15)
@@ -349,7 +353,7 @@ WorldMap.prototype.updateVisualization = function() {
         .attr("y", function(d, i) {
             if (cencorShipFlag > 0)
                 return 12 + vis.height * 3 / 4 + i * 20;
-            return 12 + vis.height * 0.43 + i * 20;
+            return 12 + vis.height * 3/4 + i * 20;
         })
         .style("fill", function(d) {
             if (cencorShipFlag > 0)

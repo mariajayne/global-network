@@ -251,14 +251,9 @@ body {
   height: 60px;
   top: 50%;
   left: 50%;
-  margin: 140px 0 0 375px;
+  /*margin: 220px 0 0 375px;*/
   position: absolute;
   cursor: pointer;
-}
-
-#clock {
-  margin-top: 150px;
-  margin-left: 350px;
 }
 
 #slider {
