@@ -159,10 +159,15 @@ WorldMap.prototype.createVisualization = function() {
             } else {
                 percentage = "No data available";
             }
-            if (cencorShipFlag < 0) {vis.tip.html(d.properties.admin + "<br> Internet Usage (" + currentYear + "): " + percentage);}
-            else {
-                console.log(d)
-                vis.tip.html(d.properties.admin + "<br> Internet Usage (2014): "+ d.properties[2014] + "%")
+            if (cencorShipFlag < 0) {
+                vis.tip.html(d.properties.admin + "<br> Internet Usage (" + currentYear + "): " + percentage);
+            } else {
+                if (d.properties[2014] !== undefined && !isNaN(d.properties[2014])) {
+                    percentage = (d.properties[2014]).toFixed(2) + "%";
+                } else {
+                    percentage = "No data available";
+                }
+                vis.tip.html(d.properties.admin + "<br> Internet Usage (2014): " + percentage)
             }
             vis.tip.show(d);
 
