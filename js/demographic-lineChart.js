@@ -29,8 +29,8 @@ LineChart.prototype.initVis = function(){
     var vis = this;
 
     //  Defining margins, height and width
-    vis.margin = {top:30,right:40,bottom:20,left:25}
-    vis.width = 350 - vis.margin.left - vis.margin.right;
+    vis.margin = {top:30,right:40,bottom:20,left:65}
+    vis.width = 370 - vis.margin.left - vis.margin.right;
     vis.height = 180 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area

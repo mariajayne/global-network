@@ -128,6 +128,32 @@ function setDefaultColorMap() {
     })
 }
 
+function changeViewToDemographic(){
+    if (cencorShipFlag > 0){
+        changeView();
+        $("#container-demographics").show();
+        $(".container-cencorship").hide();
+        $("#freedom-of-net-barchart").hide(0);
+        $("#btn-cencorship").css("background-color","white");
+        $("#btn-cencorship").css("color","black");
+        $("#btn-demographics").css("background-color","black");
+        $("#btn-demographics").css("color","white");
+    }
+}
+
+function changeViewToCencorship(){
+    if (cencorShipFlag < 0){
+        changeView();
+        $("#container-demographics").hide();
+        $(".container-cencorship").show();
+        $("#freedom-of-net-barchart").show(0);
+        $("#btn-cencorship").css("background-color","black");
+        $("#btn-cencorship").css("color","white");
+        $("#btn-demographics").css("background-color","white");
+        $("#btn-demographics").css("color","black");
+    }
+}
+
 //  Changes view between Demographic mode and cencorship mode
 function changeView() {
     cencorShipFlag = cencorShipFlag * (-1);
@@ -139,28 +165,14 @@ function changeView() {
         if (cencorShipFlag < 0) {
             worldMap.sequenceMap();
         }
-        if ($("#internet-chart").is(":visible")) {
+        if ($("#freedom-of-net-barchart").is(":visible") == false) {
             timerYear = d3.select('#clock').html();
-            $(".demographic-explaination").hide(0);
-            $("#internet-chart").hide(0);
-            $("#gdp-chart").hide(0);
-            $("#employment-chart").hide(0);
-            $("#timeline-chart").hide(0);
             $("#playbutton").hide(0);
             $("#slider").hide(0);
-            $("#freedom-of-net-barchart").show(0);
-            $(".freedom-explaination").show(0);
             d3.select('#clock').html("2014");
         } else {
-            $(".demographic-explaination").show(0);
-            $("#internet-chart").show(0);
-            $("#gdp-chart").show(0);
-            $("#employment-chart").show(0);
-            $("#timeline-chart").show(0);
             $("#playbutton").show(0);
             $("#slider").show(0);
-            $(".freedom-explaination").hide(0);
-            $("#freedom-of-net-barchart").hide(0);
             d3.select('#clock').html(timerYear);
         }
     }
@@ -242,8 +254,6 @@ function processData(error, data1, data2, data3, data4, data5) {
 }
 
 function createVis() {
-    $("#freedom-of-net-barchart").hide(0);
-    $(".freedom-explaination").hide(0);
     gdpChart = new LineChart("gdp-chart",demographicData,"gdp");
     employmentChart = new LineChart("employment-chart",demographicData,"unemployment");
     internetChart = new LineChart("internet-chart",demographicData,"internet");

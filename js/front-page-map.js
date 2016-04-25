@@ -2,16 +2,19 @@
  * Created by MagnusMoan on 17/04/16.
  */
 
-var yearDelay = 2500.0;
+var yearDelay = 2000.0;
 var nodeDelay, blinkDelay;
 
-WorldMap = function(_parentElement, _mapData, _data) {
+WorldMap = function(_parentElement, _mapData, _data, _globalNumberOfUsers) {
     this.parentElement = _parentElement;
     this.mapData = _mapData;
     this.data = _data;
     this.displayData = this.data;
-    this.odometer = document.getElementById("odometer");
     this.cities = this.data;
+    this.globalNumberOfUsers = _globalNumberOfUsers;
+
+    this.yearCounter = document.getElementById("yearCounter");
+    this.userCounter = document.getElementById("userCounter1");
 
     this.initVis();
 }
@@ -21,22 +24,22 @@ WorldMap.prototype.initVis = function(){
 
     var vis = this;
 
-    vis.margin = {top: -250, right: 20, bottom: 100, left: 20};
-    vis.width = screen.width - vis.margin.left - vis.margin.right;
-    vis.height = screen.height - vis.margin.bottom;
+    vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
+    vis.width = screen.width;
+    vis.height = screen.height;
 
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
-        .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
+        .attr("height", screen.height - (document.getElementById("frontpage-headline").offsetHeight))//vis.height + vis.margin.top)
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
     vis.projection = d3.geo.mercator()
-        .center([15,70])
-        .scale(200)
-        .translate([vis.width / 2, vis.height / 2]);
+        .center([0,0])
+        .scale(120)
+        .translate([vis.width / 2, vis.height / 2.25]);
 
     vis.path = d3.geo.path()
         .projection(vis.projection);
@@ -46,7 +49,7 @@ WorldMap.prototype.initVis = function(){
     vis.r = d3.scale.log()
         .base(Math.E)
         .domain([1000,10000000])
-        .range([0.5,10]);
+        .range([0.05,5]);
 
     this.createVisualization();
 
@@ -64,6 +67,11 @@ WorldMap.prototype.createVisualization = function (){
         .attr("d",vis.path)
         .attr("class","projection")
         .attr("id",function(d){return "" + d.properties.id;});
+
+    // Remove Antarctica
+    vis.svg.select("#ATA").remove();
+
+
     /*
     for (var i = 0; i < vis.cities.length; i++) {
         for (var j = 0; j < vis.cities[i].length; j++) {
@@ -72,6 +80,13 @@ WorldMap.prototype.createVisualization = function (){
     }*/
 
 
+    // Add legend circle
+    vis.svg.append("circle")
+        .attr("r", 7.5)
+        .attr("cx", screen.width/5.5)
+        .attr("cy", screen.height/1.5)
+        .attr("fill", "#3b5998");
+
     var outerCounter = 1;
     var year = 1992;
     vis.current_year = vis.cities[0];
@@ -79,9 +94,6 @@ WorldMap.prototype.createVisualization = function (){
     blinkDelay = .2*nodeDelay;
 
     var innerCounter = 0;
-    setTimeout(function() {
-        vis.odometer.innerHTML = 1992;
-    }, 0);
 
     var innerRefreshId = setInterval(function() {
         vis.updateVisualization(vis.current_year[innerCounter]);
@@ -91,13 +103,13 @@ WorldMap.prototype.createVisualization = function (){
         }
     }, nodeDelay);
 
+
     var refreshId = setInterval(function() {
         vis.current_year = vis.cities[outerCounter];
-
-        vis.odometer.innerHTML = year + 1;
-        year++;
-
-        nodeDelay = (yearDelay / vis.current_year.length);
+        vis.userCounter.innerHTML = numberWithCommas(parseInt(vis.userCounter.innerHTML.replace(/,/g,''))
+            + parseInt(vis.globalNumberOfUsers[0][outerCounter]));
+        vis.yearCounter.innerHTML = (parseInt(vis.yearCounter.innerHTML) + 1);
+        nodeDelay = .8*(yearDelay / vis.current_year.length);
         blinkDelay =.2*nodeDelay;
         var innerCounter = 0;
         var innerRefreshId = setInterval(function() {
@@ -111,7 +123,9 @@ WorldMap.prototype.createVisualization = function (){
         if (outerCounter == vis.cities.length - 1){
             clearInterval(refreshId);
         }
-    }, yearDelay)
+    }, yearDelay);
+
+    console.log("test");
 }
 
 WorldMap.prototype.updateVisualization = function (newNode){
@@ -120,11 +134,18 @@ WorldMap.prototype.updateVisualization = function (newNode){
 
     var circle = vis.svg.append("circle")
         .attr("class", "node")
-        .attr("fill", "white")
-        .attr("r", function(d) { return vis.r(newNode.Pop)})
+
         .attr("transform", function(d) {
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
-        });
+        })
+        .attr("r", function(d) { return vis.r(newNode.Pop)})
+        .attr("fill", "#1B3F8B  ")
+        .transition()
+        .duration(250)
+        .attr("fill", "#3b5998");
 
-    /*$(circle[0]).fadeTo(blinkDelay,.5);*/
+}
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

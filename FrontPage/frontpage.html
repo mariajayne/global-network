@@ -7,9 +7,9 @@
     <title>Social Media</title>
 
     <!-- Load Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
 
     <!-- CSS libraries -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -21,44 +21,29 @@
 </head>
 <body>
 
+<div id="cover"><div style="display: table-cell; vertical-align: middle;"><div>GLOBAL NETWORK</div></div>
+</div>
+<button id="launchButton" type="button">Launch!</button>
+
+<div id="undercover"></div>
+
 <div class="container-fluid">
 
-    <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-    <div class="container">
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
-        <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
-            <ul data-offcanvass="yes">
-                <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
-                <li class="active"><a href="../countries/countries.html">Demographics</a></li>
-                <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
-                <li class="active"><a href="../process/process.html">Process Book</a></li>
-            </ul>
-        </div>
+    <div class="row row-centered" id="frontpage-headline">
+        <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Frontpage</u></button></a></div>
+        <div class="col-md-1 col-centered"><a href="../dashboard/dashboard.html"><button class="btn-nav">Internet Usage</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../social-media/social-media.html"><button class="btn-nav">Social Media</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
     </div>
-    </nav>
-
-    <div class="row">
-        <div class="col-md-12 nav-container">
-            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-                <div class="container">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
-                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
-                        <ul data-offcanvass="yes">
-                            <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
-                            <li class="active"><a href="#">Demographics</a></li>
-                            <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
-                            <li class="active"><a href="../process/process.html">Process Book</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </div>
+    <hr>
+    <div id="yearCounter">1991</div>
+    <div id="userCounter"><span id="userCounter1">100 </span> &nbsp; internet users worldwide</div>
+    </span><span id="mapLegend">- A city, size shows population</span>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="map"></div>
     </div>
-    <div id="odometer" class="odometer">1991</div>
 
 
 </div>
@@ -69,14 +54,6 @@
 <script src="../js/queue.v1.min.js"></script>
 <script src="../js/topojson.v1.min.js"></script>
 <script src="../js/d3.min.js"></script>
-<script src="../js/odometer.min.js"></script>
-
-<script>
-    window.odometerOptions = {
-        duration: 2.5 * 1000,
-        format: 'd'
-    };
-</script>
 
 
 <!-- Visualization objects -->

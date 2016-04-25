@@ -2,11 +2,6 @@
  * Created by akselreiten on 05/04/16.
  */
 
-/*
- * BarChart - Object constructor function
- * @param _parentElement 	-- the HTML element in which to draw the visualization
- * @param _data	-- the data
- */
 
 var regressionCountries = [];
 
@@ -22,10 +17,10 @@ BarChart = function(_parentElement,_data, _demographicData){
 BarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 60, bottom: 60, left: 60 };
+    vis.margin = { top: 40, right: 60, bottom: 60, left: 30 };
 
-    vis.width = $( document ).width()- vis.margin.left - vis.margin.right,
-    vis.height = 300 - vis.margin.top - vis.margin.bottom;
+    vis.width = $( document ).width()*0.90 - vis.margin.left - vis.margin.right,
+    vis.height = 250 - vis.margin.top - vis.margin.bottom;
 
 
     //  SVG drawing area

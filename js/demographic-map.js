@@ -47,7 +47,7 @@ WorldMap.prototype.initVis = function() {
         bottom: 0,
         left: 20
     };
-    vis.width = 1000 - vis.margin.left - vis.margin.right;
+    vis.width = $( document ).width() * 2/3.0 - vis.margin.left - vis.margin.right;
     vis.height = 550 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
