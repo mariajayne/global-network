@@ -97,3 +97,19 @@ body {
     line-height: 20px;
     color: white;
 }
+
+h2 {
+    font-size: 18px;
+    position: absolute;
+    left: 225px;
+    top: 160px;
+}
+
+#info {
+    font-size: 14px;
+    position: absolute;
+    left: 225px;
+    top: 200px;
+    width: 300px;
+}
+
