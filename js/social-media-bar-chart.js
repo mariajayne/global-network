@@ -2,16 +2,16 @@
  * Created by MagnusMoan on 11/04/16.
  */
 
-
+var transitionTime = 370;
 
 BarChart = function(_parentElement,_countryData, _platformData){
     this.parentElement = _parentElement;
     this.platformData = _platformData;
     this.countryData = _countryData;
 
-    this.current = "Facebook";
-    this.foo = "Country";
-    this.chosen = false;
+    this.current = "Germany";
+    this.foo = "Platform";
+    this.chosen = true;
 
     this.initVis();
 }
@@ -19,7 +19,7 @@ BarChart = function(_parentElement,_countryData, _platformData){
 BarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 40, right: 0, bottom: 100, left: 40 };
+    vis.margin = { top: -10, right: 0, bottom: 100, left: 40 };
 
     vis.width = screen.width/3 - vis.margin.left - vis.margin.right,
         vis.height = 350 - vis.margin.top - vis.margin.bottom;
@@ -59,7 +59,6 @@ BarChart.prototype.initVis = function(){
 
     vis.svg.append("g")
         .attr("class","x-axis axis")
-        .style("stroke", "white")
         .attr("transform","translate(0,"+vis.height+")");
 
     vis.svg.append("g")
@@ -86,10 +85,20 @@ BarChart.prototype.initVis = function(){
     vis.title = vis.svg.append("text")
         .attr("class", "title-label")
         .attr("text-anchor", "middle")
-        .attr("y", 0)
+        .attr("y", 20)
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)");
+
+    // Tooltip
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-5, 0])
+        .html(function(d) {
+            return "<span>" + d.Percent[vis.current] + "%</span>";
+        });
+
+    vis.svg.call(vis.tip);
 
 
     //  Init wrangleData
@@ -102,8 +111,16 @@ BarChart.prototype.initVis = function(){
 BarChart.prototype.wrangleData = function(){
     var vis = this;
 
-    //  Currently no data wrangling needed
-    //  Update the visualization
+    if (vis.chosen) {
+        vis.title.text("Largest social media plattforms in  ".concat(vis.current));
+        vis.displayData = vis.platformData.filter(function(d) {
+            return $.inArray(vis.current, Object.keys(d.Percent)) > -1;
+        });
+    } else {
+        vis.title.text("Percent of population using " + vis.current);
+        vis.displayData = vis.countryData;
+    }
+
     vis.updateVis();
 }
 
@@ -112,14 +129,6 @@ BarChart.prototype.wrangleData = function(){
 BarChart.prototype.updateVis = function(){
 
     var vis = this;
-
-    if (vis.chosen) {
-        //vis.title.text("Social media usage in ".concat(vis.current));
-        vis.displayData = vis.platformData;
-    } else {
-        vis.title.text("Percent of population using " + vis.current);
-        vis.displayData = vis.countryData;
-    }
 
     //  Update domain
     vis.x.domain(vis.displayData.map(function(d){return d[vis.foo]}));
@@ -146,7 +155,17 @@ BarChart.prototype.updateVis = function(){
         .attr("height",function(d){
             if (d.Percent[vis.current] != null) {
                 return vis.height - vis.y(d.Percent[vis.current]);
-            } return 0; });
+            } return 0; })
+        .on('mouseover', function(d) {
+
+            d3.selectAll(".bar").transition().duration(transitionTime).attr("opacity", 0.3);
+            d3.select(this).transition().duration(transitionTime).attr("opacity", 1);
+            vis.tip.show(d);
+        })
+        .on('mouseout', function() {
+            d3.selectAll(".bar").transition().duration(transitionTime).attr("opacity",1);
+            vis.tip.hide();
+        });
 
     rect.exit()
         .remove();
@@ -161,7 +180,6 @@ BarChart.prototype.updateVis = function(){
 
     //  Update y-label
     vis.svg.selectAll(".y-label")
-        //.text("Total Score")
         .style("font-size",8);
 
     // Draw grid lines
@@ -174,5 +192,4 @@ BarChart.prototype.updateVis = function(){
             .tickValues(vis.yTicks)
             .tickSize(-vis.width, 0,0)
             .tickFormat(""));
-
 }

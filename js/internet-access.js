@@ -7,8 +7,7 @@ var width, height, projection, path, graticule, svg, attributeArray = [],
   playing = false,
   currentYear = 0,
   countryInternetData,
-  percentage,
-  playing1 = false;
+  percentage;
 
 var tooltip = d3.select('body').append('div')
   .attr('class', 'hidden tooltip');

@@ -103,12 +103,12 @@
 "About":"Skype is an application that provides video chat and voice call services. Users may exchange such digital documents as images, text, video and any others, and may transmit both text and video messages.",
 "Users":[]},
 
-{"Platform":"Viber", "Msg":"true", "Symbol":"fa-viber", "Date":"12-02-2010",
+{"Platform":"Viber", "Msg":"true", "Symbol":"", "Date":"12-02-2010",
 "Current_size":249,
 "About":"Viber is an instant messaging and Voice over IP (VoIP) app for smartphones developed by Viber Media. In addition to instant messaging, users can exchange images, video and audio media messages.",
 "Users":[]},
 
-{"Platform":"Snapchat", "Msg":"true", "Symbol":"fa-snapchat", "Date":"09-01-2011",
+{"Platform":"Snapchat", "Msg":"true", "Symbol":"", "Date":"09-01-2011",
 "Current_size":200,
 "About":"Snapchat is an image messaging application software product created by Evan Spiegel, Bobby Murphy, and Reggie Brown when they were students at Stanford University. Snapchat is primarily used for creating multimedia messages referred to as \"snaps\"; snaps can consist of a photo or short video, and can be edited to include filters and effects, text captions, and drawings.",
 "Users":[]},

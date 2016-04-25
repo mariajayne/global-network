@@ -8,14 +8,16 @@ Timeline = function(_parentElement, _data,_metric){
     this.metric = _metric;
     this.displayData = this.data.years;
     this.initVis();
+
 }
+
 
 Timeline.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 0, right: 0, bottom: 30, left: 60};
-    vis.width = 800 - vis.margin.left - vis.margin.right;
-    vis.height = 100 - vis.margin.top - vis.margin.bottom;
+    vis.margin = {top:30,right:40,bottom:20,left:65}
+    vis.width = 370 - vis.margin.left - vis.margin.right;
+    vis.height = 120 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -27,11 +29,12 @@ Timeline.prototype.initVis = function(){
     // Scales and axes
     vis.x = d3.time.scale()
         .range([0, vis.width])
-        .domain(d3.extent(vis.displayData, function(d) { return d.year; }));
+        .domain(d3.extent(vis.displayData, function(d) {return d.year; }));
 
     vis.y = d3.scale.linear()
         .range([vis.height, 0])
-        .domain([0, d3.max(vis.displayData, function(d) { return d[vis.metric]; })]);
+        .domain([0, d3.max(vis.displayData, function(d) {
+            return d[vis.metric]; })]);
 
     vis.xAxis = d3.svg.axis()
         .scale(vis.x)
@@ -40,6 +43,7 @@ Timeline.prototype.initVis = function(){
     vis.yAxis = d3.svg.axis()
         .scale(vis.y)
         .orient("left")
+        .tickFormat(function(d){return formatYLabel(d, vis.metric)})
         .ticks(4);
 
     // SVG area path generator
@@ -85,6 +89,7 @@ Timeline.prototype.initVis = function(){
         .attr("class", "x-axis axis")
         .attr("transform", "translate(0," + 0 + ")")
         .call(vis.yAxis);
+
 
 }
 

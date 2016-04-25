@@ -5,26 +5,114 @@
 /* GENERAL */
 /***********/
 
-@font-face {
-    font-family: foxCat;
-    src: url(../fonts/Fox&Cat.ttf);
-}
-
 body {
-    text-align: center;
-    background-color : #222222;
-    fill : white;
-    opacity : .8;
-    font-family : foxCat;
-    font-size : 15px;
-    color : white;
+    background-color: #fbfbfb;
+    font-family: "Open Sans";
+    font-weight:300;
+    font-size:12px;
+    margin-top:10px;
+    padding-left:50px;
+    padding-right:50px;
+    padding-bottom:100px;
 }
 
-.container-fluid {
-    padding-right: 5px;
-    padding-left: 5px;
-    padding-top:5px;
-    padding-bottom:5px;
+.btn-container{
+    padding-top:60px;
+}
+
+#col1{
+    padding-left:10px;
+}
+
+.btn-filter {
+    position: relative;
+//display: block;
+    height: 25px;
+    width: 160px;
+    margin: 10px 7px;
+    padding: 5px;
+    font-weight: 70;
+    font-size: 7px;
+    letter-spacing: 2px;
+    color: #383736;
+    border: 1px #383736 solid;
+    border-radius: 3px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: .08s ease-in;
+    -o-transition: .08s ease-in;
+    -ms-transition: .08s ease-in;
+    -moz-transition: .08s ease-in;
+    -webkit-transition: .08s ease-in;
+}
+
+.btn-filter:hover {
+    color: #f5f5f5;
+}
+
+.btn-filter:hover:before {
+    top: 0;
+}
+
+.btn-filter:before {
+    content: "";
+    position: absolute;
+    background: #383736;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+}
+
+.btn-nav {
+    position: relative;
+//display: block;
+    height: 30px;
+    width: 110px;
+    margin: 10px 7px;
+    padding: 5px;
+    font-weight: 70;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #383736;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: .08s ease-in;
+    -o-transition: .08s ease-in;
+    -ms-transition: .08s ease-in;
+    -moz-transition: .08s ease-in;
+    -webkit-transition: .08s ease-in;
+}
+
+.btn-nav:hover {
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: navy;
+}
+
+.btn-nav:hover:before {
+    top: 0;
+}
+
+.btn-nav:before {
+    content: "";
+    position: absolute;
+    background: transparent;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
 }
 
 /***************/
@@ -36,13 +124,13 @@ body {
 }
 
 .axis-title {
-    fill: gray;
-    font-size: 12px;
+    font-size: 8px;
+    font-family:"Open Sans"
 }
 
 .axis path, line {
     fill: none;
-    stroke: #333;
+    stroke: none;
     shape-rendering: crispEdges;
 }
 
@@ -50,7 +138,7 @@ body {
     font-size: 12px;
 }
 
-.x-axis path {
+.x-axis path{
     display: none;
 }
 
@@ -66,11 +154,10 @@ body {
     font-size: 8px;
 }
 
-.title-label{
-    font-size: 12px;
-    font-weight:bold;
+.label{
+    font-size:10px;
+    color:black;
 }
-
 
 
 /***************/
@@ -123,7 +210,6 @@ body {
     font-size:10px;
 }
 
-
 /*********************/
 /*  TOOLTIP OVERLAY  */
 /*********************/
@@ -157,5 +243,19 @@ body {
 
 #tooltip-info {
     color: gray;
-    font-size: 10px;
+    font-size: 8px;
+}
+
+#playbutton {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  left: 50%;
+  /*margin: 220px 0 0 375px;*/
+  position: absolute;
+  cursor: pointer;
+}
+
+#slider {
+  margin-top: 25px;
 }

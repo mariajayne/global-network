@@ -7,38 +7,54 @@
     <title>A Multi-Dimensional View</title>
 
     <!-- Load Google Font -->
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
     <!-- CSS libraries -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/d3.slider.css" />
 
     <!-- Custom CSS code -->
-    <link rel="stylesheet" href="../css/style.css">
+
     <link rel="stylesheet" href="../css/style-countries.css">
 </head>
 <body>
 
 <div class="container-fluid">
 
+    <!-- Navbar -->
     <div class="row">
-        <div class="col-md-12 nav-container">
-            <nav class="fh5co-nav-style-2" role="navigation" data-offcanvass-position="fh5co-offcanvass-left">
-                <div class="container">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 fh5co-logo"></div>
-                    <div class="col-lg-6 col-md-5 col-sm-5 text-center fh5co-link-wrap">
-                        <ul data-offcanvass="yes">
-                            <li class="active"><a href="../dashboard/dashboard.html">Internet Usage</a></li>
-                            <li class="active"><a href="#">Demographics</a></li>
-                            <li class="active"><a href="../social-media/social-media.html">Social Medias</a></li>
-                            <li class="active"><a href="../process/process.html">Process Book</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+        <div class="col-md-3"></div>
+        <div class="col-md-1">
+            <a href="../FrontPage/frontpage.html">
+                <button class="btn-nav">Home</button>
+            </a>
         </div>
+        <div class="col-md-1">
+            <a href="../dashboard/dashboard.html">
+                <button class="btn-nav">Internet Usage</button>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="#">
+                <button class="btn-nav"><u>Demographics</u></button>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="../social-media/social-media.html">
+                <button class="btn-nav">Social Media</button>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a href="../process/process.html">
+                <button class="btn-nav">Process book</button>
+            </a>
+        </div>
+        <div class="col-md-3"></div>
     </div>
+    <hr>
 
     <div class="row">
         <div class="col-md-6">
@@ -51,18 +67,20 @@
                     <select class="form-control" id="data-select">
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="rankingType">Select Year</label>
-                    <select class="form-control" id="year-select">
-                    </select>
-                </div>
             </form>
-
+            <br>
+            <div id="clock"></div>
+            <div id="slider"></div>
             <div id="tree-map"></div>
             <div id="tooltip" class="hidden">
                 <p id="heading"></p>
                 <p id="moreInfo"></p>
             </div>
+        </div>
+        <div class="col-md-6">
+            <br><br><br>
+            <h2>Analyzing Area</h2>
+            <p id="info">This treemap visualization gives a clear comparison of different demographic metrics of different countries. Simply select a metric to view, and slide to select your year to explore how these change over time. To discover specifics, just hover over a rectangle. This visualization allows us to represent the data for each country without the lie factor involved in geographic maps. How do these metrics interrelate? How do they change over time? We can’t wait to see what you learn from it.</p>
         </div>
     </div>
 
@@ -72,10 +90,8 @@
 <script src="../js/jquery.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/d3.min.js"></script>
-<script src="../js/queue.js"></script>
-<script src="../js/topojson.min.js"></script>
-<script src="../js/d3.geo.zoom.js"></script>
 <script src="../js/d3.tip.js"></script>
+<script src="../js/d3.slider.js"></script>
 
 <script src="../js/treeMap.js"></script>
 

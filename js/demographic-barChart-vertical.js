@@ -3,24 +3,22 @@
  */
 
 
-VerticalBarChart = function(_parentElement,_data){
+VerticalBarChart = function(_parentElement,_data,_demographicData){
     this.parentElement = _parentElement;
     this.data = _data;
+    this.demographicData = _demographicData;
     this.displayData = [];
-
     this.initVis();
 }
 
 VerticalBarChart.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 60, bottom: 60, left: 100 };
-
+    vis.margin = { top: 10, right: 60, bottom: 60, left: 85 };
 
     //  $(document).width()
     vis.width = 300- vis.margin.left - vis.margin.right;
-    vis.height = 670 - vis.margin.top - vis.margin.bottom;
-
+    vis.height = 600 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
@@ -35,11 +33,7 @@ VerticalBarChart.prototype.initVis = function(){
 
     vis.y = d3.scale.ordinal()
         .range(vis.height,0)
-        .rangeRoundBands([0,vis.height],.2);
-
-    vis.colorScale = {"Free" : 'white',"Partly Free" : '#bdbdbd',"Not Free" : '#636363'};
-    // The colorful: vis.colorScale = {"Free" : '#4daf4a',"Partly Free" : '#377eb8',"Not Free" : '#e41a1c'}
-    //vis.colorScale = d3.scale.category10().domain(vis.data.map(function(d){return d.Status}));
+        .rangeRoundBands([0,vis.height],.1);
 
     //  Axis
     vis.xAxis = d3.svg.axis()
@@ -59,30 +53,35 @@ VerticalBarChart.prototype.initVis = function(){
 
     //  Tooltip placeholder
     vis.tooltip = vis.svg.append("g")
-        .attr("transform","translate(100,30)")
+        .attr("transform","translate(40,40)")
         .append("text")
         .attr("class","t1")
         .attr("dx",8)
         .attr("dy","-.3em");
 
-    //  Append y-label
-    vis.svg.append("text")
-        .attr("class", "y-label")
-        .attr("text-anchor", "end")
-        .attr("y", -10)
-        .attr("x", 0)
-        .attr("dy", ".01em")
-        .attr("transform", "rotate(0)")
-
     //  Append title
     vis.svg.append("text")
-        .attr("class", "title-label")
+        .attr("class", "label")
         .attr("text-anchor", "middle")
-        .attr("y", -10)
+        .attr("y", 10)
         .attr("x", vis.width/2 -20)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Degree of National Surveillance and Censorship (% 2014)");
+        .text("Internet usage vs Degree of National Censorship (% 2014)")
+        .style("fill","black");
+
+    //  Appending line
+    vis.line = d3.svg.line()
+        .x(function(d){return vis.x(d.x)})
+        .y(function(d){return vis.y(d.y)});
+
+    //	Tooltip
+    vis.tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([0,0])
+        .html(function(d){return d.country + "<br><small>Internet usage 2014: " + d.internet2014 + "%</small>";});
+
+    vis.xLabel = vis.svg.selectAll(".text");
 
     //  Init wrangleData
     vis.wrangleData();
@@ -94,8 +93,6 @@ VerticalBarChart.prototype.initVis = function(){
 VerticalBarChart.prototype.wrangleData = function(){
     var vis = this;
 
-    //  Currently no data wrangling needed
-    //  Update vis
     vis.updateVis();
 }
 
@@ -115,6 +112,8 @@ VerticalBarChart.prototype.updateVis = function(){
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
     vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.call(vis.tip);
+
 
     //  Create rectangles
     var rect = vis.svg.selectAll("rect")
@@ -123,12 +122,12 @@ VerticalBarChart.prototype.updateVis = function(){
     rect.enter()
         .append("rect")
         .attr("class","bar")
-        .attr("id",function(d){return "bar-" + d.Country})
+        .attr("id",function(d){return "bar-" + countryMapping[d.Country]})
         .attr("x", 0)
         .attr("y", function(d){return vis.y(d.Country)})
         .attr("width", function(d){return vis.x(d.Total_score);})
         .attr("height",vis.y.rangeBand())
-        .style("fill",function(d){return vis.colorScale[d.Status]});
+        .style("fill",function(d){return colorScaleCencorship[d.Status]});
 
     rect.on("mouseover",function(d){vis.tooltip.text(d.Country + ": " + d.Total_score)})
         .on("mouseout",function(d){vis.tooltip.text("")});
@@ -137,18 +136,50 @@ VerticalBarChart.prototype.updateVis = function(){
         .transition()
         .remove();
 
+
+    var dots = vis.svg.selectAll("dot")
+        .data(vis.demographicData)
+        .enter();
+
+    dots.append("circle")
+        .attr("class","dot")
+        .attr("r",2.5)
+        .attr("cx", function(d){return vis.x(d.internet2014)})
+        .attr("cy", function(d){return vis.y(d.country) + 3})
+        .style("fill","black")
+        .on('mouseover',vis.tip.show)
+        .on('mouseout',vis.tip.hide);
+
+    /*
+    dots.append("text")
+        .attr("x", function(d){return vis.x(d.internet2014) + 10})
+        .attr("y", function(d){return vis.y(d.country) + 5})
+        .text(function(d){return d.country})
+        .style("fill","black");*/
+
     //  Update label positioning
     vis.svg.selectAll(".x-axis text")
-        .attr("y",0)
-        .attr("x",0)
+        .attr("y",-20)
+        .attr("x",3)
         .attr("dy",".35em")
         .attr("transform","rotate(0)")
         .style("text-anchor","end");
+
 
     /*  Update y-label
     vis.svg.selectAll(".y-label")
         .text("Total Score")
         .style("font-size",8); */
+
+    //  x - label
+    vis.svg.append("text")
+        .attr("text-anchor", "end")
+        .attr("y", vis.height - 16)
+        .attr("x", vis.width + 19)
+        .attr("dy", ".01em")
+        .attr("transform", "rotate(0)")
+        .style("font-size","10px")
+        .text("(%)");
 
 
 }

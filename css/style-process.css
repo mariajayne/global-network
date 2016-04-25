@@ -1,1 +1,121 @@
 /* style-process.css contains settings only valid for process.html */
+body {
+    background-color: #fbfbfb;
+    font-family: "Open Sans";
+    margin-top:10px;
+    padding-left:0px;
+    padding-right:0px;
+    color: #383736;
+}
+
+.btn-nav {
+    position: relative;
+//display: block;
+    height: 30px;
+    width: 110px;
+    margin: 10px 7px;
+    padding: 5px;
+    font-weight: 70;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: #383736;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: .08s ease-in;
+    -o-transition: .08s ease-in;
+    -ms-transition: .08s ease-in;
+    -moz-transition: .08s ease-in;
+    -webkit-transition: .08s ease-in;
+}
+
+.btn-nav:hover {
+    -webkit-text-stroke-width: 0.7px;
+    -webkit-text-stroke-color: navy;
+}
+
+.btn-nav:hover:before {
+    top: 0;
+}
+
+.btn-nav:before {
+    content: "";
+    position: absolute;
+    background: transparent;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+}
+
+ul.nav-tabs {
+    width: 240px;
+    margin-top: 20px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+}
+
+ul.nav-tabs li {
+    margin: 0;
+    border-top: 1px solid #ddd;
+}
+
+ul.nav-tabs li:first-child {
+    border-top: none;
+}
+
+ul.nav-tabs li a {
+    color: #383736;
+    margin: 0;
+    padding: 8px 16px;
+    border-radius: 0;
+}
+
+ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+    color: black;
+
+    border: 1px solid #0099FF;
+}
+
+ul.nav-tabs li:first-child a {
+    border-radius: 4px 4px 0 0;
+}
+
+ul.nav-tabs li:last-child a {
+    border-radius: 0 0 4px 4px;
+}
+
+ul.nav-tabs.affix {
+    top: 75px; /* Set the top position of pinned element */
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+img {
+    width: 500px;
+    height: 360px;
+}
+
+.center {
+    text-align: center;
+}
