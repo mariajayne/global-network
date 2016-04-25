@@ -99,29 +99,19 @@ WorldMap.prototype.initVis = function() {
             height: "8",
             fill: "lightgray"
         });
-    // setup right sizing
-    resize(vis.width, vis.height, vis.margin.left, vis.margin.right);
 
-    // respond to change of window size
-    d3.select(window).on('resize',
-            resize(vis.width, vis.height, vis.margin.left, vis.margin.right));
+    // position clock and button based on screen size
+    document.getElementById('clock').setAttribute("style",
+                                        "margin-left:" + vis.width / 2 + "px");
+    document.getElementById('playbutton').setAttribute("style",
+                                        "margin-left:" + vis.width * 0.43 +
+                                        "px; " + "margin-top:" +
+                                        vis.height * 0.4 + "px");
 
     vis.processData();
     vis.sequenceMap();
     vis.animateMap();
     vis.mapSlider();
-}
-
-
-
-function resize(width, height, leftMargin, rightMargin) {
-    width = $( document ).width() * 2/3.0;
-    document.getElementById('clock').setAttribute("style",
-                                        "margin-left:" + width / 2 + "px");
-    document.getElementById('playbutton').setAttribute("style",
-                                        "margin-left:" + width * 0.43 +
-                                        "px; " + "margin-top:" +
-                                        height * 0.4 + "px");
 }
 
 WorldMap.prototype.processData = function() {
