@@ -16,8 +16,8 @@ loadData();
 function loadData() {
 
     queue()
-        .defer(d3.json, "../data/demographics/world-topo.json")
-        .defer(d3.json, "../data/nodeMap/Test.json")
+        .defer(d3.json, "data/demographics/world-topo.json")
+        .defer(d3.json, "data/nodeMap/Test.json")
         .await(processData);
 
 }
@@ -41,4 +41,3 @@ function createVis() {
 
     worldMap = new WorldMap("map",map,demographicData, globalNumberOfUsers);
 }
-
