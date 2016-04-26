@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Social Media</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/flag-icon-css/css/flag-icon.min.css">
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-social-media.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+        <div class="row row-centered headline" id="social-media-navbar">
+            <div class="col-md-1 col-centered"><a href="../FrontPage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../dashboard/dashboard.html"><button class="btn-nav">Internet Usage</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
+            <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Social Media</u></button></a></div>
+            <div class="col-md-1 col-centered"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
+        </div>
+    <hr id="nav-line">
+
+    <p id="helpText">To learn more about a specific social media, hover over a circle on the timeline</p>
+    <div id="redLegend" class="legend">- Number of users of Social Network</div>
+    <div id="blueLegend" class="legend">- Number of users of Chat Application</div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12" id="social-media-col">
+
+            <div id="social-media-timeline"></div>
+
+        </div>
+    </div>
+
+   <div class="row" style="position:relative;">
+
+            <div id="platformInformationText">
+                <h3 id="platformName">Social media and internet usage</h3>
+                <p id="platformDate"></p>
+                <p id="platformUsers"></p>
+                <p id="platformAbout">Test</p>
+            </div>
+
+            <div id="social-media-bar-chart"></div>
+
+            <table id="flagTable">
+                <tr>
+                    <td><span id="Argentina" class="flag-icon flag-icon-ar"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Australia" class="flag-icon flag-icon-au"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="China" class="flag-icon flag-icon-cn"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="India" class="flag-icon flag-icon-in"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="USA" class="flag-icon flag-icon-um"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Mexico" class="flag-icon flag-icon-mx"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Brazil" class="flag-icon flag-icon-br"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="South Africa" class="flag-icon flag-icon-za"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Russia" class="flag-icon flag-icon-ru"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Germany" class="flag-icon flag-icon-de"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="United Kingdom" class="flag-icon flag-icon-gb"></span></td>
+                    <td></td>
+                </tr>
+            </table>
+    </div>
+
+</div>
+
+<!-- Load JS libraries -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/queue.v1.min.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/d3.tip.js"></script>
+
+
+<!-- Visualization objects -->
+<script src="../js/social-media-timeline.js"></script>
+<script src="../js/social-media-bar-chart.js"></script>
+
+<!-- Load data, create visualizations -->
+<script src="../js/social-media.js"></script>
+
+</body>
+</html>

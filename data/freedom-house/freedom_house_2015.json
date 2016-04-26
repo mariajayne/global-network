@@ -1,0 +1,522 @@
+[
+  {
+    "Country": "Angola",
+    "Status": "Partly Free",
+    "Total_score": 39,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 17
+  },
+  {
+    "Country": "Argentina",
+    "Status": "Free",
+    "Total_score": 27,
+    "Obstacle_to_access": 7,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 12
+  },
+  {
+    "Country": "Armenia",
+    "Status": "Free",
+    "Total_score": 28,
+    "Obstacle_to_access": 6,
+    "Limits_on_content": 10,
+    "Violations_of_user_rights": 12
+  },
+  {
+    "Country": "Australia",
+    "Status": "Free",
+    "Total_score": 19,
+    "Obstacle_to_access": 2,
+    "Limits_on_content": 5,
+    "Violations_of_user_rights": 12
+  },
+  {
+    "Country": "Azerbaijan",
+    "Status": "Partly Free",
+    "Total_score": 56,
+    "Obstacle_to_access": 13,
+    "Limits_on_content": 19,
+    "Violations_of_user_rights": 24
+  },
+  {
+    "Country": "Bahrain",
+    "Status": "Not Free",
+    "Total_score": 72,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 27,
+    "Violations_of_user_rights": 34
+  },
+  {
+    "Country": "Bangladesh",
+    "Status": "Partly Free",
+    "Total_score": 51,
+    "Obstacle_to_access": 12,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 27
+  },
+  {
+    "Country": "Belarus",
+    "Status": "Not Free",
+    "Total_score": 64,
+    "Obstacle_to_access": 15,
+    "Limits_on_content": 21,
+    "Violations_of_user_rights": 28
+  },
+  {
+    "Country": "Brazil",
+    "Status": "Free",
+    "Total_score": 29,
+    "Obstacle_to_access": 7,
+    "Limits_on_content": 6,
+    "Violations_of_user_rights": 16
+  },
+  {
+    "Country": "Cambodia",
+    "Status": "Partly Free",
+    "Total_score": 48,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 15,
+    "Violations_of_user_rights": 19
+  },
+  {
+    "Country": "Canada",
+    "Status": "Free",
+    "Total_score": 16,
+    "Obstacle_to_access": 3,
+    "Limits_on_content": 4,
+    "Violations_of_user_rights": 9
+  },
+  {
+    "Country": "China",
+    "Status": "Not Free",
+    "Total_score": 88,
+    "Obstacle_to_access": 18,
+    "Limits_on_content": 30,
+    "Violations_of_user_rights": 40
+  },
+  {
+    "Country": "Colombia",
+    "Status": "Partly Free",
+    "Total_score": 32,
+    "Obstacle_to_access": 8,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 16
+  },
+  {
+    "Country": "Cuba",
+    "Status": "Not Free",
+    "Total_score": 81,
+    "Obstacle_to_access": 22,
+    "Limits_on_content": 27,
+    "Violations_of_user_rights": 32
+  },
+  {
+    "Country": "Ecuador",
+    "Status": "Partly Free",
+    "Total_score": 37,
+    "Obstacle_to_access": 8,
+    "Limits_on_content": 11,
+    "Violations_of_user_rights": 18
+  },
+  {
+    "Country": "Egypt",
+    "Status": "Not Free",
+    "Total_score": 61,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 13,
+    "Violations_of_user_rights": 34
+  },
+  {
+    "Country": "Estonia",
+    "Status": "Free",
+    "Total_score": 7,
+    "Obstacle_to_access": 1,
+    "Limits_on_content": 3,
+    "Violations_of_user_rights": 3
+  },
+  {
+    "Country": "Ethiopia",
+    "Status": "Not Free",
+    "Total_score": 82,
+    "Obstacle_to_access": 23,
+    "Limits_on_content": 28,
+    "Violations_of_user_rights": 31
+  },
+  {
+    "Country": "France",
+    "Status": "Free",
+    "Total_score": 24,
+    "Obstacle_to_access": 3,
+    "Limits_on_content": 6,
+    "Violations_of_user_rights": 15
+  },
+  {
+    "Country": "Gambia, The",
+    "Status": "Not Free",
+    "Total_score": 65,
+    "Obstacle_to_access": 18,
+    "Limits_on_content": 21,
+    "Violations_of_user_rights": 26
+  },
+  {
+    "Country": "Georgia",
+    "Status": "Free",
+    "Total_score": 24,
+    "Obstacle_to_access": 7,
+    "Limits_on_content": 6,
+    "Violations_of_user_rights": 11
+  },
+  {
+    "Country": "Germany",
+    "Status": "Free",
+    "Total_score": 18,
+    "Obstacle_to_access": 4,
+    "Limits_on_content": 5,
+    "Violations_of_user_rights": 9
+  },
+  {
+    "Country": "Hungary",
+    "Status": "Free",
+    "Total_score": 24,
+    "Obstacle_to_access": 4,
+    "Limits_on_content": 9,
+    "Violations_of_user_rights": 11
+  },
+  {
+    "Country": "Iceland",
+    "Status": "Free",
+    "Total_score": 6,
+    "Obstacle_to_access": 1,
+    "Limits_on_content": 1,
+    "Violations_of_user_rights": 4
+  },
+  {
+    "Country": "India",
+    "Status": "Partly Free",
+    "Total_score": 40,
+    "Obstacle_to_access": 12,
+    "Limits_on_content": 10,
+    "Violations_of_user_rights": 18
+  },
+  {
+    "Country": "Indonesia",
+    "Status": "Partly Free",
+    "Total_score": 42,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 19
+  },
+  {
+    "Country": "Iran",
+    "Status": "Not Free",
+    "Total_score": 87,
+    "Obstacle_to_access": 20,
+    "Limits_on_content": 31,
+    "Violations_of_user_rights": 36
+  },
+  {
+    "Country": "Italy",
+    "Status": "Free",
+    "Total_score": 23,
+    "Obstacle_to_access": 4,
+    "Limits_on_content": 6,
+    "Violations_of_user_rights": 13
+  },
+  {
+    "Country": "Japan",
+    "Status": "Free",
+    "Total_score": 22,
+    "Obstacle_to_access": 4,
+    "Limits_on_content": 7,
+    "Violations_of_user_rights": 11
+  },
+  {
+    "Country": "Jordan",
+    "Status": "Partly Free",
+    "Total_score": 50,
+    "Obstacle_to_access": 12,
+    "Limits_on_content": 16,
+    "Violations_of_user_rights": 22
+  },
+  {
+    "Country": "Kazakhstan",
+    "Status": "Not Free",
+    "Total_score": 61,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 23,
+    "Violations_of_user_rights": 24
+  },
+  {
+    "Country": "Kenya",
+    "Status": "Free",
+    "Total_score": 29,
+    "Obstacle_to_access": 9,
+    "Limits_on_content": 7,
+    "Violations_of_user_rights": 13
+  },
+  {
+    "Country": "Kyrgyzstan",
+    "Status": "Partly Free",
+    "Total_score": 35,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 16
+  },
+  {
+    "Country": "Lebanon",
+    "Status": "Partly Free",
+    "Total_score": 45,
+    "Obstacle_to_access": 13,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 20
+  },
+  {
+    "Country": "Libya",
+    "Status": "Partly Free",
+    "Total_score": 54,
+    "Obstacle_to_access": 20,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 22
+  },
+  {
+    "Country": "Malawi",
+    "Status": "Partly Free",
+    "Total_score": 40,
+    "Obstacle_to_access": 15,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 13
+  },
+  {
+    "Country": "Malaysia",
+    "Status": "Partly Free",
+    "Total_score": 43,
+    "Obstacle_to_access": 8,
+    "Limits_on_content": 14,
+    "Violations_of_user_rights": 21
+  },
+  {
+    "Country": "Mexico",
+    "Status": "Partly Free",
+    "Total_score": 39,
+    "Obstacle_to_access": 9,
+    "Limits_on_content": 10,
+    "Violations_of_user_rights": 20
+  },
+  {
+    "Country": "Morocco",
+    "Status": "Partly Free",
+    "Total_score": 43,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 9,
+    "Violations_of_user_rights": 23
+  },
+  {
+    "Country": "Myanmar",
+    "Status": "Not Free",
+    "Total_score": 63,
+    "Obstacle_to_access": 18,
+    "Limits_on_content": 17,
+    "Violations_of_user_rights": 28
+  },
+  {
+    "Country": "Nigeria",
+    "Status": "Partly Free",
+    "Total_score": 33,
+    "Obstacle_to_access": 10,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 15
+  },
+  {
+    "Country": "Pakistan",
+    "Status": "Not Free",
+    "Total_score": 69,
+    "Obstacle_to_access": 20,
+    "Limits_on_content": 20,
+    "Violations_of_user_rights": 29
+  },
+  {
+    "Country": "Philippines",
+    "Status": "Free",
+    "Total_score": 27,
+    "Obstacle_to_access": 10,
+    "Limits_on_content": 5,
+    "Violations_of_user_rights": 12
+  },
+  {
+    "Country": "Russia",
+    "Status": "Not Free",
+    "Total_score": 62,
+    "Obstacle_to_access": 10,
+    "Limits_on_content": 23,
+    "Violations_of_user_rights": 29
+  },
+  {
+    "Country": "Rwanda",
+    "Status": "Partly Free",
+    "Total_score": 50,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 20,
+    "Violations_of_user_rights": 19
+  },
+  {
+    "Country": "Saudi Arabia",
+    "Status": "Not Free",
+    "Total_score": 73,
+    "Obstacle_to_access": 15,
+    "Limits_on_content": 24,
+    "Violations_of_user_rights": 34
+  },
+  {
+    "Country": "Singapore",
+    "Status": "Partly Free",
+    "Total_score": 41,
+    "Obstacle_to_access": 6,
+    "Limits_on_content": 14,
+    "Violations_of_user_rights": 21
+  },
+  {
+    "Country": "South Africa",
+    "Status": "Free",
+    "Total_score": 27,
+    "Obstacle_to_access": 8,
+    "Limits_on_content": 7,
+    "Violations_of_user_rights": 11
+  },
+  {
+    "Country": "South Korea",
+    "Status": "Partly Free",
+    "Total_score": 34,
+    "Obstacle_to_access": 3,
+    "Limits_on_content": 14,
+    "Violations_of_user_rights": 17
+  },
+  {
+    "Country": "Sri Lanka",
+    "Status": "Partly Free",
+    "Total_score": 47,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 13,
+    "Violations_of_user_rights": 20
+  },
+  {
+    "Country": "Sudan",
+    "Status": "Not Free",
+    "Total_score": 65,
+    "Obstacle_to_access": 18,
+    "Limits_on_content": 19,
+    "Violations_of_user_rights": 28
+  },
+  {
+    "Country": "Syria",
+    "Status": "Not Free",
+    "Total_score": 87,
+    "Obstacle_to_access": 24,
+    "Limits_on_content": 26,
+    "Violations_of_user_rights": 37
+  },
+  {
+    "Country": "Thailand",
+    "Status": "Not Free",
+    "Total_score": 63,
+    "Obstacle_to_access": 9,
+    "Limits_on_content": 22,
+    "Violations_of_user_rights": 32
+  },
+  {
+    "Country": "Tunisia",
+    "Status": "Partly Free",
+    "Total_score": 38,
+    "Obstacle_to_access": 10,
+    "Limits_on_content": 8,
+    "Violations_of_user_rights": 20
+  },
+  {
+    "Country": "Turkey",
+    "Status": "Partly Free",
+    "Total_score": 58,
+    "Obstacle_to_access": 13,
+    "Limits_on_content": 20,
+    "Violations_of_user_rights": 25
+  },
+  {
+    "Country": "Uganda",
+    "Status": "Partly Free",
+    "Total_score": 36,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 7,
+    "Violations_of_user_rights": 18
+  },
+  {
+    "Country": "Ukraine",
+    "Status": "Partly Free",
+    "Total_score": 37,
+    "Obstacle_to_access": 8,
+    "Limits_on_content": 10,
+    "Violations_of_user_rights": 19
+  },
+  {
+    "Country": "United Arab Emirates",
+    "Status": "Not Free",
+    "Total_score": 68,
+    "Obstacle_to_access": 14,
+    "Limits_on_content": 22,
+    "Violations_of_user_rights": 32
+  },
+  {
+    "Country": "United Kingdom",
+    "Status": "Free",
+    "Total_score": 24,
+    "Obstacle_to_access": 2,
+    "Limits_on_content": 6,
+    "Violations_of_user_rights": 16
+  },
+  {
+    "Country": "United States",
+    "Status": "Free",
+    "Total_score": 19,
+    "Obstacle_to_access": 3,
+    "Limits_on_content": 2,
+    "Violations_of_user_rights": 14
+  },
+  {
+    "Country": "Uzbekistan",
+    "Status": "Not Free",
+    "Total_score": 78,
+    "Obstacle_to_access": 19,
+    "Limits_on_content": 28,
+    "Violations_of_user_rights": 31
+  },
+  {
+    "Country": "Venezuela",
+    "Status": "Partly Free",
+    "Total_score": 57,
+    "Obstacle_to_access": 17,
+    "Limits_on_content": 18,
+    "Violations_of_user_rights": 22
+  },
+  {
+    "Country": "Vietnam",
+    "Status": "Not Free",
+    "Total_score": 76,
+    "Obstacle_to_access": 13,
+    "Limits_on_content": 29,
+    "Violations_of_user_rights": 34
+  },
+  {
+    "Country": "Zambia",
+    "Status": "Partly Free",
+    "Total_score": 40,
+    "Obstacle_to_access": 11,
+    "Limits_on_content": 12,
+    "Violations_of_user_rights": 17
+  },
+  {
+    "Country": "Zimbabwe",
+    "Status": "Partly Free",
+    "Total_score": 56,
+    "Obstacle_to_access": 15,
+    "Limits_on_content": 16,
+    "Violations_of_user_rights": 25
+  }
+]

@@ -1,0 +1,221 @@
+{"Platform":
+[{"Platform":"Twitter", "Msg":"false",
+"Symbol":"fa-twitter", "Date":"07-15-2006", "Current_size":305,
+"About": "Twitter is an online social networking service that enables users to send and read short 140-character messages called \"tweets\"",
+"Users": [{"2010":54},
+          {"2011":117},
+          {"2012":185},
+          {"2013":231.7},
+          {"2014":288},
+          {"2015":305}]},
+
+{"Platform":"Line", "Msg":"true",
+"Symbol":"", "Date":"03-01-2011", "Current_size":212,
+"About":"Line is a proprietary application for instant communications on electronic devices such as smartphones, tablet computers and personal computers. Line users exchange texts, images, video and audio, and conduct free VoIP conversations and video conferences.",
+"Users":[]},
+
+{"Platform":"WhatsApp", "Msg":"true",
+"Symbol":"fa-whatsapp", "Date":"01-01-2010", "Current_size":900,
+"About":"WhatsApp Messenger is an American proprietary cross-platform instant messaging client for smartphones. It uses the Internet to send text messages, documents, images, video, user location and audio media messages to other users using standard cellular mobile numbers.",
+"Users": [{"2013": 400}, {"2014": 650}, {"2015": 900}]},
+
+{"Platform":"QQ", "Msg":"true", 
+"Symbol":"fa-qq", "Date":"02-01-1999", "Current_size": 820,
+"About":"Tencent QQ, popularly known as QQ, is an instant messaging software service developed by Chinese company Tencent Holdings Limited. QQ also offers a variety of services, including online social games, music, shopping, microblogging, movies, platform of games and group and voice chat.",
+"Users": [{"2010":647.6},
+          {"2011":721},
+          {"2012":798},
+          {"2013":808},
+          {"2014":815},
+          {"2015":820}]},
+
+{"Platform":"Facebook", "Msg":"false", "Symbol":"fa-facebook-square", "Date":"03-01-2004", 
+"Current_size":1591,
+"About":"Facebook is a corporation and online social networking service headquartered in Menlo Park, California, in the United States. Its website was launched on February 4, 2004, by Mark Zuckerberg with his Harvard College roommates and fellow students Eduardo Saverin, Andrew McCollum, Dustin Moskovitz and Chris Hughes.",
+"Users": [{"2004":1},
+        {"2005":6},
+        {"2006":12},
+        {"2007":58},
+        {"2008":145},
+        {"2009":360},
+        {"2010":608},
+        {"2011":845},
+        {"2012":1056},
+        {"2013":1230},
+        {"2014":1393},
+        {"2015":1591}]},
+
+{"Platform":"LinkedIn", "Msg":"false", 
+"Symbol":"fa-linkedin", "Date":"05-01-2003", "Current_size":100,
+"About":"LinkedIn is a business-oriented social networking service. Founded in December 14, 2002 and launched on May 5, 2003, it is mainly used for professional networking.",
+"Users": []},
+
+{"Platform":"QZone", "Msg":"false", "Symbol":"fa-qq", "Date":"01-01-2005", "Current_size":653,
+"About":"Qzone is a social networking website, which was created by Tencent in 2005. It allows users to write blogs, keep diaries, send photos, listen to music, and watch videos. It's only available in China.",
+"Users":[]},
+
+{"Platform":"Tumblr", "Msg":"false", "Symbol":"fa-tumblr", "Date":"02-19-2007", "Current_size":555,
+"About":"Tumblr is a microblogging platform and social networking website founded by David Karp in 2007, and owned by Yahoo! since 2013. The service allows users to post multimedia and other content to a short-form blog.",
+"Users":[]},
+
+{"Platform":"Instagram", "Msg":"false", "Symbol":"fa-instagram", "Date":"10-06-2010", "Current_size":400,
+"About":"Instagram is an online mobile photo-sharing, video-sharing, and social networking service that enables its users to take pictures and videos, and share them either publicly or privately on the app, as well as through a variety of other social networking platforms, such as Facebook, Twitter, Tumblr, and Flickr.",
+"Users":[{"2010":1},
+         {"2011":14},
+         {"2012":80},
+         {"2013":150},
+         {"2014":300},
+         {"2015":400}]},
+
+{"Platform":"Baidu Tieba", "Msg":"false", "Symbol": "", "Date":"12-03-2003", "Current_size":300,
+"About":"Baidu Tieba is the largest Chinese communication platform provided by the Chinese search engine company, Baidu. The website functions by having users search or create a forum by typing a keyword, and if the bar has not been created before, it is then created upon the search.",
+"Users":[]}, 
+
+{"Platform":"Sina Weibo", "Msg":"false", "Symbol":"fa-weibo", "Date":"08-14-2009", "Current_size":222,
+"About":"Sina Weibo is a Chinese microblogging website. Akin to a hybrid of Twitter and Facebook, it is one of the most popular sites in China.",
+"Users":[]},
+
+{"Platform":"yy", "Msg":"false", "Symbol":"", "Date":"01-01-2005", "Current_size":122,
+"About":"YY is a Chinese video-based social network. It features a virtual currency which users can earn through activities such as karaoke or creating tutorial videos, then convert to real cash.",
+"Users":[]},
+
+{"Platform":"VKontakte", "Msg":"false", 
+"Symbol":"fa-vk", "Date":"10-10-2006", "Current_size":100,
+"About":"VK (originally VKontakte) is the largest European online social networking service. It is based in St. Petersburg. It is available in several languages, but is especially popular among Russian-speaking users. Like other social networks, VK allows users to message each other publicly or privately, to create groups, public pages and events, share and tag images, audio and video, and to play browser-based games.",
+"Users":[]},
+
+{"Platform":"Pinterest", "Msg":"false", "Symbol":"fa-pinterest", "Date":"03-01-2010", "Current_size":100,
+"About":"Pinterest is a web and mobile application company that operates a photo sharing website. Pinterest CEO Ben Silbermann summarized the company as a \"catalog of ideas,\" rather than as a social network, that inspires users to \"go out and do that thing.\"",
+"Users":[]},
+
+{"Platform":"Facebook Messenger", "Msg":"true", "Symbol":"fa-facebook", "Date":"08-09-2011", 
+"Current_size":800,
+"About":"Facebook Messenger is an instant messaging service and software application which provides text and voice communication. Integrated with Facebook's web-based Chat feature Messenger lets Facebook users chat with friends both on mobile and on the main website.",
+"Users":[]},
+
+{"Platform":"WeChat", "Msg":"true", "Symbol":"fa-wechat", "Date":"01-21-2011", 
+"Current_size":650,
+"About":"WeChat is a mobile text and voice messaging communication service developed by Tencent in China",
+"Users":[]},
+
+{"Platform":"Skype", "Msg":"true", "Symbol":"fa-skype", "Date":"08-29-2003",
+"Current_size":300,
+"About":"Skype is an application that provides video chat and voice call services. Users may exchange such digital documents as images, text, video and any others, and may transmit both text and video messages.",
+"Users":[]},
+
+{"Platform":"Viber", "Msg":"true", "Symbol":"", "Date":"12-02-2010",
+"Current_size":249,
+"About":"Viber is an instant messaging and Voice over IP (VoIP) app for smartphones developed by Viber Media. In addition to instant messaging, users can exchange images, video and audio media messages.",
+"Users":[]},
+
+{"Platform":"Snapchat", "Msg":"true", "Symbol":"", "Date":"09-01-2011",
+"Current_size":200,
+"About":"Snapchat is an image messaging application software product created by Evan Spiegel, Bobby Murphy, and Reggie Brown when they were students at Stanford University. Snapchat is primarily used for creating multimedia messages referred to as \"snaps\"; snaps can consist of a photo or short video, and can be edited to include filters and effects, text captions, and drawings.",
+"Users":[]},
+
+{"Platform":"BlackBerry Messenger", "Msg":"true", 
+"Symbol":"", "Date":"08-01-2005",
+"Current_size":100,
+"About":"BlackBerry Messenger, also known as BBM, is a proprietary Internet-based instant messenger and videotelephony application included on BlackBerry devices that allows messaging and voice calls between BlackBerry, iOS, Windows Phone and Android users.",
+"Users":[]}],
+
+
+"Country":
+
+[{"Country":"Argentina", "Percent":{"Facebook":42,"WhatsApp":3,"Facebook Messenger":29,"Twitter":12,
+"Instagram":12,"Twitter":18,"Skype":13,"LinkedIn":10,"Pinterest":8}},
+
+{"Country":"Australia", "Percent":{"Facebook":41,"Facebook Messenger":26,"Skype":13,"LinkedIn":11,
+"Twitter":10,"WhatsApp":10,"Instagram":10,"Pinterest":9,"Tumblr":6}},
+
+{"Country":"China", "Percent":{"WeChat":24,"QZone":21,"Sina Weibo":16,"Baidu Tieba":14,"Facebook":5,
+"Facebook Messenger":4}},
+
+{"Country":"India", "Percent":{"Facebook":13,"WhatsApp":12,"Facebook Messenger":11,"Skype":10,
+"Twitter":8,"LinkedIn":7,"Instagram":7,"WeChat":6}},
+
+{"Country":"USA", "Percent":{"Facebook":41,"Facebook Messenger":26,"Twitter":17,"Pinterest":15,
+"Instagram":15,"LinkedIn":11,"Snapchat":11,"Skype":9,"Tumblr":8}},
+
+{"Country":"Mexico", "Percent":{"Facebook":25,"WhatsApp":23,"Facebook Messenger":21,"Twitter":16,
+"Skype":13,"Instagram":12,"Pinterest":10,"LinkedIn":9,"Tumblr":9}},
+
+{"Country":"Brazil","Percent":{"Facebook":31,"WhatsApp":29,"Facebook Messenger":24,"Instagram":15,
+"Skype":15,"Twitter":14,"LinkedIn":12,"Snapchat":9,"Pinterest":8}},
+
+{"Country":"South Africa", "Percent":{"WhatsApp":33,"Facebook":30,"Facebook Messenger":20,
+"LinkedIn":13,"Pinterest":11,"Instagram":10,"BlackBerry Messenger":9,
+"Skype":9}},
+
+{"Country":"Russia", "Percent":{"VKontakte":39,"Facebook":24,"Skype":19,"Viber":15,
+"WhatsApp":15,"Instagram":12,"Twitter":11,"Facebook Messenger":6}},
+
+{"Country":"Germany", "Percent":{"WhatsApp":39,"Facebook":38,"Facebook Messenger":20,
+"Skype":10,"Instagram":7,"Twitter":7,"Pinterest":4,"LinkedIn":3}},
+
+{"Country":"United Kingdom", "Percent":{"Facebook":47,"Facebook Messenger":32,
+"WhatsApp":24,"Twitter":20,"Instagram":14,"Skype":13,"Snapchat":12,"LinkedIn":10,
+"Pinterest":8}}],
+
+"PlatformPercent":
+
+[{"Platform":"Facebook", "Symbol":"fa-facebook", 
+"Percent":{"Argentina":42, "Australia":41, "China":5,
+"India":13,"USA":41,"Mexico":25,"Brazil":31,"South Africa":30,"Russia":24
+,"Germany":38,"United Kingdom":47}},
+
+{"Platform":"WhatsApp", "Symbol":"fa-whatsapp",
+"Percent":{"Argentina":3,"Australia":10,"India":12,"Mexico":23,"Brazil":29,
+"South Africa":33,"Russia":15,"Germany":39,"United Kingdom":24}},
+
+{"Platform":"Facebook Messenger", "Symbol":"fa-facebook",
+"Percent":{"Argentina":29, "Australia":26,"China":4,
+"India":11,"USA":26,"Mexico":21,"Brazil":24,
+"South Africa":20,"Russia":6,"Germany":20,"United Kingdom":32}},
+
+{"Platform":"Twitter", "Symbol":"fa-twitter",
+"Percent":{"Argentina":18,"Australia":10,"India":8,"USA":17,"Mexico":16,
+"Brazil":14,"Russia":11,"Germany":7,"United Kingdom": 20}},
+
+{"Platform":"Instagram", "Symbol":"fa-instagram",
+"Percent":{"Argentina":12,"Australia":10,"India":7,"USA":15,"Mexico":12,"Brazil":15,
+"South Africa":10,"Russia":12,"Germany":7,"United Kingdom":14}},
+
+{"Platform":"Skype", "Symbol":"fa-skype",
+"Percent":{"Argentina":13,"Australia":13,"India":10,"USA":9,"Mexico":13,"Brazil":15,
+"South Africa":9,"Russia":19,"Germany":10,"United Kingdom":13}},
+
+{"Platform":"LinkedIn", "Symbol":"fa-linkedin",
+"Percent":{"Argentina":10,"Australia":11,"India":7,"USA":11,"Mexico":9,"Brazil":12,
+"South Africa":13,"Germany":3,"United Kingdom":10}},
+
+{"Platform":"Pinterest", "Symbol":"fa-pinterest",
+"Percent":{"Argentina":8,"Australia":9,"USA":15,"Mexico":10,"Brazil":10,
+"South Africa":11,"Germany":4,"United Kingdom":8}},
+
+{"Platform":"Tumblr", "Symbol":"fa-tumblr",
+"Percent":{"Australia":6,"USA":8,"Mexico":9}},
+
+{"Platform":"WeChat", "Symbol":"fa-wechat",
+"Percent":{"China":24,"India":6}},
+
+{"Platform":"Baidu Tieba", "Symbol":"fa-baidu",
+"Percent":{"China":14}},
+
+{"Platform":"BlackBerry Messenger", "Symbol":"",
+"Percent":{"South Africa":9}},
+
+{"Platform":"QZone", "Symbol":"fa-qq",
+"Percent":{"China":21}},
+
+{"Platform":"Sina Weibo", "Symbol":"",
+"Percent":{"China":16}},
+
+{"Platform":"Snapchat", "Symbol":"fa-snapchat",
+"Percent": {"USA":11,"Brazil":9,"United Kingdom":12}},
+
+{"Platform":"VKontakte", "Symbol":"fa-vk",
+"Percent":{"Russia":39}},
+
+{"Platform":"Viber", "Symbol":"",
+"Percent":{"Russia":15}}]}
