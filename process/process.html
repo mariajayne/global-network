@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Process</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-process.css">
+</head>
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="50">
+
+<div class="container-fluid">
+
+    <div class="row row-centered headline">
+        <div class="col-md-1 col-centered"><a href="../FrontPage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../dashboard/dashboard.html"><button class="btn-nav">Internet Usage</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
+        <div class="col-md-1 col-centered"><a href="../social-media/social-media.html"><button class="btn-nav">Social Media</button></a></div>
+        <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Process book</u></button></a></div>
+    </div>
+    <hr>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3" id="myScrollspy">
+                <ul class="nav nav-tabs nav-stacked affix-top" data-spy="affix" data-offset-top="125">
+                    <li class="active"><a href="#overview">Overview and Motivation</a></li>
+                    <li><a href="#questions">Questions</a></li>
+                    <li><a href="#data">Data</a></li>
+                    <li><a href="#exploration">Exploratory Data Analysis</a></li>
+                    <li><a href="#evolution">Design Evolution</a></li>
+                    <li><a href="#implementation">Implementation</a></li>
+                    <li><a href="#evaluation">Evaluation</a></li>
+                    <li><a href="#video">Video</a></li>
+
+                </ul>
+            </div>
+            <div class="col-xs-6">
+
+                <section id="overview">
+                    <h2>Overview and Motivation</h2>
+                  <p>We live in a world that is increasingly defined by our internet connectivity. How many Facebook friends we have, the number of retweets we got…it’s all a measure of our presence. We want to explore this internet presence on a global scale and look at how GDP and other measures of national development impact the level of internet usage in a country. Each of us is a member of a global network. Many of us are connected to it with devices small enough to fit in our pocket or on our wrist. With our project, we will discover how the political and economic characteristics of a nation affect internet use. Or, perhaps even more interestingly, how internet usage impacts these statistics.
+                    </p>
+                    <p>
+                      Global Network provides a dashboard for users all over the world to see, at a glance, how the world uses the internet, and how that use has progressed over time. Using the visual capabilities of D3, we will implement visualizations that create an aesthetically appealing, engaging environment for the user. We are using all facets of the Heer and Schniederman hierarchy to provide users with a complete depiction of global internet usage. Finally, we hope to make our project largely scalable, such that incoming data will be constantly added to the site. This gives our project more relevance in the long term, which we believe is exceedingly important for an analysis of technology of any kind. Simply put, Global Network visualizes the progression of the internet age in countries around the world.
+                  </p>
+                </section>
+
+                <section id="questions"><hr>
+                    <h2>Questions</h2>
+                    <p>We began with three overarching questions that we aimed to solve with our visualization.  This provided us with a framework that allowed to design our visualizations in an intuitive, approachable way, inviting users to explore, learn, and ultimately answer these questions themselves.  The following are the questions that we, the Global Network, seek to answer.</p>
+
+                    <h5>1. How do demographic factors of a nation (GDP, employment, education, etc.) relate to number of internet users in a nation?</h5>
+                    <h5>2. How has internet usage changed over time? What nations are accelerating more quickly than others?</h5>
+                    <h5>3. How do different countries use social media?</h5>
+
+                </section>
+                <section id="data"><hr>
+                    <h2>Data</h2>
+                    <h5>Over 40,000 data points.</h5>
+                    <p>We obtained our data from two primary sources: the United Nations and the World Bank. These provided us with a credible, bountiful source of data. Our data have five main metrics, over the course of a 25 year period.</p>
+
+                    <ul style="list-style:none;">
+                        <li><h5>GDP.</h5><br>
+
+                        </li>
+                        <li><h5>Percent of Population who Use the Internet.</h5><br>
+
+                        </li>
+                        <li><h5>Percent of Population with Access to Safe Water.</h5><br>
+
+                        </li>
+                        <li><h5>Percent of Population enrolled in Tertiary Education.</h5><br>
+
+                        </li>
+                        <li><h5>Percent of Population who are Unemployed.</h5><br>
+
+                        </li>
+                    </ul>
+
+                    <p>In addition, we used population data for each country, storing them in CSV and JSON files.</p>
+
+                    <h3>scripts</h3>
+
+                </section>
+                <section id="exploration"><hr>
+                    <h2>Exploratory Data Analysis</h2>
+
+                    <p>Like most first glimpses at large data sets, our analysis began with <code>console.log()</code> statements. This allowed us to familiarize ourselves with the hierarchical structure of the data in order to properly implement the code for our visualizations. Working through our data analysis, it seemed fairly obvious to use a map visualization in some way. We believed that, if we could link this map to a more familiar visualization, like a line or bar chart, we would truly have something special. As the project progressed, our familiarization with the data came from a more organic exploration of the data’s structures as we implemented our visualizations.</p>
+                </section>
+                <section id="evolution"><hr>
+                    <h2>Design Evolution</h2>
+
+                    <div class="center" id="SocialMedia">
+                        <img src="../img/SocialMedia.JPG">
+                        <br>
+                        "Figure 1: Visualization of Different Social Media Platforms"
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="center" id="Dashboard">
+                        <img src="../img/Dashboard.jpg">
+                        <br>
+                        "Figure 2: Linked Visualizations for Landing Page"
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="center" id="LineChart">
+                        <img src="../img/LineChart.jpg">
+                        <br>
+                        "Figure 3: Line Chart Depicting Different Countries over Time"
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="center" id="Map">
+                        <img src="../img/Map.jpg">
+                        <br>
+                        "Figure 4: Animated Map to Represent Internet Use with Color"
+                        <br>
+                        <br>
+                    </div>
+
+                    <h5>An Expert Evaluation</h5>
+                    <p>We had a user complete two tasks using prototypical sketches of our website, namely, the Dashboard and the bilevel encoding pie chart. The comments we received on the Dashboard were primarily that the user was presented with too much information too quickly. To rectify this, we may spread the information out a bit more via a scrolling layout, or we may introduce a page that prefaces the information so the user is not so overwhelmed. The other comment we received was that the bilevel encoding pie chart was not intuitive in knowing that it was able to be clicked. We want to rectify this by adding a hover feature, such that a highlighting of the given area encourages the user’s intuition to click and see more. This will be accompanied by a globe that zooms to highlight the selected country to give context. This follows a comment we received from our project advisor who suggested that it may be inefficient for comparing different countries. To combat this, we discarded the bilevel encoder idea and will instead be implementing a tree map that the user can modify by selecting which dimension of data to display. This will allow for more direct comparison between countries. These changes will, we believe, make the user experience easier to follow and will result in better comprehension of the data.</p>
+                    <br>
+                    <p>See below for a redesign of the bilevel encoding pie chart. Following peer feedback and feedback from our project advisor, we have decided that this is not the optimal way to represent this data. It is not inherently intuitive that the user can click on the pie chart, and it does not provide a clear comparison between countries. Instead, we will use a tree map that uses area to encode the various dimensions of our data, providing more data upon hovering. This will allow us to easily show out data honestly without the inherent lie factor that exists in using a map.</p>
+
+                    <div class="center" id="Redesign">
+                        <img src="../img/redesign.jpg">
+                        <br>
+                        "Figure 5: A Treemap to Explore 5 Demographic Metrics over 25 Years."
+                        <br>
+                        <br>
+                    </div>
+                </section>
+                <section id="implementation">
+                    <h2>Implementation</h2>
+
+                    <h3>Dashboard</h3>
+
+                    <p>This visualization includes a choropleth map of the whole word that communicates the percentage of Internet users in each country for each year between 1990-2014. The percentage is encoded using saturation of the color blue; the default color is black, meaning that between 0 and 1% of the population can be classified as an Internet user (i.e. a person having access to the Internet). Viewers can simply play the animation and view the saturation changes, pause during the animation to hover over countries and explore their percentages of Internet users as part of the population, or they can use a slider below the map to go to specific years and view that information. The data is from the World Bank and is a broad overview to transition viewers into the topic we are dissecting, namely the trends behind Internet usage and the relevance of the spread of the Internet and its accessibility around the world in the context of other socio-economic factors. We choose to communicate this single dimension of information in the “welcoming” visualization to convey our message and introduce the patterns we’d like to address; plus, it’s easy and intuitive for the audience to focus on a specific piece of data and understand it when going in to explore more complex relationships.</p>
+
+                    <p>we are trying to show which factors that might have a correlation with internet usage. In order to encode this data, we have chosen to use line graphs vertically centered besides a world map. The reason why they are vertically mapped is because all charts have time along the horizontal axis. In that way, it might be less confusing and easier to interpret the meaning behind the data. In addition we have included a world map on the side of the line charts. This is because we want it to be easy and intuitive for the audience which countries that are shown in the corresponding line charts.</p>
+
+                    <h3>Social Media</h3>
+
+                    <p>The timeline shows the biggest social media platforms in the world. The size of the circles encode the size of each platform in monthly active users. The center of each circle is positioned on the date the platform was first released. It’s possible to interact with the timeline in two different ways:</p>
+
+                    <ul style="list-style:none;">
+                        <li>1. By hovering over a circle some more detailed information about that platform will be shown<br></li>
+                    </ul>
+
+                    <ul style="list-style:none;">
+                        <li>2. By clicking on a circle the data shown in the barchart will be changed to display data corresponding to the
+                            chosen platform.<br></li>
+                    </ul>
+
+                    <p>The bar chart currently shows how many percent of the population in some selected countries that use a specific social media platform. The chosen countries are the biggest in each continent in terms of population. Currently there is lacking some information for some of the countries, which will be updated in the next prototype.</p>
+                </section>
+                <section id="evaluation"><hr>
+                    <h2>Evaluation</h2>
+
+                </section>
+
+
+
+                <section id="video">
+                    <h2>Video</h2>
+                </section>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Load JS libraries -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+
+-->
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/d3.slider.css" />
+
+    <!-- Custom CSS code -->
+    <!--<link rel="stylesheet" href="../css/style.css">-->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-dashboard.css">
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+
+        <!-- Navbar -->
+        <div class="row row-centered headline">
+            <div class="col-md-1 col-centered"><a href="../FrontPage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+            <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Internet Usage</u></button></a></div>
+            <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../social-media/social-media.html"><button class="btn-nav">Social Media</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col-md-8 headline" id="container-demographics">
+                <h2> Internet usage over time</h2>
+                <p>The Internet is a vast mosaic of economic activity, ranging from millions of daily online transactions and communications to smartphone downloads of TV shows. The Internet is changing how we communicate, work, socialize, create and share information around the world. But little is known about how the web in its entirety contributes to global growth, productivity, and employment. While large enterprises and national economies have reaped major benefits from this technological revolution, individual consumers and small, upstart entrepreneurs have been some of the greatest beneficiaries from the Internet’s empowering influence. </p>
+                <p>In the visualizations below, you can explore how the usage of internet has developed over time on a national and global basis. By selecting the countries of your interest, you can see how the growth of the web has affected the selected country’s level of GDP and employment. Select several countries simultaneously to compare countries against each other.</p>
+            </div>
+
+            <div class="col-md-8 headline container-cencorship" style="display: none;">
+                <h2>National Surveillance, Cencorship and Internet Usage</h2>
+                <p>As we increasingly rely on the internet, it is important that the rights we enjoy offline are also protected online. However, this is not the case in many countries of the world today. The freedoms of speech, information, privacy, and association enshrined in international covenants are fundamental to the upholding of liberal democratic values. Even in closed societies, technology can penetrate longstanding political and media restrictions, carving out a limited space for freedom online. The visualization below features a ranked, country-by-country assessment of online freedom, measured by the organization Freedom House.</p>
+            </div>
+
+            <div class="col-md-4 btn-container">
+                <button class="btn-filter" onclick="changeViewToDemographic()" id="btn-demographics" style="background-color: black; color:white" value="demographics"><i class="fa fa-filter"></i>Internet Usage</button>
+                <button class="btn-filter" onclick="changeViewToCencorship()" id="btn-cencorship" value="cencorship"><i class="fa fa-filter"></i>Cencorship</button>
+            </div>
+        </div>
+
+
+
+
+        <div class="row">
+            <div class="col-md-8" id="col1">
+                <div id="world-map"></div>
+                <span id="clock">Year</span>
+                <svg id="playbutton" viewbox="0 0 140 140">
+                    <circle cx="70" cy="70" r="65" style="fill:#fff;stroke:#ddd" />
+                    <polygon id="shape" points="50,40 100,70 100,70 50,100, 50,40" style="fill:#aaa;">
+                        <animate id="animate_to_stop" begin="indefinite" fill="freeze" attributeName="points" dur="500ms" to="45,45 95,45 95,95, 45,95 45,45" keySplines="
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1" keyTimes="0;0.22;0.33;0.55;0.66;0.88;1" calcMode="spline" />
+
+                        <animate id="animate_to_play" begin="indefinite" fill="freeze" attributeName="points" dur="500ms" to="50,40 100,70 100,70 50,100, 50,40" keySplines="
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1;
+                                      0.1 0.8 0.2 1" keyTimes="0;0.22;0.33;0.55;0.66;0.88;1" calcMode="spline" />
+                    </polygon>
+                </svg>
+                <span id="anim-playing" style="display: none;"></span>
+                <div id="slider"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div id="internet-chart"></div>
+                    <div id="gdp-chart"></div>
+                    <div id="employment-chart"></div>
+                    <div id="timeline-chart"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 container-cencorship" style="display:none;">
+                <h5>How do you measure Freedom of the Internet?</h5>
+            <p>The total score of 'Internet Freedom', as visualized below, measures the subtle and not-so-subtle ways that governments and non-state actors around the world restrict our intrinsic rights online. Each country assessment includes a numerical score, based on methodology developed in consultation with international experts. The circles in the chart shows the percentage of the population that uses the internet. Even though there are many outliers, we can see a trend that countries with high online freedom, has a higher number of internet users in 2014.</p>
+            </div>
+        </div>
+
+        <div class="row-fluid">
+            <div class="col-md-12" id="col3">
+                <div id="freedom-of-net-barchart" style="display: none;"></div>
+            </div>
+        </div>
+
+</div>
+
+
+    <!-- Load JS libraries -->
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/d3.min.js"></script>
+    <script src="../js/d3.tip.js"></script>
+    <script src="../js/queue.v1.min.js"></script>
+    <script src="../js/topojson.v1.min.js"></script>
+    <script src="../js/fisheye.js"></script>
+    <script src="../js/d3.geo.projection.v0.min.js"></script>
+    <script src="../js/d3.slider.js"></script>
+
+    <!-- Visualization objects -->
+    <script src="../js/regressionLine.js"></script>
+    <script src="../js/demographic-barChart.js"></script>
+    <script src="../js/demographic-barChart-vertical.js"></script>
+    <script src="../js/demographic-lineChart.js"></script>
+    <script src="../js/demographic-timeline.js"></script>
+    <script src="../js/demographic-map.js"></script>
+
+    <!-- Load data, create visualizations -->
+    <script src="../js/demographic.js"></script>
+
+</body>
+
+</html>

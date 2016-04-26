@@ -1,0 +1,66 @@
+Country;Status;Total_score;Obstacle_to_access;Limits_on_content;Violations_of_user_rights;Internet_regression
+Angola;Partly Free;39;14;8;17;68,7805958
+Argentina;Free;27;7;8;12;68,12714834
+Armenia;Free;28;6;10;12;67,47370087
+Australia;Free;19;2;5;12;66,82025341
+Azerbaijan;Partly Free;56;13;19;24;66,16680594
+Bahrain;Not Free;72;11;27;34;65,51335848
+Bangladesh;Partly Free;51;12;12;27;64,85991101
+Belarus;Not Free;64;15;21;28;64,20646355
+Brazil;Free;29;7;6;16;63,55301608
+Cambodia;Partly Free;48;14;15;19;62,89956862
+Canada;Free;16;3;4;9;62,24612115
+China;Not Free;88;18;30;40;61,59267369
+Colombia;Partly Free;32;8;8;16;60,93922622
+Cuba;Not Free;81;22;27;32;60,28577876
+Ecuador;Partly Free;37;8;11;18;59,63233129
+Egypt;Not Free;61;14;13;34;58,97888383
+Estonia;Free;7;1;3;3;58,32543636
+Ethiopia;Not Free;82;23;28;31;57,6719889
+France;Free;24;3;6;15;57,01854143
+Gambia, The;Not Free;65;18;21;26;56,36509397
+Georgia;Free;24;7;6;11;55,7116465
+Germany;Free;18;4;5;9;55,05819904
+Hungary;Free;24;4;9;11;54,40475157
+Iceland;Free;6;1;1;4;53,75130411
+India;Partly Free;40;12;10;18;53,09785664
+Indonesia;Partly Free;42;11;12;19;52,44440918
+Iran;Not Free;87;20;31;36;51,79096171
+Italy;Free;23;4;6;13;51,13751425
+Japan;Free;22;4;7;11;50,48406678
+Jordan;Partly Free;50;12;16;22;49,83061932
+Kazakhstan;Not Free;61;14;23;24;49,17717185
+Kenya;Free;29;9;7;13;48,52372439
+Kyrgyzstan;Partly Free;35;11;8;16;47,87027692
+Lebanon;Partly Free;45;13;12;20;47,21682946
+Libya;Partly Free;54;20;12;22;46,56338199
+Malawi;Partly Free;40;15;12;13;45,90993453
+Malaysia;Partly Free;43;8;14;21;45,25648706
+Mexico;Partly Free;39;9;10;20;44,6030396
+Morocco;Partly Free;43;11;9;23;43,94959213
+Myanmar;Not Free;63;18;17;28;43,29614467
+Nigeria;Partly Free;33;10;8;15;42,6426972
+Pakistan;Not Free;69;20;20;29;41,98924974
+Philippines;Free;27;10;5;12;41,33580227
+Russia;Not Free;62;10;23;29;40,68235481
+Rwanda;Partly Free;50;11;20;19;40,02890734
+Saudi Arabia;Not Free;73;15;24;34;39,37545988
+Singapore;Partly Free;41;6;14;21;38,72201241
+South Africa;Free;27;8;7;11;38,06856495
+South Korea;Partly Free;34;3;14;17;37,41511748
+Sri Lanka;Partly Free;47;14;13;20;36,76167002
+Sudan;Not Free;65;18;19;28;36,10822255
+Syria;Not Free;87;24;26;37;35,45477509
+Thailand;Not Free;63;9;22;32;34,80132762
+Tunisia;Partly Free;38;10;8;20;34,14788016
+Turkey;Partly Free;58;13;20;25;33,49443269
+Uganda;Partly Free;36;11;7;18;32,84098523
+Ukraine;Partly Free;37;8;10;19;32,18753776
+United Arab Emirates;Not Free;68;14;22;32;31,5340903
+United Kingdom;Free;24;2;6;16;30,88064283
+United States;Free;19;3;2;14;30,22719537
+Uzbekistan;Not Free;78;19;28;31;29,5737479
+Venezuela;Partly Free;57;17;18;22;28,92030044
+Vietnam;Not Free;76;13;29;34;28,26685297
+Zambia;Partly Free;40;11;12;17;27,61340551
+Zimbabwe;Partly Free;56;15;16;25;26,95995804

@@ -1,0 +1,79 @@
+/* style.css contains our fundamental style-settings */
+
+body{
+
+    font-family: "Open Sans";
+    background-color: #fbfbfb;
+    font-weight : 300;
+    color : grey;
+}
+
+.nav-container{
+    padding-bottom:80px;
+}
+
+
+/* Styling for the nav bar */
+
+.btn-nav {
+    position: relative;
+//display: block;
+    height: 30px;
+    width: 110px;
+    margin: 10px 7px;
+    padding: 5px;
+    font-size: 9px;
+    text-align : center;
+    letter-spacing: 2px;
+    color: #383736;
+    border: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: .08s ease-in;
+    -o-transition: .08s ease-in;
+    -ms-transition: .08s ease-in;
+    -moz-transition: .08s ease-in;
+    -webkit-transition: .08s ease-in;
+}
+
+.btn-nav:hover {
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.btn-nav:hover:before {
+    top: 0;
+}
+
+.btn-nav:before {
+    content: "";
+    position: absolute;
+    background: transparent;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+}
+
+hr {
+    margin-top : 0px;
+}
+
+/* Centering of an uneven number of bootstrap columns */
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    text-align:left;
+}
+
+
