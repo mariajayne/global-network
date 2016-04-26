@@ -64,3 +64,5 @@ function selectPlatform(platform) {
    barChart.current = platform;
    barChart.updateVis();
 }
+
+

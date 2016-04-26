@@ -9,9 +9,7 @@ BarChart = function(_parentElement,_countryData, _platformData){
     this.platformData = _platformData;
     this.countryData = _countryData;
 
-    this.current = "Germany";
-    this.foo = "Platform";
-    this.chosen = true;
+    this.current = "Argentina";
 
     this.initVis();
 }
@@ -39,8 +37,7 @@ BarChart.prototype.initVis = function(){
 
     vis.y = d3.scale.linear()
         .range([vis.height,0])
-        .domain([0,50]);
-
+        .domain([0,53]);
 
     //  Axis
     vis.yTicks = [10,20,30,40];
@@ -85,7 +82,7 @@ BarChart.prototype.initVis = function(){
     vis.title = vis.svg.append("text")
         .attr("class", "title-label")
         .attr("text-anchor", "middle")
-        .attr("y", 20)
+        .attr("y", 19)
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)");
@@ -100,6 +97,21 @@ BarChart.prototype.initVis = function(){
 
     vis.svg.call(vis.tip);
 
+    // Add on click to flag icons to change barchart
+    var flags = document.getElementById("flagTable").getElementsByTagName("span");
+    for (var i = 0; i < flags.length; i++) {
+        flags[i].onclick = function() {
+            vis.current = this.id;
+            vis.wrangleData();
+        }
+        flags[i].onmouseover = function() {
+            document.getElementById(this.id).parentElement.nextElementSibling.innerHTML = this.id;
+        }
+        flags[i].onmouseout = function() {
+            document.getElementById(this.id).parentElement.nextElementSibling.innerHTML = "";
+        }
+
+    }
 
     //  Init wrangleData
     vis.wrangleData();
@@ -111,16 +123,11 @@ BarChart.prototype.initVis = function(){
 BarChart.prototype.wrangleData = function(){
     var vis = this;
 
-    if (vis.chosen) {
-        vis.title.text("Largest social media plattforms in  ".concat(vis.current));
-        vis.displayData = vis.platformData.filter(function(d) {
-            return $.inArray(vis.current, Object.keys(d.Percent)) > -1;
-        });
-    } else {
-        vis.title.text("Percent of population using " + vis.current);
-        vis.displayData = vis.countryData;
-    }
 
+    vis.title.text("Top social media platforms in ".concat(vis.current));
+    vis.displayData = vis.platformData.filter(function(d) {
+        return $.inArray(vis.current, Object.keys(d.Percent)) > -1;
+        });
     vis.updateVis();
 }
 
@@ -131,7 +138,15 @@ BarChart.prototype.updateVis = function(){
     var vis = this;
 
     //  Update domain
-    vis.x.domain(vis.displayData.map(function(d){return d[vis.foo]}));
+    vis.x.domain(vis.displayData.map(function(d){
+        if (d.Platform == "Facebook Messenger"){
+            return "FB Messenger";
+        }
+        if (d.Platform == "BlackBerry Messenger") {
+            return "BB Messenger";
+        }
+        return d.Platform;
+    }));
 
     //  Call axis functions with the new domain
     vis.svg.select(".x-axis").call(vis.xAxis);
@@ -145,7 +160,16 @@ BarChart.prototype.updateVis = function(){
         .append("rect")
         .attr("class","bar");
 
-    rect.attr("x", function(d){return vis.x(d[vis.foo])})
+    rect.transition()
+        .attr("x", function(d){
+        if (d.Platform == "Facebook Messenger") {
+            return vis.x("FB Messenger");
+        }
+        if (d.Platform == "BlackBerry Messenger") {
+            return vis.x("BB Messenger");
+        }
+        return vis.x(d.Platform);
+        })
         .attr("y", function(d){
             if (d.Percent[vis.current] != null) {
                 return vis.y(d.Percent[vis.current]);
@@ -155,9 +179,9 @@ BarChart.prototype.updateVis = function(){
         .attr("height",function(d){
             if (d.Percent[vis.current] != null) {
                 return vis.height - vis.y(d.Percent[vis.current]);
-            } return 0; })
-        .on('mouseover', function(d) {
-
+            } return 0; });
+    
+    rect.on('mouseover', function(d) {
             d3.selectAll(".bar").transition().duration(transitionTime).attr("opacity", 0.3);
             d3.select(this).transition().duration(transitionTime).attr("opacity", 1);
             vis.tip.show(d);
@@ -193,3 +217,4 @@ BarChart.prototype.updateVis = function(){
             .tickSize(-vis.width, 0,0)
             .tickFormat(""));
 }
+

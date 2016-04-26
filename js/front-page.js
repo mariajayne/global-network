@@ -3,9 +3,6 @@
  */
 
 
-// Resizing the navbar
-    document.getElementById("frontpage-headline").style.width = screen.width - 100;
-
 // Hide navbar until animation starts
 document.getElementById("frontpage-headline").style.visibility = "hidden";
 
@@ -30,7 +27,6 @@ function processData(error,data1,data2){
     map = data1;
     demographicData = data2.slice(0,-1);
     globalNumberOfUsers = data2.slice(-1);
-    console.log(globalNumberOfUsers[0][0]);
     document.getElementById("launchButton").addEventListener("click", createVis);
 
 }

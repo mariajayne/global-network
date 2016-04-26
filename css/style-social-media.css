@@ -5,10 +5,12 @@
 /***********/
 
 body {
-    font-family : "Open Sans";
     color : black;
 }
 
+h3 {
+    font-weight : 300;
+}
 /* Centering whole visualization */
 #timeline-drawing-space {
     display : block;
@@ -21,22 +23,25 @@ body {
 
 #sub-title {
     position : absolute;
+    color : black;
+    opacity : 1;
 }
 
 .category-rect {
     position : absolute;
     fill-opacity : 0;
-    fill : black;
 }
 
 #chosen-rect {
     stroke : none;
     fill-opacity : 0.4;
+    fill : grey;
 }
 
 #boundary-rect {
     stroke : grey;
     fill : none;
+    fill-opacity : 0;
 }
 
 .svg-img {
@@ -59,6 +64,10 @@ body {
     position : absolute;
 }
 
+#flagTable {
+    position : absolute;
+}
+
 /*************/
 /* TIME LINE */
 /*************/
@@ -75,6 +84,19 @@ body {
     text-align : center;
 }
 
+.legend {
+    position : absolute;
+    font-size : 10px;
+}
+
+
+#helpText {
+    position : absolute;
+    font-size:10px;
+    text-anchor : start;
+    margin : 0;
+}
+
 /*************/
 /* Bar Chart */
 /*************/
@@ -86,7 +108,7 @@ body {
 }
 
 .grid .tick {
-    stroke: white;
+    stroke: #fbfbfb;
     shape-rendering: crispEdges;
 }
 
@@ -101,4 +123,13 @@ body {
 
 .bar:hover {
     opacity : 1;
+}
+
+.bar {
+    fill :grey;
+    fill-opacity : .8;
+}
+
+td {
+    padding-right : 5px;
 }

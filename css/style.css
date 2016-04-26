@@ -1,10 +1,9 @@
 /* style.css contains our fundamental style-settings */
 
 body{
+
     font-family: "Open Sans";
-    background-color: white;
-    fill : grey;
-    opacity : .8;
+    background-color: #fbfbfb;
     font-weight : 300;
     color : grey;
 }
@@ -23,8 +22,8 @@ body{
     width: 110px;
     margin: 10px 7px;
     padding: 5px;
-    font-weight: 70;
     font-size: 9px;
+    text-align : center;
     letter-spacing: 2px;
     color: #383736;
     border: none;
@@ -62,6 +61,10 @@ body{
     z-index: -1;
 }
 
+hr {
+    margin-top : 0px;
+}
+
 /* Centering of an uneven number of bootstrap columns */
 .row-centered {
     text-align:center;
@@ -71,5 +74,6 @@ body{
     display:inline-block;
     float:none;
     text-align:left;
-    margin-right:-4px;
 }
+
+

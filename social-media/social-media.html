@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/cards.css">
     <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/flag-icon-css/css/flag-icon.min.css">
 
     <!-- Custom CSS code -->
     <link rel="stylesheet" href="../css/style.css">
@@ -22,31 +23,28 @@
 
 <div class="container-fluid">
 
+        <div class="row row-centered headline" id="social-media-navbar">
+            <div class="col-md-1 col-centered"><a href="../FrontPage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../dashboard/dashboard.html"><button class="btn-nav">Internet Usage</button></a></div>
+            <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
+            <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Social Media</u></button></a></div>
+            <div class="col-md-1 col-centered"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
+        </div>
+    <hr id="nav-line">
 
-    <div class="row headline">
-        <div class="col-md-3"></div>
-        <div class="col-md-1"><a href="../frontpage/frontpage.html"><button class="btn-nav">Frontpage</button></a></div>
-        <div class="col-md-1"><a href="../index.html"><button class="btn-nav">Animation</button></a></div>
-        <div class="col-md-1"><a href="../dashboard/dashboard.html"><button class="btn-nav">Demographics</button></a></div>
-        <div class="col-md-1"><a href="../countries/countries.html"><button class="btn-nav">Metrics</button></a></div>
-        <div class="col-md-1"><a href="#"><button class="btn-nav"><u>Social Media</u></button></a></div>
-        <div class="col-md-1"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
-        <div class="col-md-3"></div>
-    </div>
-    <hr>
+    <p id="helpText">To learn more about a specific social media, hover over a circle on the timeline</p>
+    <div id="redLegend" class="legend">- Number of users of Social Network</div>
+    <div id="blueLegend" class="legend">- Number of users of Chat Application</div>
 
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12" id="social-media-col">
 
-            <!-- <div id="platform-icons"></div> -->
-            <!-- <div id="platformInfo"></div> -->
-            <div id="social-media-timeline">
-            </div>
+            <div id="social-media-timeline"></div>
 
         </div>
     </div>
 
-   <div class="row">
+   <div class="row" style="position:relative;">
 
             <div id="platformInformationText">
                 <h3 id="platformName">Social media and internet usage</h3>
@@ -56,6 +54,53 @@
             </div>
 
             <div id="social-media-bar-chart"></div>
+
+            <table id="flagTable">
+                <tr>
+                    <td><span id="Argentina" class="flag-icon flag-icon-ar"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Australia" class="flag-icon flag-icon-au"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="China" class="flag-icon flag-icon-cn"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="India" class="flag-icon flag-icon-in"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="USA" class="flag-icon flag-icon-um"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Mexico" class="flag-icon flag-icon-mx"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Brazil" class="flag-icon flag-icon-br"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="South Africa" class="flag-icon flag-icon-za"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Russia" class="flag-icon flag-icon-ru"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="Germany" class="flag-icon flag-icon-de"></span></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><span id="United Kingdom" class="flag-icon flag-icon-gb"></span></td>
+                    <td></td>
+                </tr>
+            </table>
     </div>
 
 </div>

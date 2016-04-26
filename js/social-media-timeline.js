@@ -11,7 +11,6 @@ Timeline = function(_parentElement,_data, _descriptionText) {
     this.chosenCategory = "all";
     this.descriptionText = _descriptionText;
     this.clicked = false;
-    this.clickedElement = null;
 
     this.initVis();
 };
@@ -31,26 +30,16 @@ Timeline.prototype.initVis = function() {
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .attr("id", "timeline-drawing-space")
         .append("g")
+        .attr("id", "timeline")
         .attr("transform", "translate(" + vis.margin.left + "," + (-18 + vis.margin.top )+ ")");
 
-    // Variables used to position the different platform information tooltips
-    vis.platformInfoX = +$("#social-media-col").css("width").slice(0,-2) -
-        +$("#timeline-drawing-space").css("width").slice(0,-2);
-    vis.platformInfoX = (vis.platformInfoX / 2.0) + +$("#social-media-col").css("padding-left").slice(0,-2)
-        + vis.margin.left;
+    vis.bounds = document.getElementById("timeline-drawing-space").getBoundingClientRect();
+    vis.innerBounds = document.getElementById("timeline-drawing-space").firstElementChild.getBoundingClientRect();
 
-    // Positioning of the platform information
-    var svgWidth = document.getElementById("timeline-drawing-space").getBoundingClientRect().width;
+    positionRelativeToTimeline(vis);
 
-    var e = document.getElementById("platformInformationText");
-    e.style.left = "" + ((screen.width - svgWidth)/2.0 + vis.margin.left) + "px";
-    e.style.width = (svgWidth / 3.0) + "px";
 
-    // Positioning of the bar chart
-    var barChart = document.getElementById("social-media-bar-chart");
-    var foo = ((svgWidth / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
-    barChart.style.left = (foo + (screen.width/2.0)) + "px";
-
+    
     // Scales
     vis.x = d3.time.scale()
         .range([0, vis.width])
@@ -85,10 +74,20 @@ Timeline.prototype.initVis = function() {
     vis.subtitle = vis.svg.append("g")
         .append("text")
         .attr("id", "sub-title")
-        .attr("y", 30)
+        .attr("y", .091*vis.bounds.height)
         .attr("x", vis.width / 2.0)
         .attr("text-anchor", "middle")
         .text("Social networks / Chat Applications / All");
+
+    vis.svg.selectAll("legendCircles")
+        .data([{"color": "#0d2e67", "cx": 4, "cy": .23*vis.bounds.height},
+            {"color": "#a31313", "cx": 4, "cy": .16*vis.bounds.height}])
+        .enter()
+        .append("circle")
+        .attr("r", 6)
+        .attr("cx", function(d) { return d.cx })
+        .attr("cy", function(d) { return d.cy })
+        .attr("fill", function(d) { return d.color });
 
 
     // Add rectangles for choosing social media category
@@ -142,25 +141,7 @@ Timeline.prototype.initVis = function() {
         .attr("width", 27)
         .attr("height", rectHeight);
 
-    // Social media icons
 
-    vis.platformIcons = $("#platform-icons");
-    vis.platformIcons.html("");
-    var noFontSymbol = "";
-
-    vis.data.forEach(function(platform) {
-        if (platform.Symbol == 0) {
-            noFontSymbol = noFontSymbol.concat("<img src=\"../data/social-media/".concat(platform.Platform.replace(/\s/g, ''))
-                + ".svg\" type=\"image/svg.xml\" class=\"platform-icon\" style=\"height:15px;width:15px;" +
-                "padding-right:30px;\"></img>");
-        } else {
-            platformIcon = " <p " +
-                "class=\"fa ".concat(platform.Symbol).concat("\"></p>");
-            var oldhtml = vis.platformIcons.html();
-            vis.platformIcons.html(oldhtml + platformIcon);
-        }
-
-    });
 
     // Platform information textbox
     vis.platformName = $("#platformName");
@@ -202,12 +183,12 @@ Timeline.prototype.updateVis = function() {
     vis.svg.select(".x-axis").call(vis.xAxis);
 
     // Create circles
-    var circle = vis.svg.selectAll("circle")
+    var circle = vis.svg.selectAll(".lineCircle")
         .data(vis.wrangledData);
 
     circle.enter()
         .append("circle")
-        .attr("class", "circle");
+        .attr("class", "lineCircle");
 
     circle.transition()
         .attr("cx", function(d) { return vis.x(d.Date)})
@@ -230,7 +211,8 @@ Timeline.prototype.updateVis = function() {
     });
     circle.on("mouseout", function(d) {
         if (!vis.clicked) {
-            d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity",.5);
+            d3.selectAll(".lineCircle").transition().duration(transitionTime).attr("opacity",.5);
+            vis.setSocialMediaText();
         }
     });
     
@@ -258,7 +240,7 @@ Timeline.prototype.moveChosen = function(target) {
 Timeline.prototype.hoverAction = function(d, circle) {
     var vis = this;
 
-    d3.selectAll(".circle").transition().duration(transitionTime).attr("opacity", 0.1);
+    d3.selectAll(".lineCircle").transition().duration(transitionTime).attr("opacity", 0.1);
     d3.select(circle).transition().duration(transitionTime).attr("opacity", 0.7);
 
     vis.platformReleaseDate.html("Release date: " + dateToString(d.Date));
@@ -292,7 +274,6 @@ function swapSvg() {
         var imgURL = $img.attr('src');
 
         jQuery.get(imgURL, function(data) {
-            console.log(data);
             // Get the SVG tag, ignore the rest
             var $svg = jQuery(data).find('svg');
 
@@ -308,7 +289,6 @@ function swapSvg() {
 
             // Remove any invalid XML tags as per http://validator.w3.org
             $svg = $svg.removeAttr('xmlns:a');
-            console.log("test");
 
             // Replace image with new SVG
             $img.replaceWith($svg);
@@ -322,5 +302,53 @@ Timeline.prototype.setSocialMediaText = function(){
     var vis = this;
     vis.platformName.html("Social media and internet usage");
     vis.platformAbout.html("" + vis.descriptionText.Text);
+    vis.platformUsers.html("");
+    vis.platformReleaseDate.html("");
 }
 
+
+function positionRelativeToTimeline(vis) {
+    
+    var timeLineSvg = document.getElementById("timeline-drawing-space").firstElementChild.getBoundingClientRect();
+
+    var e = document.getElementById("platformInformationText");
+    e.style.left = "" + ((screen.width - vis.bounds.width)/2.0 + vis.margin.left) + "px";
+    e.style.width = (vis.bounds.width / 3.0) + "px";
+
+    // Positioning of the bar chart
+    var barChart = document.getElementById("social-media-bar-chart");
+    var foo = ((vis.bounds.width / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
+    barChart.style.left = (foo + (screen.width/2.0)) + "px";
+
+    // Positioning of the timeline legends
+    var redLegend = document.getElementById("redLegend");
+    var blueLegend = document.getElementById("blueLegend");
+
+    var navBarHeight = document.getElementById("social-media-navbar").clientHeight;
+    var navLine = document.getElementById("nav-line");
+    var navLineStyle = navLine.currentStyle || window.getComputedStyle(navLine);
+    var marginNavLine = parseInt(navLineStyle.marginBottom.slice(0,-2));
+
+
+    redLegend.style.top = (navBarHeight + .2*vis.bounds.height + marginNavLine) + "px";
+    blueLegend.style.top = (navBarHeight + .27*vis.bounds.height + marginNavLine) + "px";
+    var leftMarginLegends = timeLineSvg.left + 15;
+    redLegend.style.left = leftMarginLegends + "px";
+    blueLegend.style.left = leftMarginLegends + "px";
+
+    // Positioning of the timeline help text
+    var helpText = document.getElementById("helpText");
+
+    helpText.style.left = timeLineSvg.left + "px";
+    helpText.style.top = (navBarHeight + marginNavLine + .12*vis.bounds.height) + "px";
+
+
+    // Positioning of the flag table
+    var flagTable = document.getElementById("flagTable");
+    var barChartBounds = parseFloat(barChart.style.left.slice(0,-2)) + barChart.clientWidth + 25;
+
+    flagTable.style.left = barChartBounds + "px";
+    flagTable.style.top = 20 + "px";
+
+    
+}
