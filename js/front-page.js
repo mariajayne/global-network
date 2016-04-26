@@ -42,3 +42,5 @@ function createVis() {
     worldMap = new WorldMap("map",map,demographicData, globalNumberOfUsers);
 }
 
+d3.select("#legendCircle").append("svg").attr("height", 25).attr("width", 25)
+    .append("circle").attr("cx", 17).attr("cy", 17).attr("r", 7.5).attr("fill", "#3b5998");

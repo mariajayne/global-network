@@ -5,13 +5,9 @@
 /* GENERAL */
 /***********/
 
-body:not(.row-centered) {
-    font-family: "Open Sans";
-    font-weight:300;
-    font-size:12px;
+body {
     padding-left:50px;
     padding-right:50px;
-    padding-bottom:100px;
 }
 
 .btn-container{

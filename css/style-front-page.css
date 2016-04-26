@@ -113,5 +113,6 @@ body {
     margin-top : -17.5px;
 }
 
-#legendCircle {
+#legendText {
+    margin-left : 10px;
 }

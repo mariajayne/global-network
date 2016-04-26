@@ -5,32 +5,41 @@ body{
     font-family: "Open Sans";
     background-color: #fbfbfb;
     font-weight : 300;
-    color : grey;
+    font-size : 12px;
+    color : black;
 }
 
 .nav-container{
     padding-bottom:80px;
 }
 
+h2 {
+    font-size : 30px;
+    font-weight : 300;
+    margin-top : 0;
+}
+
+h3 {
+
+}
+
 
 /* Styling for the nav bar */
 
 .btn-nav {
-    position: relative;
 //display: block;
     height: 30px;
-    width: 110px;
+    width: 120px;
     margin: 10px 7px;
-    padding: 5px;
     font-size: 9px;
     text-align : center;
     letter-spacing: 2px;
     color: #383736;
     border: none;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
     text-transform: uppercase;
     outline: 0;
-    overflow: hidden;
+    /*overflow: hidden;*/
     background: none;
     z-index: 1;
     cursor: pointer;

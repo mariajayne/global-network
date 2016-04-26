@@ -20,10 +20,10 @@ d3.select("#data-select").selectAll("option")
 var selectedYear = 1991;
 var selectedCat = "gdp";
 
-var margin = {top: 40, right: 40, bottom: 40, left: 40};
+var margin = {top: 20, right: 40, bottom: 40, left: 0};
 
-var width = 900 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var width = 850 - margin.left - margin.right,
+    height = 550 - margin.top - margin.bottom;
 
 
 var mousemove = function(d) {
@@ -105,6 +105,7 @@ d3.json("../data/treemap/treeJson.json", function(error, root) {
             .call(position);
     });
 
+    positionRelativeToTreeMap();
 });
 
 
@@ -158,4 +159,15 @@ function makeSlider() {
     }
     yearSlider.value(d3.select('#clock').html());
     d3.select("#slider").call(yearSlider);
+}
+
+
+
+function positionRelativeToTreeMap() {
+
+    var countriesTable = document.getElementById("countriesTable");
+    var mapBounds = document.getElementById("tree-map").firstElementChild.firstElementChild.getBoundingClientRect();
+
+    countriesTable.style.left = (mapBounds.right + 15) + "px";
+    countriesTable.style.top = mapBounds.top + "px";
 }

@@ -1,66 +1,21 @@
 /* style-countries.css contains settings only valid for countries.html */
-.btn-nav {
-    position: relative;
-//display: block;
-    height: 30px;
-    width: 110px;
-    margin: 10px 7px;
-    padding: 5px;
-    font-weight: 70;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: #383736;
-    border: none;
-    border-radius: 4px;
-    text-transform: uppercase;
-    outline: 0;
-    overflow: hidden;
-    background: none;
-    z-index: 1;
-    cursor: pointer;
-    transition: .08s ease-in;
-    -o-transition: .08s ease-in;
-    -ms-transition: .08s ease-in;
-    -moz-transition: .08s ease-in;
-    -webkit-transition: .08s ease-in;
-}
-
-.btn-nav:hover {
-    -webkit-text-stroke-width: 0.7px;
-    -webkit-text-stroke-color: navy;
-}
-
-.btn-nav:hover:before {
-    top: 0;
-}
-
-.btn-nav:before {
-    content: "";
-    position: absolute;
-    background: transparent;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 100%;
-    z-index: -1;
-}
-
-body {
-    font-family: "Open Sans";
-    font-weight:300;
-    color: #383736;
-}
 
 #tree-map {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    margin: 0 auto;
-    position: relative;
-    width: 960px;
+}
+
+#title {
+    text-align:center;
+    width : 100%;
+}
+
+h3 {
+    font-weight : 300;
+    padding-top : 0;
+    margin-top : 0;
 }
 
 .node {
     border: solid 1px white;
-    font: 10px sans-serif;
     line-height: 12px;
     overflow: hidden;
     position: absolute;
@@ -68,7 +23,7 @@ body {
 }
 
 .node:hover {
-    background-color: #0099FF;
+    background-color: #3b5998;
 }
 
 #tooltip {
@@ -92,24 +47,29 @@ body {
 
 #tooltip p {
     margin: 0;
-    font-family: sans-serif;
     font-size: 16px;
+    font-weight : 300;
     line-height: 20px;
     color: white;
+    z-index : 1;
 }
 
-h2 {
-    font-size: 18px;
-    position: absolute;
-    left: 225px;
-    top: 160px;
+#countriesTable {
+    position : absolute;
+    margin-top : 0;
+    padding-top : 0;
 }
 
 #info {
-    font-size: 14px;
-    position: absolute;
-    left: 225px;
-    top: 200px;
-    width: 300px;
+    width : 300px;
+}
+
+#mainRow {
+    padding-left : 50px;
+    padding-right : 50px;
+}
+
+#slider {
+    margin-top : -45px;
 }
 

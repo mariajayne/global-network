@@ -34,33 +34,46 @@
     </div>
     <hr>
 
-    <div class="row">
-        <div class="col-md-6">
+    <table id="countriesTable">
+        <tr>
+            <td>
+                <h3 id="subTitle">Analyzing Area</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="info">This treemap visualization gives a clear comparison of different demographic metrics of different countries. Simply select a metric to view, and slide to select your year to explore how these change over time. To discover specifics, just hover over a rectangle. This visualization allows us to represent the data for each country without the lie factor involved in geographic maps. How do these metrics interrelate? How do they change over time? We can’t wait to see what you learn from it.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="rankingType">Select Data</label>
+                        <select class="form-control" id="data-select">
+                        </select>
+                    </div>
+                </form>
+            </td>
 
-            <h1>A Multi-Dimensional View</h1>
+        </tr>
+    </table>
 
-            <form class="form-inline">
-                <div class="form-group">
-                    <label for="rankingType">Select Data</label>
-                    <select class="form-control" id="data-select">
-                    </select>
-                </div>
-            </form>
-            <br>
-            <div id="clock"></div>
-            <div id="slider"></div>
-            <div id="tree-map"></div>
-            <div id="tooltip" class="hidden">
-                <p id="heading"></p>
-                <p id="moreInfo"></p>
-            </div>
+    <div class="row" id="mainRow">
+        <h2 id="title">A Multi-Dimensional View</h2>
+        <div id="tree-map"></div>
+
+        <br>
+        <div id="clock"></div>
+        <div id="slider"></div>
+
+        <div id="tooltip" class="hidden">
+            <p id="heading"></p>
+            <p id="moreInfo"></p>
         </div>
-        <div class="col-md-6">
-            <br><br><br>
-            <h2>Analyzing Area</h2>
-            <p id="info">This treemap visualization gives a clear comparison of different demographic metrics of different countries. Simply select a metric to view, and slide to select your year to explore how these change over time. To discover specifics, just hover over a rectangle. This visualization allows us to represent the data for each country without the lie factor involved in geographic maps. How do these metrics interrelate? How do they change over time? We can’t wait to see what you learn from it.</p>
-        </div>
-    </div>
+
+
+         </div>
 
 </div>
 

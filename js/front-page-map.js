@@ -80,15 +80,6 @@ WorldMap.prototype.createVisualization = function (){
     }*/
 
 
-    // Add legend circle
-    vis.svg.append("circle")
-        .attr("r", 7.5)
-        .attr("cx", document.getElementById("mapLegend").getBoundingClientRect().left - 30)
-        .attr("cy", document.getElementById("mapLegend").getBoundingClientRect().top - 56)
-        .attr("position", "absolute")
-        .attr("fill", "#3b5998");
-
-
     // The following code adds the nodes in an iterative fashion. Currently this approach only works for the first
     // few years, after that the number of nodes becomes to big.
     var outerCounter = 1;
