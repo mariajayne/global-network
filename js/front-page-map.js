@@ -25,7 +25,7 @@ WorldMap.prototype.initVis = function(){
     var vis = this;
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
-    vis.width = window.innerWidth;
+    vis.width = window.innerWidth * 0.8;
     vis.height = window.innerHeight;
 
 
