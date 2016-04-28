@@ -67,7 +67,7 @@ Timeline.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".75em")
         .attr("transform", "rotate(0)")
-        .text("Total internet users (1991 to 2014)");
+        .text("Total global internet users");
 
     // Initialize brush component
     vis.brush = d3.svg.brush()

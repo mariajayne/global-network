@@ -136,7 +136,7 @@ function makeSlider() {
                     }
                 }
                 selectedYear = attributeArray[currentAttribute];
-                d3.select('#clock').html(selectedYear);
+                //d3.select('#clock').html(selectedYear);
 
                 node
                     .data(treemap.value(function(d) {

@@ -10,8 +10,6 @@ body{
     padding-right:60px;
 }
 
-
-
 .nav-container{
     padding-bottom:80px;
 }
@@ -24,10 +22,29 @@ h2 {
 
 /* Styling for the nav bar */
 
+.a-nav{
+    margin: 13px 13px;
+    font-size: 9px;
+    text-align : center;
+    letter-spacing: 2px;
+    color: #383736;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.a-nav:hover {
+    color:navy;
+}
+
+.headline{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
 .btn-nav {
 //display: block;
     height: 30px;
-    width: 120px;
+    width: 150px;
     margin: 10px 7px;
     font-size: 9px;
     text-align : center;
@@ -48,8 +65,7 @@ h2 {
 }
 
 .btn-nav:hover {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    color:blue;
 }
 
 .btn-nav:hover:before {

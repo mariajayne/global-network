@@ -51,6 +51,7 @@ WorldMap.prototype.initVis = function(){
         .domain([1000,10000000])
         .range([0.05,5]);
 
+
     this.createVisualization();
 
 }

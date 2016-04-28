@@ -98,7 +98,7 @@ BarChart.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Internet usage vs Degree of National Censorship (% 2014)");
+        .text("Internet usage vs Freedom of the Internet (% 2014)");
 
     /*
     var count = -1;
