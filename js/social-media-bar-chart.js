@@ -15,7 +15,7 @@ BarChart.prototype.initVis = function(){
 
     vis.margin = { top: -10, right: 0, bottom: 100, left: 40 };
 
-    vis.width = screen.width/3 - vis.margin.left - vis.margin.right,
+    vis.width = window.innerWidth/3 - vis.margin.left - vis.margin.right,
         vis.height = 350 - vis.margin.top - vis.margin.bottom;
 
 
@@ -57,7 +57,8 @@ BarChart.prototype.initVis = function(){
         .attr("transform","translate(0,"+vis.height+")");
 
     vis.svg.append("g")
-        .attr("class","y-axis axis");
+        .attr("class","y-axis axis")
+        .attr("id", "bar-chart-y-axis");
 
     
     //  Tooltip placeholder

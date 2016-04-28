@@ -16,27 +16,22 @@ Timeline = function(_parentElement,_data, _descriptionText) {
 Timeline.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+    vis.margin = { top: 40, right: 50, bottom: 40, left: 50};
 
-    vis.width = screen.width/1.1 - vis.margin.left - vis.margin.right;
-    vis.height = screen.width/4 - vis.margin.top - vis.margin.bottom;
+    vis.width = window.innerWidth - vis.margin.left - vis.margin.right;
+    vis.height = screen.width/3 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
-        .attr("width", vis.width + vis.margin.left + vis.margin.right)
+        .attr("width", vis.width)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .attr("id", "timeline-drawing-space")
         .append("g")
         .attr("id", "timeline")
-        .attr("transform", "translate(" + vis.margin.left + "," + (-18 + vis.margin.top )+ ")");
+        .attr("transform", "translate(0," + (vis.margin.top )+ ")");
 
     vis.bounds = document.getElementById("timeline-drawing-space").getBoundingClientRect();
     vis.innerBounds = document.getElementById("timeline-drawing-space").firstElementChild.getBoundingClientRect();
-
-    
-    // Positioning other elements relatively to the timeline. TODO: Move this out to social-media.js
-    positionRelativeToTimeline(vis);
-
     
     // Scales
     vis.x = d3.time.scale()
@@ -44,7 +39,7 @@ Timeline.prototype.initVis = function() {
         .domain([dateFormat("01-01-1997"), dateFormat("01-01-2015")]);
 
     vis.r = d3.scale.linear()
-        .range([0, vis.height/2.4])
+        .range([0, screen.width/10])
         .domain([0,d3.max(vis.data, function(d){return d.Current_size})]);
 
 
@@ -73,24 +68,11 @@ Timeline.prototype.initVis = function() {
     vis.subtitle = vis.svg.append("g")
         .append("text")
         .attr("id", "sub-title")
-        .attr("y", .091*vis.bounds.height)
+        .attr("y", .067*vis.bounds.height)
         .attr("x", vis.width / 2.0)
         .attr("text-anchor", "middle")
         .text("Social networks / Chat Applications / All");
 
-    
-    // Legend circles
-    /*
-    vis.svg.selectAll("legendCircles")
-        .data([{"color": "#0d2e67", "cx": 4, "cy": .23*vis.bounds.height},
-            {"color": "#a31313", "cx": 4, "cy": .16*vis.bounds.height}])
-        .enter()
-        .append("circle")
-        .attr("r", 6)
-        .attr("cx", function(d) { return d.cx })
-        .attr("cy", function(d) { return d.cy })
-        .attr("fill", function(d) { return d.color });
-    */
 
     // Add rectangles for choosing social media category
     var rectHeight = 25;
@@ -112,18 +94,18 @@ Timeline.prototype.initVis = function() {
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "msg")
-        .attr("width", 118.5)
+        .attr("width", 113)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectAll = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 101)
+        .attr("x", (vis.width / 2.0) + 93)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "all")
-        .attr("width", 27)
+        .attr("width", 35)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
@@ -137,10 +119,10 @@ Timeline.prototype.initVis = function() {
         .attr("height", 25);
 
     vis.rectChosenCategory = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 101)
+        .attr("x", (vis.width / 2.0) + 93)
         .attr("y", yPosition)
         .attr("id", "chosen-rect")
-        .attr("width", 27)
+        .attr("width", 35)
         .attr("height", rectHeight);
 
     
@@ -160,6 +142,9 @@ Timeline.prototype.initVis = function() {
 
     // Wrangle data
     vis.wrangleData();
+
+    // Positioning other elements relatively to the timeline. TODO: Move this out to social-media.js
+    positionRelativeToTimeline(vis);
 };
 
 
@@ -330,20 +315,18 @@ function positionRelativeToTimeline(vis) {
     
     
     // Positioning of the platform information text
-    var e = document.getElementById("platformInformationText");
-    e.style.left = "" + ((screen.width - vis.bounds.width)/2.0 + vis.margin.left) + "px";
-    e.style.width = (vis.bounds.width / 3.0) + "px";
-
+    var informationText = document.getElementById("platformInformationText");
+    informationText.style.left = timeLineSvg.left + "px";
+    informationText.style.width = (window.innerWidth / 3.0) + "px";
 
     // Positioning of the bar chart
     var barChart = document.getElementById("social-media-bar-chart");
-    var foo = ((vis.bounds.width / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
-    barChart.style.left = (foo + (screen.width/2.0)) + "px";
-    
+    var marginFromMiddle = ((timeLineSvg.width/2.0) - barChart.getBoundingClientRect().width) / 2.0;
+    barChart.style.left = timeLineSvg.left + timeLineSvg.width/2.0 + marginFromMiddle + "px";
 
     // Positioning of the timeline legends
     var legendTable = document.getElementById("legendTable");
-    legendTable.style.top = (navBarHeight + .18*vis.bounds.height + marginNavLine) + "px";
+    legendTable.style.top = (navBarHeight + marginNavLine + .18*vis.bounds.height) + "px";
     legendTable.style.left = (timeLineSvg.left - 9) + "px";
 
 
@@ -351,13 +334,15 @@ function positionRelativeToTimeline(vis) {
     var helpText = document.getElementById("helpText");
     helpText.style.left = timeLineSvg.left + "px";
     helpText.style.top = (navBarHeight + marginNavLine + .12*vis.bounds.height) + "px";
+    helpText.style.width = window.innerWidth / 4.0 + "px";
 
 
     // Positioning of the flag table
     var flagTable = document.getElementById("flagTable");
-    var barChartBounds = parseFloat(barChart.style.left.slice(0,-2)) + barChart.clientWidth + 25;
-    flagTable.style.left = barChartBounds + "px";
-    flagTable.style.top = 30 + "px";
+    var barChartYAxisHeight = document.getElementById("bar-chart-y-axis").getBoundingClientRect().height;
+    var topMarginFlagTable = (barChartYAxisHeight - flagTable.getBoundingClientRect().height)/ 2.0;
+    flagTable.style.left = barChart.getBoundingClientRect().right + 15 + "px";
+    flagTable.style.top = barChart.getBoundingClientRect().top + topMarginFlagTable + "px";
 }
 
 

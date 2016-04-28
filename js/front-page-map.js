@@ -71,17 +71,18 @@ WorldMap.prototype.createVisualization = function (){
     // Remove Antarctica
     vis.svg.select("#ATA").remove();
 
-    /* Codes that adds all cities at the same time.
-    TODO: Check if adding all cities and set their visibility to hidden is better than the current approach.
+    /*Codes that adds all cities at the same time.
+    TODO: Check if adding all cities and set their visibility to hidden is better than the current approach.*/
     for (var i = 0; i < vis.cities.length; i++) {
         for (var j = 0; j < vis.cities[i].length; j++) {
             vis.updateVisualization(vis.cities[i][j]);
         }
-    }*/
+    }
 
 
     // The following code adds the nodes in an iterative fashion. Currently this approach only works for the first
     // few years, after that the number of nodes becomes to big.
+    /*
     var outerCounter = 1;
     var year = 1993;
     vis.current_year = vis.cities[0];
@@ -118,7 +119,7 @@ WorldMap.prototype.createVisualization = function (){
         if (outerCounter == vis.cities.length - 1){
             clearInterval(refreshId);
         }
-    }, yearDelay);
+    }, yearDelay);*/
 
 }
 
@@ -133,10 +134,10 @@ WorldMap.prototype.updateVisualization = function (newNode){
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
         })
         .attr("r", function(d) { return vis.r(newNode.Pop)})
-        .attr("fill", "#1B3F8B  ")
-        .transition()
+        .attr("fill", "#1B3F8B  ");
+        /*.transition()
         .duration(250)
-        .attr("fill", "#3b5998");
+        .attr("fill", "#3b5998");*/
 
 }
 
