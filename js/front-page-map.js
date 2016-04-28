@@ -76,9 +76,14 @@ WorldMap.prototype.createVisualization = function (){
     TODO: Check if adding all cities and set their visibility to hidden is better than the current approach.*/
     for (var i = 0; i < vis.cities.length; i++) {
         for (var j = 0; j < vis.cities[i].length; j++) {
-            vis.updateVisualization(vis.cities[i][j]);
+            vis.addAllNodes(vis.cities[i][j]);
         }
     }
+
+    document.getElementById("launchButton").addEventListener("click", function() {
+        vis.animate();
+        onClick();
+    })
 
 
     // The following code adds the nodes in an iterative fashion. Currently this approach only works for the first
@@ -124,7 +129,7 @@ WorldMap.prototype.createVisualization = function (){
 
 }
 
-WorldMap.prototype.updateVisualization = function (newNode){
+WorldMap.prototype.addAllNodes = function (newNode){
 
     var vis = this;
 
@@ -135,11 +140,16 @@ WorldMap.prototype.updateVisualization = function (newNode){
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
         })
         .attr("r", function(d) { return vis.r(newNode.Pop)})
-        .attr("fill", "#1B3F8B  ");
+        .attr("fill", "#1B3F8B  ")
+        .attr("opacity", 0);
         /*.transition()
         .duration(250)
         .attr("fill", "#3b5998");*/
 
+}
+
+WorldMap.prototype.animate = function() {
+    console.log("test");
 }
 
 function numberWithCommas(x) {

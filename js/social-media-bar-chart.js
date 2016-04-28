@@ -121,7 +121,6 @@ BarChart.prototype.initVis = function(){
     // Sets default country to Argentina
     this.current = "Argentina";
 
-    
     //  Init wrangleData
     vis.wrangleData();
 
@@ -194,12 +193,14 @@ BarChart.prototype.updateVis = function(){
             d3.select(this).transition().duration(transitionTime).attr("opacity", 1);
             vis.tip.show(d);
             showPlatformInfo(d.Platform);
+            vis.title.text("% of " + vis.current + "'s population using " + d.Platform);
 
         })
         .on('mouseout', function() {
             d3.selectAll(".bar").transition().duration(transitionTime).attr("opacity",1);
             vis.tip.hide();
             hidePlatformInfo();
+            vis.title.text("Top social media platforms in ".concat(vis.current));
         });
 
     rect.exit()
