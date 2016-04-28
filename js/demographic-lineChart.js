@@ -102,6 +102,7 @@ LineChart.prototype.initVis = function(){
     vis.svg.append("text")
         .attr("class", "axis-title")
         .attr("text-anchor", "start")
+        .style("color","gray")
         .attr("y", 0)
         .attr("x", 0)
         .attr("dy", ".75em")

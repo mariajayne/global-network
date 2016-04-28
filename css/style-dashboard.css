@@ -5,17 +5,13 @@
 /* GENERAL */
 /***********/
 
-body {
-    padding-left:50px;
-    padding-right:50px;
-}
-
-.btn-container{
-    padding-top:60px;
-}
 
 #col1{
     padding-left:10px;
+}
+
+.btn-container{
+    padding-top:30px;
 }
 
 .btn-filter {
@@ -76,11 +72,6 @@ body {
     fill: gray;
 }
 
-.axis-title {
-    font-size: 8px;
-    font-family:"Open Sans"
-}
-
 .axis path, line {
     fill: none;
     stroke: none;
@@ -109,7 +100,8 @@ body {
 
 .label{
     font-size:10px;
-    color:black;
+    color:grey;
+    font-weight:300;
 }
 
 
