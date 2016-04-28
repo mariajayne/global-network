@@ -54,7 +54,10 @@ d3.select("#year-select").selectAll("option")
     .attr("value", function(d) { return d; })
     .text(function(d) { return d; });
 
-color = d3.scale.category20c();
+color = d3.scale.ordinal() 
+    .domain(["Africa","Carribbean","Central America","Eastern Europe","Middle East","North America","Oceania", 
+        "South America","South Asia","Southeast Asia","Western Europe"]) 
+    .range(["#9e0142","#d53e4f","#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"]);
 
 var treemap = d3.layout.treemap()
     .size([width, height])
