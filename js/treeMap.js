@@ -20,9 +20,9 @@ d3.select("#data-select").selectAll("option")
 var selectedYear = 1991;
 var selectedCat = "gdp";
 
-var margin = {top: 20, right: 50, bottom: 40, left: 50};
+var margin = {top: 20, right: 25, bottom: 40, left: 25};
 
-var width = window.innerWidth/1.4 - margin.left - margin.right,
+var width = window.innerWidth/1.5 - margin.left - margin.right,
     height = window.innerHeight/1.25 - margin.top - margin.bottom;
 
 

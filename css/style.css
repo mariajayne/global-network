@@ -82,4 +82,10 @@ hr {
     text-align:left;
 }
 
+hr {
+    box-sizing : inherit;
+}
 
+.container-fluid {
+    padding : 0;
+}

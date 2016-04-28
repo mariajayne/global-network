@@ -1,6 +1,8 @@
 /* style-countries.css contains settings only valid for countries.html */
 
 #tree-map {
+    padding-left : 0;
+    margin-left : 0;
 }
 
 #title {
@@ -62,11 +64,6 @@ h3 {
 
 #info {
     width : 300px;
-}
-
-#mainRow {
-    padding-left : 50px;
-    padding-right : 50px;
 }
 
 #slider {
