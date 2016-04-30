@@ -5,21 +5,13 @@
 /* GENERAL */
 /***********/
 
-body:not(.row-centered) {
-    font-family: "Open Sans";
-    font-weight:300;
-    font-size:12px;
-    padding-left:50px;
-    padding-right:50px;
-    padding-bottom:100px;
-}
-
-.btn-container{
-    padding-top:60px;
-}
 
 #col1{
     padding-left:10px;
+}
+
+.btn-container{
+    padding-top:30px;
 }
 
 .btn-filter {
@@ -80,11 +72,6 @@ body:not(.row-centered) {
     fill: gray;
 }
 
-.axis-title {
-    font-size: 8px;
-    font-family:"Open Sans"
-}
-
 .axis path, line {
     fill: none;
     stroke: none;
@@ -113,7 +100,8 @@ body:not(.row-centered) {
 
 .label{
     font-size:10px;
-    color:black;
+    color:grey;
+    font-weight:300;
 }
 
 
@@ -216,6 +204,7 @@ body:not(.row-centered) {
 #slider {
   margin-top: 25px;
 }
+
 
 .headline .btn-nav .col-centered{
     padding-left : 0;

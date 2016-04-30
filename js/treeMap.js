@@ -20,10 +20,10 @@ d3.select("#data-select").selectAll("option")
 var selectedYear = 1991;
 var selectedCat = "gdp";
 
-var margin = {top: 40, right: 40, bottom: 40, left: 40};
+var margin = {top: 20, right: 25, bottom: 40, left: 25};
 
-var width = 900 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var width = window.innerWidth/1.5 - margin.left - margin.right,
+    height = window.innerHeight/1.25 - margin.top - margin.bottom;
 
 
 var mousemove = function(d) {
@@ -54,7 +54,10 @@ d3.select("#year-select").selectAll("option")
     .attr("value", function(d) { return d; })
     .text(function(d) { return d; });
 
-color = d3.scale.category20c();
+color = d3.scale.ordinal() 
+    .domain(["Africa","Carribbean","Central America","Eastern Europe","Middle East","North America","Oceania", 
+        "South America","South Asia","Southeast Asia","Western Europe"]) 
+    .range(["#9e0142","#d53e4f","#f46d43","#fdae61","#fee08b","#ffffbf","#e6f598","#abdda4","#66c2a5","#3288bd","#5e4fa2"]);
 
 var treemap = d3.layout.treemap()
     .size([width, height])
@@ -105,6 +108,7 @@ d3.json("../data/treemap/treeJson.json", function(error, root) {
             .call(position);
     });
 
+    positionRelativeToTreeMap();
 });
 
 
@@ -135,7 +139,7 @@ function makeSlider() {
                     }
                 }
                 selectedYear = attributeArray[currentAttribute];
-                d3.select('#clock').html(selectedYear);
+                //d3.select('#clock').html(selectedYear);
 
                 node
                     .data(treemap.value(function(d) {
@@ -158,4 +162,15 @@ function makeSlider() {
     }
     yearSlider.value(d3.select('#clock').html());
     d3.select("#slider").call(yearSlider);
+}
+
+
+
+function positionRelativeToTreeMap() {
+
+    var countriesTable = document.getElementById("countriesTable");
+    var mapBounds = document.getElementById("tree-map").firstElementChild.firstElementChild.getBoundingClientRect();
+
+    countriesTable.style.left = (mapBounds.right + 15) + "px";
+    countriesTable.style.top = mapBounds.top + "px";
 }

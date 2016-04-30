@@ -1,13 +1,14 @@
 /* style-process.css contains settings only valid for process.html */
 body {
     background-color: #fbfbfb;
-    font-family: "Open Sans";
     padding-left:0px;
     padding-right:0px;
-    color: #383736;
 }
 
+h2 {
+    font-weight : 300;
 
+}
 
 ul.nav-tabs {
     width: 240px;
@@ -52,8 +53,6 @@ ul.nav-tabs.affix {
 }
 
 h2 {
-    font-size: 28px;
-    font-weight: bold;
 }
 
 h5 {
@@ -63,7 +62,7 @@ h5 {
 
 h3 {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 300;
 }
 
 img {

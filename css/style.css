@@ -1,36 +1,60 @@
 /* style.css contains our fundamental style-settings */
 
 body{
-
     font-family: "Open Sans";
     background-color: #fbfbfb;
     font-weight : 300;
-    color : grey;
+    font-size : 12px;
+    color : black;
+    padding-left:60px;
+    padding-right:60px;
+    padding-bottom:100px;
 }
 
 .nav-container{
     padding-bottom:80px;
 }
 
+h2 {
+    font-size : 30px;
+    font-weight : 300;
+    margin-top : 0;
+}
 
 /* Styling for the nav bar */
 
-.btn-nav {
-    position: relative;
-//display: block;
-    height: 30px;
-    width: 110px;
-    margin: 10px 7px;
-    padding: 5px;
+.a-nav{
+    margin: 13px 13px;
     font-size: 9px;
     text-align : center;
     letter-spacing: 2px;
     color: #383736;
-    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.a-nav:hover {
+    color:navy;
+}
+
+.headline{
+    padding-top:25px;
+    padding-bottom:25px;
+}
+
+.btn-nav {
+//display: block;
+    height: 30px;
+    width: 150px;
+    margin: 10px 7px;
+    font-size: 9px;
+    text-align : center;
+    letter-spacing: 2px;
+    color: #383736;
+    border: black;
     border-radius: 4px;
     text-transform: uppercase;
     outline: 0;
-    overflow: hidden;
     background: none;
     z-index: 1;
     cursor: pointer;
@@ -42,8 +66,7 @@ body{
 }
 
 .btn-nav:hover {
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    color:blue;
 }
 
 .btn-nav:hover:before {
@@ -76,4 +99,14 @@ hr {
     text-align:left;
 }
 
+hr {
+    box-sizing : inherit;
+}
 
+.container-fluid {
+    padding : 0;
+}
+
+#underHeadline{
+    color:gray;
+}

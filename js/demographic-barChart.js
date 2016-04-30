@@ -98,7 +98,7 @@ BarChart.prototype.initVis = function(){
         .attr("x", vis.width/2)
         .attr("dy", ".1em")
         .attr("transform", "rotate(0)")
-        .text("Internet usage vs Degree of National Censorship (% 2014)");
+        .text("Internet usage vs Freedom of the Internet (% 2014)");
 
     /*
     var count = -1;
@@ -180,7 +180,7 @@ BarChart.prototype.updateVis = function(){
 
     dots.append("circle")
         .attr("class","dot")
-        .attr("r",2.5)
+        .attr("r",3.5)
         .attr("cx", function(d){return vis.x(d.country) + 7})
         .attr("cy", function(d){return vis.y(d.internet2014)})
         .style("fill","black")

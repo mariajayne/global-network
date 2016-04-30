@@ -47,15 +47,21 @@ WorldMap.prototype.initVis = function() {
         bottom: 0,
         left: 20
     };
-    vis.width = $( document ).width() * 2/3.0 - vis.margin.left - vis.margin.right;
+    vis.width = $( document ).width() * 2/3.1 - vis.margin.left - vis.margin.right;
     vis.height = 550 - vis.margin.top - vis.margin.bottom;
+
+    function zoom() {
+        vis.svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
+    }
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
         .attr("width", vis.width + vis.margin.left + vis.margin.right)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
+        .call(d3.behavior.zoom().scaleExtent([1, 6]).on("zoom", zoom))
+        .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")")
+        .append("g");
 
     vis.projection = d3.geo.mercator()
         .center([15, 45])
@@ -182,6 +188,9 @@ WorldMap.prototype.createVisualization = function() {
 
         })
         .on('mouseout', vis.tip.hide);
+
+    // Remove Antarctica
+    vis.svg.select("#ATA").remove();
 
     d3.select('#anim-playing').html("stopped");
     this.updateVisualization();

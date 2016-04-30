@@ -3,14 +3,11 @@
  */
 
 
-var transitionTime = 370;
-
 Timeline = function(_parentElement,_data, _descriptionText) {
     this.parentElement = _parentElement;
     this.data = _data;
-    this.chosenCategory = "all";
+
     this.descriptionText = _descriptionText;
-    this.clicked = false;
 
     this.initVis();
 };
@@ -19,26 +16,22 @@ Timeline = function(_parentElement,_data, _descriptionText) {
 Timeline.prototype.initVis = function() {
     var vis = this;
 
-    vis.margin = { top: 40, right: 40, bottom: 40, left: 40 };
+    vis.margin = { top: 40, right: 75, bottom: 40, left: 75};
 
-    vis.width = screen.width/1.1 - vis.margin.left - vis.margin.right;
-    vis.height = screen.width/4 - vis.margin.top - vis.margin.bottom;
+    vis.width = window.innerWidth - (vis.margin.left + vis.margin.right);
+    vis.height = screen.width/3 - vis.margin.top - vis.margin.bottom;
 
     //  SVG drawing area
     vis.svg = d3.select("#"+vis.parentElement).append("svg")
-        .attr("width", vis.width + vis.margin.left + vis.margin.right)
+        .attr("width", vis.width)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
         .attr("id", "timeline-drawing-space")
         .append("g")
         .attr("id", "timeline")
-        .attr("transform", "translate(" + vis.margin.left + "," + (-18 + vis.margin.top )+ ")");
+        .attr("transform", "translate(0," + (vis.margin.top )+ ")");
 
     vis.bounds = document.getElementById("timeline-drawing-space").getBoundingClientRect();
     vis.innerBounds = document.getElementById("timeline-drawing-space").firstElementChild.getBoundingClientRect();
-
-    positionRelativeToTimeline(vis);
-
-
     
     // Scales
     vis.x = d3.time.scale()
@@ -46,7 +39,7 @@ Timeline.prototype.initVis = function() {
         .domain([dateFormat("01-01-1997"), dateFormat("01-01-2015")]);
 
     vis.r = d3.scale.linear()
-        .range([0, vis.height/2.4])
+        .range([0, screen.width/10])
         .domain([0,d3.max(vis.data, function(d){return d.Current_size})]);
 
 
@@ -70,24 +63,15 @@ Timeline.prototype.initVis = function() {
         .attr("text-anchor", "middle")
         .text("Social media");
 
-    // Under title
+    
+    // Sub title
     vis.subtitle = vis.svg.append("g")
         .append("text")
         .attr("id", "sub-title")
-        .attr("y", .091*vis.bounds.height)
+        .attr("y", .067*vis.bounds.height)
         .attr("x", vis.width / 2.0)
         .attr("text-anchor", "middle")
         .text("Social networks / Chat Applications / All");
-
-    vis.svg.selectAll("legendCircles")
-        .data([{"color": "#0d2e67", "cx": 4, "cy": .23*vis.bounds.height},
-            {"color": "#a31313", "cx": 4, "cy": .16*vis.bounds.height}])
-        .enter()
-        .append("circle")
-        .attr("r", 6)
-        .attr("cx", function(d) { return d.cx })
-        .attr("cy", function(d) { return d.cy })
-        .attr("fill", function(d) { return d.color });
 
 
     // Add rectangles for choosing social media category
@@ -110,18 +94,18 @@ Timeline.prototype.initVis = function() {
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "msg")
-        .attr("width", 118.5)
+        .attr("width", 113)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
         });
 
     vis.rectAll = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 101)
+        .attr("x", (vis.width / 2.0) + 93)
         .attr("y", yPosition)
         .attr("class", "category-rect")
         .attr("id", "all")
-        .attr("width", 27)
+        .attr("width", 35)
         .attr("height", rectHeight)
         .on("click", function() {
             vis.moveChosen(this);
@@ -135,29 +119,39 @@ Timeline.prototype.initVis = function() {
         .attr("height", 25);
 
     vis.rectChosenCategory = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 101)
+        .attr("x", (vis.width / 2.0) + 93)
         .attr("y", yPosition)
         .attr("id", "chosen-rect")
-        .attr("width", 27)
+        .attr("width", 35)
         .attr("height", rectHeight);
 
+    
+    // Shows all platforms by default
+    vis.chosenCategory = "all";
 
-
+    
     // Platform information textbox
     vis.platformName = $("#platformName");
     vis.platformReleaseDate = $("#platformDate");
     vis.platformUsers = $("#platformUsers");
     vis.platformAbout = $("#platformAbout");
 
+    
+    // Sets default text
     vis.setSocialMediaText();
 
+    // Wrangle data
     vis.wrangleData();
+
+    // Positioning other elements relatively to the timeline. TODO: Move this out to social-media.js
+    positionRelativeToTimeline(vis);
 };
 
 
 Timeline.prototype.wrangleData = function() {
     var vis = this;
 
+    // Wrangles data depending on if the user have chosen "Social Networks", "Chat Applications" or "All" (default)
     switch (vis.chosenCategory) {
         case "network":
             vis.wrangledData = vis.data.filter(function(d) {
@@ -176,6 +170,7 @@ Timeline.prototype.wrangleData = function() {
     vis.updateVis();
 };
 
+
 Timeline.prototype.updateVis = function() {
     var vis = this;
 
@@ -191,6 +186,8 @@ Timeline.prototype.updateVis = function() {
         .attr("class", "lineCircle");
 
     circle.transition()
+        .attr("id", function(d) { return d.Platform.concat("-circle")
+        })
         .attr("cx", function(d) { return vis.x(d.Date)})
         .attr("cy", vis.height/2.0 + vis.margin.top)
         .attr("r", function(d) {return vis.r(d.Current_size)})
@@ -204,28 +201,17 @@ Timeline.prototype.updateVis = function() {
 
     // Hovering actions
     circle.on("mouseover", function(d) {
-        if (!vis.clicked) {
-            vis.hoverAction(d, this);
-        }
-
+        vis.hoverAction(d, this);
     });
     circle.on("mouseout", function(d) {
-        if (!vis.clicked) {
-            d3.selectAll(".lineCircle").transition().duration(transitionTime).attr("opacity",.5);
-            vis.setSocialMediaText();
-        }
+        vis.hoverOutAction();
     });
     
     circle.exit()
         .remove();
 };
 
-function dateToString(date) {
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-    ];
-    return "" + monthNames[date.getMonth()] + " " + date.getDay() + "." + " " + date.getFullYear();
-}
+// Function for moving the rectangle selecting "Social Networks", "Chat Applications" or "All"
 Timeline.prototype.moveChosen = function(target) {
     var vis = this;
     target = d3.select(target);
@@ -254,10 +240,18 @@ Timeline.prototype.hoverAction = function(d, circle) {
     } else {
         htmlString = htmlString.concat(" <i class=\"fa ".concat(d.Symbol).concat("\"></i>"));
     }
+
     vis.platformName.html( htmlString);
     if ((d.Symbol.length == 0) && (d.Platform != "yy")) {
         swapSvg();
     }
+}
+
+Timeline.prototype.hoverOutAction = function() {
+    var vis = this;
+
+    d3.selectAll(".lineCircle").transition().duration(transitionTime).attr("opacity",.5);
+    vis.setSocialMediaText();
 }
 
 
@@ -307,48 +301,55 @@ Timeline.prototype.setSocialMediaText = function(){
 }
 
 
+/* Function that position other elements on the page relatively to the timeline.
+   TODO: This function should be refactored and moved to social-media.js
+ */
 function positionRelativeToTimeline(vis) {
     
+    // Variables used for positioning
     var timeLineSvg = document.getElementById("timeline-drawing-space").firstElementChild.getBoundingClientRect();
-
-    var e = document.getElementById("platformInformationText");
-    e.style.left = "" + ((screen.width - vis.bounds.width)/2.0 + vis.margin.left) + "px";
-    e.style.width = (vis.bounds.width / 3.0) + "px";
+    var navLine = document.getElementById("nav-line");
+    var navLineStyle = navLine.currentStyle || window.getComputedStyle(navLine);
+    var navBarHeight = document.getElementById("social-media-navbar").clientHeight;
+    var marginNavLine = parseInt(navLineStyle.marginBottom.slice(0,-2));
+    
+    
+    // Positioning of the platform information text
+    var informationText = document.getElementById("platformInformationText");
+    informationText.style.left = timeLineSvg.left + "px";
+    informationText.style.width = (window.innerWidth / 3.0) + "px";
 
     // Positioning of the bar chart
     var barChart = document.getElementById("social-media-bar-chart");
-    var foo = ((vis.bounds.width / 2.0) - vis.margin.right - barChart.getBoundingClientRect().width) / 2.0;
-    barChart.style.left = (foo + (screen.width/2.0)) + "px";
+    var marginFromMiddle = ((timeLineSvg.width/2.0) - barChart.getBoundingClientRect().width) / 2.0;
+    barChart.style.left = timeLineSvg.left + timeLineSvg.width/2.0 + marginFromMiddle + "px";
 
     // Positioning of the timeline legends
-    var redLegend = document.getElementById("redLegend");
-    var blueLegend = document.getElementById("blueLegend");
+    var legendTable = document.getElementById("legendTable");
+    legendTable.style.top = (navBarHeight + marginNavLine + .18*vis.bounds.height) + "px";
+    legendTable.style.left = (timeLineSvg.left - 9) + "px";
 
-    var navBarHeight = document.getElementById("social-media-navbar").clientHeight;
-    var navLine = document.getElementById("nav-line");
-    var navLineStyle = navLine.currentStyle || window.getComputedStyle(navLine);
-    var marginNavLine = parseInt(navLineStyle.marginBottom.slice(0,-2));
-
-
-    redLegend.style.top = (navBarHeight + .2*vis.bounds.height + marginNavLine) + "px";
-    blueLegend.style.top = (navBarHeight + .27*vis.bounds.height + marginNavLine) + "px";
-    var leftMarginLegends = timeLineSvg.left + 15;
-    redLegend.style.left = leftMarginLegends + "px";
-    blueLegend.style.left = leftMarginLegends + "px";
 
     // Positioning of the timeline help text
     var helpText = document.getElementById("helpText");
-
     helpText.style.left = timeLineSvg.left + "px";
     helpText.style.top = (navBarHeight + marginNavLine + .12*vis.bounds.height) + "px";
+    helpText.style.width = window.innerWidth / 4.0 + "px";
 
 
     // Positioning of the flag table
     var flagTable = document.getElementById("flagTable");
-    var barChartBounds = parseFloat(barChart.style.left.slice(0,-2)) + barChart.clientWidth + 25;
+    var barChartYAxisHeight = document.getElementById("bar-chart-y-axis").getBoundingClientRect().height;
+    var topMarginFlagTable = (barChartYAxisHeight - flagTable.getBoundingClientRect().height)/ 2.0;
+    flagTable.style.left = barChart.getBoundingClientRect().right + 15 + "px";
+    flagTable.style.top = barChart.getBoundingClientRect().top + topMarginFlagTable + "px";
+}
 
-    flagTable.style.left = barChartBounds + "px";
-    flagTable.style.top = 20 + "px";
 
-    
+// Helper for formatting a date to a string on the following format: Month(name) dd.yyyy
+function dateToString(date) {
+    var monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    return "" + monthNames[date.getMonth()] + " " + date.getDay() + "." + " " + date.getFullYear();
 }

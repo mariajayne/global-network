@@ -13,9 +13,6 @@ WorldMap = function(_parentElement, _mapData, _data, _globalNumberOfUsers) {
     this.cities = this.data;
     this.globalNumberOfUsers = _globalNumberOfUsers;
 
-    this.yearCounter = document.getElementById("yearCounter");
-    this.userCounter = document.getElementById("userCounter1");
-
     this.initVis();
 }
 
@@ -25,7 +22,7 @@ WorldMap.prototype.initVis = function(){
     var vis = this;
 
     vis.margin = {top: 0, right: 0, bottom: 0, left: 0};
-    vis.width = window.innerWidth;
+    vis.width = window.innerWidth * 0.8;
     vis.height = window.innerHeight;
 
 
@@ -51,6 +48,7 @@ WorldMap.prototype.initVis = function(){
         .domain([1000,10000000])
         .range([0.05,5]);
 
+
     this.createVisualization();
 
 }
@@ -71,27 +69,22 @@ WorldMap.prototype.createVisualization = function (){
     // Remove Antarctica
     vis.svg.select("#ATA").remove();
 
-    /* Codes that adds all cities at the same time.
+    /*Codes that adds all cities at the same time.
     TODO: Check if adding all cities and set their visibility to hidden is better than the current approach.
     for (var i = 0; i < vis.cities.length; i++) {
         for (var j = 0; j < vis.cities[i].length; j++) {
-            vis.updateVisualization(vis.cities[i][j]);
+            vis.addAllNodes(vis.cities[i][j]);
         }
     }*/
 
-
-    // Add legend circle
-    vis.svg.append("circle")
-        .attr("r", 7.5)
-        .attr("cx", document.getElementById("mapLegend").getBoundingClientRect().left - 30)
-        .attr("cy", document.getElementById("mapLegend").getBoundingClientRect().top - 56)
-        .attr("position", "absolute")
-        .attr("fill", "#3b5998");
+    vis.yearCounter = document.getElementById("yearCounter");
+    vis.userCounter = document.getElementById("userCounter1");
 
 
     // The following code adds the nodes in an iterative fashion. Currently this approach only works for the first
     // few years, after that the number of nodes becomes to big.
-    var outerCounter = 1;
+
+    var outerCounter = 0;
     var year = 1993;
     vis.current_year = vis.cities[0];
     nodeDelay = (yearDelay / vis.current_year.length);
@@ -142,7 +135,8 @@ WorldMap.prototype.updateVisualization = function (newNode){
             return "translate(" + vis.projection([newNode.Long, newNode.Lat]) + ")";
         })
         .attr("r", function(d) { return vis.r(newNode.Pop)})
-        .attr("fill", "#1B3F8B  ")
+        .attr("fill", "#1B3F8B")
+        .attr("opacity", 1)
         .transition()
         .duration(250)
         .attr("fill", "#3b5998");

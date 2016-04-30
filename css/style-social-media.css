@@ -4,28 +4,36 @@
 /* GENERAL */
 /***********/
 
-body {
-    color : black;
-}
-
-h3 {
-    font-weight : 300;
-}
 /* Centering whole visualization */
 #timeline-drawing-space {
     display : block;
     margin : auto;
 }
 
+/*************/
+/* Div. text */
+/*************/
 #title {
     font-size : 30px;
 }
 
 #sub-title {
     position : absolute;
-    color : black;
-    opacity : 1;
+    font-size : 14px;
 }
+
+#platformInformationText {
+    position : absolute;
+}
+
+h3 {
+    font-weight : 300;
+}
+
+
+/***************************************/
+/* Social platform category rectangles */
+/***************************************/
 
 .category-rect {
     position : absolute;
@@ -33,16 +41,20 @@ h3 {
 }
 
 #chosen-rect {
-    stroke : none;
     fill-opacity : 0.4;
     fill : grey;
 }
 
 #boundary-rect {
-    stroke : grey;
+    stroke : black;
     fill : none;
     fill-opacity : 0;
 }
+
+
+/***********************/
+/* SVG Platform Images */
+/***********************/
 
 .svg-img {
     width : 20px;
@@ -55,19 +67,6 @@ h3 {
 }
 
 
-.platform-icon {
-    position : absolute;
-    display : inline;
-}
-
-#platformInformationText {
-    position : absolute;
-}
-
-#flagTable {
-    position : absolute;
-}
-
 /*************/
 /* TIME LINE */
 /*************/
@@ -76,12 +75,6 @@ h3 {
     fill: none;
     stroke: black;
     stroke-width: 1;
-}
-
-#platformInfo {
-    position : absolute;
-    text-anchor : middle;
-    text-align : center;
 }
 
 .legend {
@@ -93,43 +86,48 @@ h3 {
 #helpText {
     position : absolute;
     font-size:10px;
-    text-anchor : start;
-    margin : 0;
 }
+
+#legendTable {
+    position : absolute;
+    font-size : 10px;
+}
+
 
 /*************/
 /* Bar Chart */
 /*************/
 
 .grid path,
-.axis path,
-.axis line{
+.axis path {
     stroke : none;
 }
 
 .grid .tick {
     stroke: #fbfbfb;
-    shape-rendering: crispEdges;
 }
 
 #social-media-bar-chart {
     position : absolute;
 }
 
-.axis .tick text {
-    color: black;
-    font-size : 15px;
-}
-
-.bar:hover {
-    opacity : 1;
-}
-
 .bar {
     fill :grey;
-    fill-opacity : .8;
+    fill-opacity : .4;
 }
+
+#chartTitle {
+    font-size : 14px;
+}
+
+/**************/
+/* Flag table */
+/**************/
 
 td {
     padding-right : 5px;
+}
+
+#flagTable {
+    position : absolute;
 }

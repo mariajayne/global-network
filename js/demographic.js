@@ -255,3 +255,22 @@ function createVis() {
     timeline = new Timeline("timeline-chart",demographicData.world,"total_internet_users");
     worldMap = new WorldMap("world-map",map,freedomData,demographicData);
 }
+
+
+function mouseMoveAllGraphs(vis) {
+    gdpChart.mouseMove(vis);
+    employmentChart.mouseMove(vis);
+    internetChart.mouseMove(vis);
+}
+
+function mouseOverAll() {
+    gdpChart.focus.style("display",null);
+    employmentChart.focus.style("display",null);
+    internetChart.focus.style("display",null);
+}
+
+function mouseOutAll() {
+    gdpChart.focus.style("display","none");
+    employmentChart.focus.style("display","none");
+    internetChart.focus.style("display","none");
+}

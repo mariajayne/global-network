@@ -102,6 +102,7 @@ LineChart.prototype.initVis = function(){
     vis.svg.append("text")
         .attr("class", "axis-title")
         .attr("text-anchor", "start")
+        .style("color","gray")
         .attr("y", 0)
         .attr("x", 0)
         .attr("dy", ".75em")
@@ -150,34 +151,37 @@ LineChart.prototype.initVis = function(){
         .attr("height",vis.height)
         .style("fill","none")
         .style("pointer-events","all")
-        .on("mouseover",function(){vis.focus.style("display",null);})
-        .on("mouseout",function(){vis.focus.style("display","none");})
-        .on("mousemove", mouseMove);
-
-    function mouseMove () {
-        var indexCountry = vis.displayData.length - 1;
-        var x0 = vis.x.invert(d3.mouse(this)[0]);
-        var i = bisectDate(vis.displayData[indexCountry].years, x0, 1);
-        var d0 = vis.displayData[indexCountry].years[i - 1];
-        var d1 = vis.displayData[indexCountry].years[i];
-        var d = x0 - d0.year > d1.year- x0 ? d1 : d0;
-
-        vis.focus.select("circle.y")
-            .attr("transform","translate(" + vis.x(d.year) + "," + vis.y(d[vis.metric]) + ")");
-        vis.focus.select("line.x")
-            .attr("transform","translate(" + vis.x(d.year) + "," + vis.height + ")")
-            .attr("y1", 0).attr("y2", -vis.height);
-        vis.focus.select("text.y1")
-            .attr("transform","translate(" + vis.x(d.year) + "," + 35 + ")")
-            .text("Value: " + formatYLabel(d[vis.metric],vis.metric));
-        vis.focus.select("text.y2")
-            .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
-            .text("Year: " + formatYear(d.year));
-    }
-
+        .on("mouseover",function(){ mouseOverAll(); })
+        .on("mouseout",function(){ mouseOutAll();})
+        .on("mousemove", function(){ mouseMoveAllGraphs(this)});
     vis.wrangleData();
 
 }
+
+LineChart.prototype.mouseMove = function (foo) {
+    var vis = this;
+
+    var indexCountry = vis.displayData.length - 1;
+    var x0 = vis.x.invert(d3.mouse(foo)[0]);
+    var i = bisectDate(vis.displayData[indexCountry].years, x0, 1);
+    var d0 = vis.displayData[indexCountry].years[i - 1];
+    var d1 = vis.displayData[indexCountry].years[i];
+    var d = x0 - d0.year > d1.year- x0 ? d1 : d0;
+
+    vis.focus.select("circle.y")
+        .attr("transform","translate(" + vis.x(d.year) + "," + vis.y(d[vis.metric]) + ")");
+    vis.focus.select("line.x")
+        .attr("transform","translate(" + vis.x(d.year) + "," + vis.height + ")")
+        .attr("y1", 0).attr("y2", -vis.height);
+    vis.focus.select("text.y1")
+        .attr("transform","translate(" + vis.x(d.year) + "," + 35 + ")")
+        .text("Value: " + formatYLabel(d[vis.metric],vis.metric));
+    vis.focus.select("text.y2")
+        .attr("transform","translate(" + vis.x(d.year) + "," + 50 + ")")
+        .text("Year: " + formatYear(d.year));
+}
+
+
 
 
 LineChart.prototype.wrangleData = function(){

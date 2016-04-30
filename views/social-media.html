@@ -24,27 +24,33 @@
 <div class="container-fluid">
 
         <div class="row row-centered headline" id="social-media-navbar">
-            <div class="col-md-1 col-centered"><a href="../index.html"><button class="btn-nav">Home</button></a></div>
-            <div class="col-md-1 col-centered"><a href="../dashboard/dashboard.html"><button class="btn-nav">Internet Usage</button></a></div>
-            <div class="col-md-1 col-centered"><a href="../countries/countries.html"><button class="btn-nav">Demographics</button></a></div>
-            <div class="col-md-1 col-centered"><a href="#"><button class="btn-nav"><u>Social Media</u></button></a></div>
-            <div class="col-md-1 col-centered"><a href="../process/process.html"><button class="btn-nav">Process book</button></a></div>
-        </div>
+                <div class="col-md-12">
+                    <a class="a-nav" href="../index.html">Home</a>
+                    <a class="a-nav" href="dashboard.html">Internet Usage</a>
+                    <a class="a-nav" href="countries.html">Demographics</a>
+                    <a class="a-nav" href="#"><u>Social Media</u></a>
+                    <a class="a-nav" href="process.html">Process book</a>
+                </div>
+            </div>
     <hr id="nav-line">
 
     <p id="helpText">To learn more about a specific social media, hover over a circle on the timeline</p>
-    <div id="redLegend" class="legend">- Number of users of Social Network</div>
-    <div id="blueLegend" class="legend">- Number of users of Chat Application</div>
+    <table id="legendTable">
+        <tr>
+            <td id="redLegendCircle"></td>
+            <td>- Number of users of Social Network</td>
+        </tr>
+        <tr>
+            <td id="blueLegendCircle"></td>
+            <td>- Number of users of Chat Application</td>
+        </tr>
+    </table>
 
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12" id="social-media-col">
-
             <div id="social-media-timeline"></div>
-
-        </div>
     </div>
 
-   <div class="row" style="position:relative;">
+   <div class="row">
 
             <div id="platformInformationText">
                 <h3 id="platformName">Social media and internet usage</h3>

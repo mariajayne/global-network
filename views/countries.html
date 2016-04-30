@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>A Multi-Dimensional View</title>
+
+    <!-- Load Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/d3.slider.css" />
+
+    <!-- Custom CSS code -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-countries.css">
+</head>
+<body>
+
+<div class="container-fluid">
+
+    <!-- Navbar -->
+    <div class="row row-centered headline">
+        <div class="col-md-12">
+            <a class="a-nav" href="../index.html">Home</a>
+            <a class="a-nav" href="dashboard.html">Internet Usage</a>
+            <a class="a-nav" href="#"><u>Demographics</u></a>
+            <a class="a-nav" href="social-media.html">Social Media</a>
+            <a class="a-nav" href="process.html">Process book</a>
+        </div>
+    </div>
+    <hr>
+
+    <table id="countriesTable">
+        <tr>
+            <td>
+                <h3 id="subTitle">Analyzing Area</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p id="info">This treemap visualization gives a clear comparison of different demographic metrics of different countries. Simply select a metric to view, and slide to select your year to explore how these change over time. To discover specifics, just hover over a rectangle. This visualization allows us to represent the data for each country without the lie factor involved in geographic maps. How do these metrics interrelate? How do they change over time? We can’t wait to see what you learn from it.</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="rankingType"> Select Data:</label>
+                        <br>
+                        <select class="form-control" id="data-select">
+                        </select>
+                    </div>
+                </form>
+            </td>
+
+        </tr>
+    </table>
+
+    <div class="row" id="mainRow">
+        <h2 id="title">A Multi-Dimensional View</h2>
+        <div id="tree-map"></div>
+
+        <br>
+        <div id="clock"></div>
+        <div id="slider"></div>
+
+        <div id="tooltip" class="hidden">
+            <p id="heading"></p>
+            <p id="moreInfo"></p>
+        </div>
+
+
+         </div>
+
+</div>
+
+<!-- Load JS libraries -->
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/d3.min.js"></script>
+<script src="../js/d3.tip.js"></script>
+<script src="../js/d3.slider.js"></script>
+
+<script src="../js/treeMap.js"></script>
+
+
+</body>
+</html>
