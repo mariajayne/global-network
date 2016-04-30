@@ -240,11 +240,14 @@ WorldMap.prototype.animateMap = function() {
             playing = !playing;
             animation = playing ? 'stop' : 'play';
             $('#animate_to_' + animation).get(0).beginElement();
-            if (playing)
+            if (playing) {
                 d3.select('#anim-playing').html("playing");
-            else
+                d3.select('#cencorship').disabled = true;
+            }
+            else {
                 d3.select('#anim-playing').html("stopped");
-
+                d3.select('#cencorship').disabled = false;
+            }
             setTimeout(function periodicFunc() {
                 if (reachedEnd && playing) {
                     currentAttribute = -1;
@@ -254,7 +257,6 @@ WorldMap.prototype.animateMap = function() {
                     currentAttribute++;
                     currentYear = attributeArray[currentAttribute];
 
-                    // TODO figure out why striped pattern won't cooperate and transition properly
                     d3.selectAll('.country')
                         .transition()
                         .duration(700)
