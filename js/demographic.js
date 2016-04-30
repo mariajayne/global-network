@@ -122,32 +122,6 @@ function setDefaultColorMap() {
     })
 }
 
-function changeViewToDemographic(){
-    if (cencorShipFlag > 0){
-        changeView();
-        $("#container-demographics").show();
-        $(".container-cencorship").hide();
-        $("#freedom-of-net-barchart").hide(0);
-        $("#btn-cencorship").css("background-color","white");
-        $("#btn-cencorship").css("color","black");
-        $("#btn-demographics").css("background-color","black");
-        $("#btn-demographics").css("color","white");
-    }
-}
-
-function changeViewToCencorship(){
-    if (cencorShipFlag < 0){
-        changeView();
-        $("#container-demographics").hide();
-        $(".container-cencorship").show();
-        $("#freedom-of-net-barchart").show(0);
-        $("#btn-cencorship").css("background-color","black");
-        $("#btn-cencorship").css("color","white");
-        $("#btn-demographics").css("background-color","white");
-        $("#btn-demographics").css("color","black");
-    }
-}
-
 //  Changes view between Demographic mode and cencorship mode
 function changeView() {
     cencorShipFlag = cencorShipFlag * (-1);
@@ -164,10 +138,24 @@ function changeView() {
             $("#playbutton").hide(0);
             $("#slider").hide(0);
             d3.select('#clock').html("2014");
+            $("#container-demographics").hide();
+            $(".container-cencorship").show();
+            $("#freedom-of-net-barchart").show(0);
+            $("#btn-cencorship").css("background-color","black");
+            $("#btn-cencorship").css("color","white");
+            $("#btn-demographics").css("background-color","white");
+            $("#btn-demographics").css("color","black");
         } else {
             $("#playbutton").show(0);
             $("#slider").show(0);
             d3.select('#clock').html(timerYear);
+            $("#container-demographics").show();
+            $(".container-cencorship").hide();
+            $("#freedom-of-net-barchart").hide(0);
+            $("#btn-cencorship").css("background-color","white");
+            $("#btn-cencorship").css("color","black");
+            $("#btn-demographics").css("background-color","black");
+            $("#btn-demographics").css("color","white");
         }
     }
 }
