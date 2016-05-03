@@ -106,6 +106,10 @@ function setDefaultColorMapCencorship() {
     d3.select("#ROU").style("fill", "gray");
     d3.select("#SDS").style("fill", "gray");
     d3.select("#SOL").style("fill", "gray");
+    d3.select("#KOS").style("fill", "gray");
+    d3.select("#SAH").style("fill", "gray");
+    d3.select("#TWN").style("fill", "gray");
+    d3.select("#TLS").style("fill", "gray");
     setDefaultColorMap();
     freedomData.forEach(function(d) {
         d3.select("#" + countryMapping[d.Country])
