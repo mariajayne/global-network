@@ -52,9 +52,6 @@ ul.nav-tabs.affix {
     top: 75px; /* Set the top position of pinned element */
 }
 
-h2 {
-}
-
 h5 {
     font-size: 14px;
     font-weight: bold;
@@ -72,4 +69,25 @@ img {
 
 .center {
     text-align: center;
+}
+
+h4 {
+    color: grey;
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.vis {
+    height: 360px;
+    width: 700px;
+}
+
+.skinny {
+    width: 650px;
+    height: 200px;
+}
+
+#bardots {
+    width: 650px;
+    height: 160px;
 }

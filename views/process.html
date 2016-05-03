@@ -42,6 +42,7 @@
                     <li><a href="#questions">Questions</a></li>
                     <li><a href="#data">Data</a></li>
                     <li><a href="#exploration">Exploratory Data Analysis</a></li>
+                    <li><a href="#related">Related Work</a></li>
                     <li><a href="#evolution">Design Evolution</a></li>
                     <li><a href="#implementation">Implementation</a></li>
                     <li><a href="#evaluation">Evaluation</a></li>
@@ -65,8 +66,12 @@
                     <p>We began with three overarching questions that we aimed to solve with our visualization.  This provided us with a framework that allowed to design our visualizations in an intuitive, approachable way, inviting users to explore, learn, and ultimately answer these questions themselves.  The following are the questions that we, the Global Network, seek to answer.</p>
 
                     <h5>1. How do demographic factors of a nation (GDP, employment, education, etc.) relate to number of internet users in a nation?</h5>
+                    <p>Which development indicators, if any, are good variables to predict a country's internet usage? Are some metrics better than others? Are wealth based indicators like GDP more explanatory than infrastructure indicators like safe water access?</p>
+
                     <h5>2. How has internet usage changed over time? What nations are accelerating more quickly than others?</h5>
+                    <p>How do some regions of the world change in their internet use over time? Do some countries constantly dominate? Are there specific areas in the world that remain low in their internet usage?</p>
                     <h5>3. How do different countries use social media?</h5>
+                    <p>How do different countries and regions vary in their overall level of usage? Which platforms are most popular? Are their platforms that are universally popular, or are countries more particular with the type of applications they use?</p>
 
                 </section>
                 <section id="data"><hr>
@@ -75,32 +80,48 @@
                     <p>We obtained our data from two primary sources: the United Nations and the World Bank. These provided us with a credible, bountiful source of data. Our data have five main metrics, over the course of a 25 year period.</p>
 
                     <ul style="list-style:none;">
-                        <li><h5>GDP.</h5><br>
-
-                        </li>
-                        <li><h5>Percent of Population who Use the Internet.</h5><br>
-
-                        </li>
-                        <li><h5>Percent of Population with Access to Safe Water.</h5><br>
-
-                        </li>
-                        <li><h5>Percent of Population enrolled in Tertiary Education.</h5><br>
-
-                        </li>
-                        <li><h5>Percent of Population who are Unemployed.</h5><br>
-
-                        </li>
+                        <li><h5>GDP.</h5>
+                            <p>This data was obtained from the World Bank, and was originally in units of Local Currency. To normalize the comparison of GDP, we converted these values to US Dollars using current exchange rates. While this does not account for fluctuation of value of currencies over time, we believe it still accurately represents overall trends.</p>
+                        </li><br>
+                        <li><h5>Percent of Population who Use the Internet.</h5>
+                            <p>This data from the World Bank gives a national percentage of the proportion of the population that uses the internet regularly.</p>
+                        </li><br>
+                        <li><h5>Percent of Population with Access to Safe Water.</h5>
+                            <p>This data, from the United Nations, gives a percentage of the population with "unburdened access" to potable water.</p>
+                        </li><br>
+                        <li><h5>Percent of Population enrolled in Tertiary Education.</h5>
+                            <p>This metric includes technical and vocational schools as well as universities and other institutions of higher education. It represents the portion of the population who has either completed or is currently enrolled in tertiary school.</p>
+                        </li><br>
+                        <li><h5>Percent of Population who are Unemployed.</h5>
+                            <p>This data is obtained from the World Bank and represents the portion of the population without work.</p>
+                        </li><br>
                     </ul>
 
                     <p>In addition, we used population data for each country, storing them in CSV and JSON files.</p>
 
                     <h3>scripts</h3>
 
+                    <p>We initially obtained our demographic data from the World Bank, and converted this CSV file into a nested JSON object of children, grandchildren, etc. in order to properly format the data for the treemap visualization. Unfortunately, this data configuration is much too unwieldy to be useful for our other visualizations. So we wrote several scripts in order to parse our data.
+                        <code>jsonParsey.py</code>, <code>countryParser.py</code>,  <code>csvParser.py</code>, and <code>worldDataComplete.py</code> allowed us to output CSV and JSON files that were formatted in a way that was much more manageable to efficiently create our other visualizations. To be clear, we weren’t scraping for data with the python scripts; we were simply reorganizing our data into a more useful arrangement.
+                    </p>
                 </section>
                 <section id="exploration"><hr>
                     <h2>Exploratory Data Analysis</h2>
 
                     <p>Like most first glimpses at large data sets, our analysis began with <code>console.log()</code> statements. This allowed us to familiarize ourselves with the hierarchical structure of the data in order to properly implement the code for our visualizations. Working through our data analysis, it seemed fairly obvious to use a map visualization in some way. We believed that, if we could link this map to a more familiar visualization, like a line or bar chart, we would truly have something special. As the project progressed, our familiarization with the data came from a more organic exploration of the data’s structures as we implemented our visualizations.</p>
+                </section>
+                <section id="related">
+                    <h2>Related Work</h2>
+
+                    <p>Our opening page and, indeed, the project itself, was inspired by the well-known Facebook network visualization. It’s simplicity informed our design choices, and its complexity inspired us to explore how the world as a whole was connected via the internet.</p>
+
+                    <div class="center">
+                        <img src="../img/facebook.jpg" class="vis">
+                        <br>
+                        "Figure 1: Facebook Network Visualization"
+                        <br>
+                        <br>
+                    </div>
                 </section>
                 <section id="evolution"><hr>
                     <h2>Design Evolution</h2>
@@ -108,7 +129,7 @@
                     <div class="center" id="SocialMedia">
                         <img src="../img/SocialMedia.JPG">
                         <br>
-                        "Figure 1: Visualization of Different Social Media Platforms"
+                        "Figure 2: Visualization of Different Social Media Platforms"
                         <br>
                         <br>
                     </div>
@@ -116,7 +137,7 @@
                     <div class="center" id="Dashboard">
                         <img src="../img/Dashboard.jpg">
                         <br>
-                        "Figure 2: Linked Visualizations for Landing Page"
+                        "Figure 3: Linked Visualizations for Landing Page"
                         <br>
                         <br>
                     </div>
@@ -124,7 +145,7 @@
                     <div class="center" id="LineChart">
                         <img src="../img/LineChart.jpg">
                         <br>
-                        "Figure 3: Line Chart Depicting Different Countries over Time"
+                        "Figure 4: Line Chart Depicting Different Countries over Time"
                         <br>
                         <br>
                     </div>
@@ -132,7 +153,7 @@
                     <div class="center" id="Map">
                         <img src="../img/Map.jpg">
                         <br>
-                        "Figure 4: Animated Map to Represent Internet Use with Color"
+                        "Figure 5: Animated Map to Represent Internet Use with Color"
                         <br>
                         <br>
                     </div>
@@ -145,7 +166,7 @@
                     <div class="center" id="Redesign">
                         <img src="../img/redesign.jpg">
                         <br>
-                        "Figure 5: A Treemap to Explore 5 Demographic Metrics over 25 Years."
+                        "Figure 6: A Treemap to Explore 5 Demographic Metrics over 25 Years."
                         <br>
                         <br>
                     </div>
@@ -153,36 +174,97 @@
                 <section id="implementation">
                     <h2>Implementation</h2>
 
+                    <h3>Front Page</h3>
+                    <h4>frontpage.html: front-page.js, main.js</h4>
+                    <p>This is the welcome page to our site. It’s an invitation to explore and is designed to get the user interested in our project. Heavily inspired by the Facebook network visualization, we implemented a time-lapse animation of the world from 1991 to 2014. Each node that you see appear represents a city, and the cities blink to life as the amount of internet usage in that country increases. With this visualization, we hoped to eliminate the lie factor that geographic area creates in other cartographic visualizations. The area of the circle encodes population of that city, so we can not only represent which countries around the world are using the internet over time, but also how their internet use accelerates over time. For example, India has a massive increase in internet use in 2012, and you can see that there are portions of the world that remain “offline” throughout the entire period. We hope this page gets you excited to explore and learn more.</p>
+
+                    <div class="center">
+                        <img src="../img/welcome.jpg">
+                        <br>
+                        "Figure 7: Animation of the World Coming Online"
+                        <br>
+                        <br>
+                    </div>
                     <h3>Dashboard</h3>
+                    <h4>dashboard.html: dashboard.js</h4>
+                    <p>This is, arguably, our most complicated page. As with our front page, this choropleth map can be animated and controlled with the linked timeline object. Unlike the front page, however, this page has some inherent lie factor in terms of area. Because we are using saturation to encode level of internet usage, some larger countries may receive more visual attention than others. We believe, however, that this is a worthy sacrifice in order to enable a certain level of interactivity. Hovering over a country highlights it and shows the user specific values for that country in that year, giving ready access to details on demand. Not satisfied with a tooltip? Click on a country in <code>demographic-map</code> and see its data appear on <code>demographic-line-chart</code>. Better yet, why don’t you brush over that timeline and select a specific period of time you’d like to analyze. To explore how censorship correlates with internet usage, we invite you to click on the <code>Censorship</code> button in the upper right corner. Here, we’ve used a choropleth map to use hue to encode level of censorship in a country. This is accompanied by a bar chart on the bottom of the screen. The height and color of the bars encode level of censorship, and the vertical height of the dots encode level of internet use. With this visualization, therefore, we hope that you are able to make some inferences for the correlation between internet usage and censorship.</p>
 
-                    <p>This visualization includes a choropleth map of the whole word that communicates the percentage of Internet users in each country for each year between 1990-2014. The percentage is encoded using saturation of the color blue; the default color is black, meaning that between 0 and 1% of the population can be classified as an Internet user (i.e. a person having access to the Internet). Viewers can simply play the animation and view the saturation changes, pause during the animation to hover over countries and explore their percentages of Internet users as part of the population, or they can use a slider below the map to go to specific years and view that information. The data is from the World Bank and is a broad overview to transition viewers into the topic we are dissecting, namely the trends behind Internet usage and the relevance of the spread of the Internet and its accessibility around the world in the context of other socio-economic factors. We choose to communicate this single dimension of information in the “welcoming” visualization to convey our message and introduce the patterns we’d like to address; plus, it’s easy and intuitive for the audience to focus on a specific piece of data and understand it when going in to explore more complex relationships.</p>
+                    <div class="center">
+                        <img src="../img/dash.jpg" class="vis">
+                        <br>
+                        "Figure 8: A Choropleth Map Linked with Three Line Charts and a Brush Timeline"
+                        <br>
+                        <br>
+                    </div>
 
-                    <p>we are trying to show which factors that might have a correlation with internet usage. In order to encode this data, we have chosen to use line graphs vertically centered besides a world map. The reason why they are vertically mapped is because all charts have time along the horizontal axis. In that way, it might be less confusing and easier to interpret the meaning behind the data. In addition we have included a world map on the side of the line charts. This is because we want it to be easy and intuitive for the audience which countries that are shown in the corresponding line charts.</p>
+                    <div class="center">
+                        <img src="../img/censored.jpg">
+                        <br>
+                        "Figure 9: A Choropleth Map Depicting Censorship"
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="center">
+                        <img src="../img/bardots.jpg" id="bardots">
+                        <br>
+                        "Figure 10: A Visualization Showing Correlation between Internet Useand Censorship"
+                        <br>
+                        <br>
+                    </div>
+                    <h3>Demographics</h3>
+                    <h4>countries.html: treeMap.js</h4>
+                    <p>With this treemap visualization, we used area to encode the demographic metric of your choice: GDP (in US Dollars), Access to Safe Water (% of the Population), Enrolled in or Completed Tertiary Education (% of the Population), and, of course, Internet Users (% of the Population). Not only can you select your metric of choice, but you can see how these metrics change over time. For example, scrolling through time to analyze GDP will reveal a rapidly increasing size of China’s rectangle. Simply hover over a rectangle to get specific values for that metric for that year.</p>
+
+                    <div class="center">
+                        <img src="../img/countries.jpg" class="vis">
+                        <br>
+                        "Figure 11: A Treemap Depicting Demographic Metrics over Time"
+                        <br>
+                        <br>
+                    </div>
 
                     <h3>Social Media</h3>
+                    <h4>social-media.html: social-media.js</h4>
+                    <p>The timeline has circles which are centered at the year in which the social media platform or application was created. The area of the circle encodes the number of active users of that application. To learn more about that specific application, hover over a specific circle and see the information appear in the lower lefthand corner of your screen. To narrow the field of information, click the button at the top to see only Chat Applications or Social Network Applications. To get a snapshot of the social media use in a particular country, simply click on that country’s flag next to the bar chart. Here, the length of the bar encodes the percentage of the population that uses that particular platform.</p>
 
-                    <p>The timeline shows the biggest social media platforms in the world. The size of the circles encode the size of each platform in monthly active users. The center of each circle is positioned on the date the platform was first released. It’s possible to interact with the timeline in two different ways:</p>
+                    <div class="center">
+                        <img src="../img/circles.jpg" class="skinny">
+                        <br>
+                        "Figure 12: A Timeline of Social Media"
+                        <br>
+                        <br>
+                    </div>
 
-                    <ul style="list-style:none;">
-                        <li>1. By hovering over a circle some more detailed information about that platform will be shown<br></li>
-                    </ul>
-
-                    <ul style="list-style:none;">
-                        <li>2. By clicking on a circle the data shown in the barchart will be changed to display data corresponding to the
-                            chosen platform.<br></li>
-                    </ul>
-
-                    <p>The bar chart currently shows how many percent of the population in some selected countries that use a specific social media platform. The chosen countries are the biggest in each continent in terms of population. Currently there is lacking some information for some of the countries, which will be updated in the next prototype.</p>
+                    <div class="center">
+                        <img src="../img/platforms.jpg">
+                        <br>
+                        "Figure 13: A Bar Chart of Social Media Use by Country"
+                        <br>
+                        <br>
+                    </div>
                 </section>
                 <section id="evaluation"><hr>
                     <h2>Evaluation</h2>
 
+                    <p>We began our project seeking to answer some questions about the internet. Who uses it and where? How has this use changed over time? And what about this social media thing? In exploring our visualization ourselves, and asking friends and colleagues for their opinions, we've made some discoveries as to the answers to these questions:</p>
+
+                    <ul>
+                        <li>Countries in North Africa and the Middle East, even presently, use less internet than the rest of the world.</li>
+                        <li>Increased censorship tends to correlate to decreased internet usage</li>
+                        <li>Countries in Southeast Asia have accelerated their "coming online" in the last five years compared to the rest of the world</li>
+                        <li>Markers of developed countries like access to safe water <b>are not</b> great indicators for internet usage</li>
+                        <li>Wealth and education indicators like GDP and tertiary school enrollment, however, tend to positively correlate with internet usage</li>
+                        <li>The types of social media used in different countries vary widely</li>
+                    </ul>
+
+                    <p>These are just a few main findings from a small subset of people. We can't wait to see what you'll learn when you explore the Global Network.</p>
                 </section>
-
-
 
                 <section id="video">
                     <h2>Video</h2>
+                    
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/NbbzJdUryDw" frameborder="0" allowfullscreen></iframe>
                 </section>
 
 
