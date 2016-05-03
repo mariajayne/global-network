@@ -2,7 +2,7 @@
  * Created by MagnusMoan on 17/04/16.
  */
 
-var yearDelay = 2000.0;
+var yearDelay = 1500.0;
 var nodeDelay, blinkDelay;
 
 WorldMap = function(_parentElement, _mapData, _data, _globalNumberOfUsers) {
@@ -69,14 +69,6 @@ WorldMap.prototype.createVisualization = function (){
     // Remove Antarctica
     vis.svg.select("#ATA").remove();
 
-    /*Codes that adds all cities at the same time.
-    TODO: Check if adding all cities and set their visibility to hidden is better than the current approach.
-    for (var i = 0; i < vis.cities.length; i++) {
-        for (var j = 0; j < vis.cities[i].length; j++) {
-            vis.addAllNodes(vis.cities[i][j]);
-        }
-    }*/
-
     vis.yearCounter = document.getElementById("yearCounter");
     vis.userCounter = document.getElementById("userCounter1");
 
@@ -106,8 +98,7 @@ WorldMap.prototype.createVisualization = function (){
         vis.userCounter.innerHTML = numberWithCommas(parseInt(vis.userCounter.innerHTML.replace(/,/g,''))
             + parseInt(vis.globalNumberOfUsers[0][outerCounter]));
         vis.yearCounter.innerHTML = (parseInt(vis.yearCounter.innerHTML) + 1);
-        nodeDelay = .8*(yearDelay / vis.current_year.length);
-        blinkDelay =.2*nodeDelay;
+        nodeDelay = yearDelay / vis.current_year.length;
         var innerCounter = 0;
         var innerRefreshId = setInterval(function() {
             vis.updateVisualization(vis.current_year[innerCounter]);
