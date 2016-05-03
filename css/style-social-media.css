@@ -18,7 +18,7 @@
 }
 
 #sub-title {
-    position : absolute;
+    position : relative;
     font-size : 14px;
 }
 
@@ -30,13 +30,19 @@ h3 {
     font-weight : 300;
 }
 
+.subtitle-text {
+    font-size : 14px;
+    display : block;
+    text-anchor: middle;
+}
+
 
 /***************************************/
 /* Social platform category rectangles */
 /***************************************/
 
 .category-rect {
-    position : absolute;
+    position : relative;
     fill-opacity : 0;
 }
 
@@ -49,6 +55,10 @@ h3 {
     stroke : black;
     fill : none;
     fill-opacity : 0;
+}
+
+#subtitle-container{
+    position : relative;
 }
 
 

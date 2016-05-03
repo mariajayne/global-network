@@ -63,73 +63,68 @@ Timeline.prototype.initVis = function() {
         .attr("text-anchor", "middle")
         .text("Social media");
 
-    
-    // Sub title
-    vis.subtitle = vis.svg.append("g")
-        .append("text")
-        .attr("id", "sub-title")
-        .attr("y", .067*vis.bounds.height)
-        .attr("x", vis.width / 2.0)
-        .attr("text-anchor", "middle")
-        .text("Social networks / Chat Applications / All");
-
-
     // Add rectangles for choosing social media category
     var rectHeight = 25;
     var yPosition = 12;
+    var boundsTitle = document.getElementById("title").getBoundingClientRect();
 
-    vis.rectSocialNetwork = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 130)
-        .attr("y", yPosition)
-        .attr("class", "category-rect")
-        .attr("id", "network")
-        .attr("width", 108)
-        .attr("height", rectHeight)
-        .on("click", function() {
-            vis.moveChosen(this);
-        });
+    vis.subtitleArea = vis.svg.append("g")
+        .attr("transform", "translate(" + (vis.width/2 - 137.5) + "," + yPosition + ")")
+        .attr("id", "subtitle-container");
 
-    vis.rectSocialMsg = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 21)
-        .attr("y", yPosition)
-        .attr("class", "category-rect")
-        .attr("id", "msg")
-        .attr("width", 113)
-        .attr("height", rectHeight)
-        .on("click", function() {
-            vis.moveChosen(this);
-        });
-
-    vis.rectAll = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 93)
-        .attr("y", yPosition)
-        .attr("class", "category-rect")
-        .attr("id", "all")
-        .attr("width", 35)
-        .attr("height", rectHeight)
-        .on("click", function() {
-            vis.moveChosen(this);
-        });
-
-    vis.rectBoundary = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) - 130)
-        .attr("y", yPosition)
+    vis.rectBoundary = vis.subtitleArea.append("rect")
         .attr("id", "boundary-rect")
-        .attr("width", 258)
+        .attr("width", 275)
         .attr("height", 25);
 
-    vis.rectChosenCategory = vis.svg.append("rect")
-        .attr("x", (vis.width / 2.0) + 93)
-        .attr("y", yPosition)
+    var rectBoundsWidth = document.getElementById("boundary-rect").getBoundingClientRect().width;
+
+    vis.subtitleArea.append("text")
+        .attr("class", "subtitle-text")
+        .attr("transform", "translate(" + rectBoundsWidth/2.0 + ", 17)")
+        .text("Social networks | Chat Applications | All");
+
+    vis.rectSocialNetwork = vis.subtitleArea.append("rect")
+        .attr("class", "category-rect")
+        .attr("id", "network")
+        .attr("width", rectBoundsWidth*.425)
+        .attr("x", 0)
+        .attr("height", rectHeight)
+        .on("click", function() {
+            vis.moveChosen(this);
+        });
+
+    vis.rectSocialMsg = vis.subtitleArea.append("rect")
+        .attr("class", "category-rect")
+        .attr("id", "msg")
+        .attr("width", rectBoundsWidth*.45)
+        .attr("height", rectHeight)
+        .attr("x", rectBoundsWidth*.425)
+        .on("click", function() {
+            vis.moveChosen(this);
+        });
+
+    vis.rectAll = vis.subtitleArea.append("rect")
+        .attr("x", rectBoundsWidth*.875)
+        .attr("class", "category-rect")
+        .attr("id", "all")
+        .attr("width", rectBoundsWidth*0.125)
+        .attr("height", rectHeight)
+        .on("click", function() {
+            vis.moveChosen(this);
+        });
+    
+    vis.rectChosenCategory = vis.subtitleArea.append("rect")
+        .attr("x", rectBoundsWidth*.875)
         .attr("id", "chosen-rect")
-        .attr("width", 35)
+        .attr("width", rectBoundsWidth*0.125)
         .attr("height", rectHeight);
 
+    
     
     // Shows all platforms by default
     vis.chosenCategory = "all";
 
-    
     // Platform information textbox
     vis.platformName = $("#platformName");
     vis.platformReleaseDate = $("#platformDate");
@@ -143,7 +138,6 @@ Timeline.prototype.initVis = function() {
     // Wrangle data
     vis.wrangleData();
 
-    // Positioning other elements relatively to the timeline. TODO: Move this out to social-media.js
     positionRelativeToTimeline(vis);
 };
 
@@ -301,9 +295,7 @@ Timeline.prototype.setSocialMediaText = function(){
 }
 
 
-/* Function that position other elements on the page relatively to the timeline.
-   TODO: This function should be refactored and moved to social-media.js
- */
+/* Function that position other elements on the page relatively to the timeline. */
 function positionRelativeToTimeline(vis) {
     
     // Variables used for positioning
