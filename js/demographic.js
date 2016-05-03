@@ -59,9 +59,9 @@ var colorScaleInternetAccess = {
 
 function selectCountry(d) {
     if (cencorShipFlag < 0) {
-        setColorMapDemographic(d)
+        setColorMapDemographic(d);
     } else {
-        setColorMapCencorship(d)
+        setColorMapCencorship(d);
     }
 }
 
@@ -102,6 +102,10 @@ function setColorMapCencorship(d) {
 
 //  Set default colormap when in "cencorship"-mode
 function setDefaultColorMapCencorship() {
+    d3.select("#COD").style("fill", "gray");
+    d3.select("#ROU").style("fill", "gray");
+    d3.select("#SDS").style("fill", "gray");
+    d3.select("#SOL").style("fill", "gray");
     setDefaultColorMap();
     freedomData.forEach(function(d) {
         d3.select("#" + countryMapping[d.Country])
